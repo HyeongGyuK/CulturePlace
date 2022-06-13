@@ -1,0 +1,21 @@
+@charset "UTF-8";
+ 
+
+.bxslider{
+	width : 100%;
+	height : 100%;
+	/* text-align: center; */
+	border: 10px solid black;
+}
+.bxslider_cont{
+	text-align: center;
+	margin-left: 300px;
+}
+
+.bx-wrapper{
+	width: 72%; 
+	height: 600px;
+	/* text-align: center; */
+	margin-left: 240px;
+	margin-top: 50px;
+}

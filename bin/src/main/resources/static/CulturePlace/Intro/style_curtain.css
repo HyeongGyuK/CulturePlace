@@ -1,0 +1,268 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+
+.dog{position: absolute;
+	top: 20%;
+	left: 43.5%;
+	z-index: 1;
+}
+
+
+
+.container {
+    width: 100%;
+    background: black;
+    height:100vh;
+}
+
+.logo{
+    position: absolute;
+    margin-top:-180px;
+/*     text-transform: uppercase; */
+/*     font-size: 20px; */
+/*     margin: 1.2em; */
+    
+}
+
+
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro);
+.snip1504 {
+  font-family: 'Source Sans Pro', sans-serif;
+  display:inline-block;
+  text-align:center;
+  overflow: hidden;
+  min-width: 230px;
+  max-width: 600px;
+  width: 100%;
+  color: #000000;
+  font-size: 16px;
+  background-color: #000000;
+}	
+
+
+.figure_p{text-align: center; padding-top:10%;}
+
+.snip1504 * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.45s ease;
+  transition: all 0.45s ease;
+}
+
+.snip1504 img {
+  vertical-align: top;
+  max-width: 100%;
+  backface-visibility: hidden;
+}
+
+.snip1504 figcaption {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  align-items: center;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.snip1504 h3,
+.snip1504 h5 {
+  margin: 0;
+  opacity: 0;
+  letter-spacing: 1px;
+  margin:10px;
+  font-family: 'SuseongBatang';
+}
+
+.snip1504 h3 {
+  -webkit-transform: translateY(-100%);
+  transform: translateY(-100%);
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size : 60px;
+  color: #99B5E8;
+}
+
+.snip1504 h5 {
+  font-weight: normal;
+  font-style: italic;
+  color: #E69F05;
+  -webkit-transform: translateY(100%);
+  transform: translateY(100%);
+  font-size : 50px;
+  
+}
+
+.snip1504 a {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.snip1504:hover > img,
+.snip1504.hover > img {
+  opacity: 0.2;
+}
+
+.snip1504:hover h3,
+.snip1504.hover h3,
+.snip1504:hover h5,
+.snip1504.hover h5 {
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+  opacity: 1;
+}
+ 
+ 
+#img-left {
+
+    /* animation: animatedBackground2 6s cubic-bezier(0.19, 1, 0.22, 1);
+    animation-delay: 5s; */
+}
+
+#img-right {
+    
+    /* animation: animatedBackground1 6s cubic-bezier(0.19, 1, 0.22, 1);
+    animation-delay: 5s; */
+}
+
+
+/* @keyframes animatedBackground1 {
+    from {
+        width: 560%;
+    }
+    to {
+        width: 49%;
+    }
+}
+
+
+
+@keyframes animatedBackground2 {
+    from {
+        background-size: 760%;
+    }
+    to {
+        background-size: 151%;
+    }
+} */
+
+/* .left-bottom-text {
+    position: absolute;
+    color: white;
+    font-size: 48px;
+    text-decoration: underline;
+    text-transform: uppercase;
+    font-weight: lighter;
+    padding: 26px;
+    bottom: 0;
+    right: 0;
+}
+
+.right-bottom-text {
+    position: absolute;
+    color: white;
+    font-size: 48px;
+    text-decoration: underline;
+    text-transform: uppercase;
+    font-weight: lighter;
+    padding: 26px;
+    bottom: 0;
+} */
+
+/* @media (max-width: 990px) {
+    .container-left,
+    .container-right {
+        width: 100%;
+        height: 100vh;
+    }
+
+    .container-right {
+        top: 100vh;
+        left: 0;
+    }
+
+} */
+
+.loader {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: black;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.loader marquee {
+	padding-top:10px;
+    opacity: 0.2;
+    text-transform: uppercase;
+    line-height: 190px;
+    margin: 0;
+    padding: 0;
+    color: #646464;
+    font-size: 160px;
+    font-family: 'SuseongBatang';
+}
+
+.loader .intro {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.loader .intro h1 {
+    font-size: 124px;
+    text-transform: uppercase;
+    font-weight: 200;
+    color: white;
+    font-family: 'SuseongBatang';
+    width:600px;
+}
+
+.intro-title .letter {
+    display: inline-block;
+    line-height: 1em;
+}
+
+
+
+.main_p{}
+
+.main{display: inline-block; width:49.5%}
+
+#main_right{float: right;}
+
+#leftdoor{
+	animation-name: example1;
+	animation-duration: 3s;
+	animation-fill-mode: forwards;
+	}
+	
+@keyframes example1 {
+  from {}
+  to {transform: translateX(-60%); }
+}
+
+#rightdoor{
+	animation-name: example2;
+	animation-duration: 3s;
+	animation-fill-mode: forwards;
+	} 
+	
+@keyframes example2 {
+  from {}
+  to {transform: translateX(50%);}
+}
