@@ -315,9 +315,20 @@ margin: 0 0 3px 40px;
 const geocoder = new kakao.maps.services.Geocoder()
 
 
-
-
+//변경 이전 주소(지도 안뜨는 주소)   
+var be_tit=["서울특별시 중구 필동 3가 26번지", "서울특별시 중구 장충동2가 14-67번지"]
+   
+//변경 이후 주소(도로명 주소)   
+var af_tit = ["서울특별시 중구 필동로1길 30", "서울특별시 중구 장충단로 59"]
+   
 var title = document.getElementById("address").innerText;
+
+if(title == be_tit[0] == true){
+   title = af_tit[0]
+} else if(title == be_tit[1] == true){
+   title = af_tit[1]
+}
+
 console.log(title);
 
 geocoder.addressSearch(title, (res, stat) => { 
