@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="./../../Intro/header/nav.jsp" %>
+<<<<<<< HEAD
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -18,6 +19,8 @@
  	// 폼이 없는 <a>,<img> 태그에서 사용할 공용 변수
  	String noForm=contextPath+mapping+"?command=";
 %>
+=======
+>>>>>>> origin/master
 <!DOCTYPE html>
 <html>
 <head>
@@ -114,7 +117,7 @@
 				<li>
 					<div class="lidiv">
 						<div class="image-div">
-							<a class="aforimg" href="<%=noForm%>boardReviewDetail"><img class ="image" src="/Culture/images/Board/BoardReviewImg/ticket2.jpg"></a>
+							<a class="aforimg" href="boardReviewDetail"><img class ="image" src="/Culture/images/Board/BoardReviewImg/ticket2.jpg"></a>
 							<c:forEach var="bean.image" items="${requestScope.lists }" varStatus="status"></c:forEach>
 						</div>
 					</div>
@@ -125,7 +128,7 @@
 				<li>
 					<div class="lidiv">
 						<div class="image-div">
-							<a class="aforimg" href="<%=noForm%>boardReviewDetail"><img class ="image" src="/Culture/images/Board/BoardReviewImg/ticket3.jpg"></a>
+							<a class="aforimg" href="boardReviewDetail"><img class ="image" src="/Culture/images/Board/BoardReviewImg/ticket3.jpg"></a>
 							<c:forEach var="bean.image" items="${requestScope.lists }" varStatus="status"></c:forEach>
 						</div>
 					</div>
@@ -136,7 +139,7 @@
 				<li>
 					<div class="lidiv">
 						<div class="image-div">
-							<a class="aforimg" href="<%=noForm%>boardReviewDetail"><img class ="image" src="/Culture/images/Board/BoardReviewImg/ticket4.jpg"></a>
+							<a class="aforimg" href="boardReviewDetail"><img class ="image" src="/Culture/images/Board/BoardReviewImg/ticket4.jpg"></a>
 							<c:forEach var="bean.image" items="${requestScope.lists }" varStatus="status"></c:forEach>
 						</div>
 					</div>
@@ -146,7 +149,7 @@
 				<li>
 					<div class="lidiv">
 						<div class="image-div">
-							<a class="aforimg" href="<%=noForm%>boardReviewDetail"><img class ="image" src="/Culture/images/Board/BoardReviewImg/ticket1.jpg"></a>
+							<a class="aforimg" href="boardReviewDetail"><img class ="image" src="/Culture/images/Board/BoardReviewImg/ticket1.jpg"></a>
 							<c:forEach var="bean.image" items="${requestScope.lists }" varStatus="status"></c:forEach>
 						</div>
 					</div>
@@ -156,7 +159,7 @@
 				<li>
 					<div class="lidiv">
 						<div class="image-div">
-							<a class="aforimg" href="<%=noForm%>boardReviewDetail"><img class ="image" src="/Culture/images/Board/BoardReviewImg/ticket2.jpg"></a>
+							<a class="aforimg" href="boardReviewDetail"><img class ="image" src="/Culture/images/Board/BoardReviewImg/ticket2.jpg"></a>
 							<c:forEach var="bean.image" items="${requestScope.lists }" varStatus="status"></c:forEach>
 						</div>
 					</div>

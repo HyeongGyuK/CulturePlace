@@ -8,50 +8,68 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.culture.dto.BoardFreeDto;
 //import com.culture.service.BoardFreeService;
+import com.culture.service.BoardFreeService;
 
 import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping(value = "/")
+@RequestMapping(value = "/", method = {RequestMethod.GET, RequestMethod.POST})
 public class BoardFreeController {
 	
-//	private final BoardFreeService boardFreeService;
-	
-//	private final BoardFreeService boardFreeService;
+	private final BoardFreeService boardFreeService;
 	
 	@GetMapping(value = "/BoardFree/board_free_write")
 	public String boardForm(Model model) {
 		return "Board/BoardFree/board_free_write.jsp";
 	}
 	
-	@PostMapping(value = "/BoardFree/board_free_write/board_write")
+	// 글 작성
+	@PostMapping(value = "/BoardFree/board_free_write/new")
 	public String boardWrite(@Valid BoardFreeDto boardFreeDto, BindingResult bindingResult, Model model) {
+		
 		if(bindingResult.hasErrors()) {
-			return "Board/BoardFree/board_free_write.jsp";
+			return "../../../Culture/Board/BoardFree/board_free_write";
+		}
+		
+		if(boardFreeDto.getBoard_title() == null) {
+			model.addAttribute("errorMessage", "제목은 필수 입력 사항입니다.");
+			return "../../../Culture/Board/BoardFree/board_free_write";
+		}
+		
+		if(boardFreeDto.getBoard_writer() == null) {
+			model.addAttribute("errorMessage", "내용은 필수 입력 사항입니다.");
+			return "../../../Culture/Board/BoardFree/board_free_write";
 		}
 		
 		try {
-//			boardFreeService.savedBoardWrite(boardFreeDto);
+			boardFreeService.savedBoardWrite(boardFreeDto);
 		}catch (Exception e) {
 			model.addAttribute("errorMessage", "게시물 등록중 오류가 발생하였습니다.");
-			return "Board/BoardFree/board_free_write.jsp";
+			return "../../../Culture/Board/BoardFree/board_free_write";
 		}
 		
 		return "redirect:/";
 	}
 	
 	
-	// 전체 글 목록 조회
-	@GetMapping(value = "/BoardFree/board_free_main")
-	public String boardMain(Model model) {
-//		List<BoardFreeDto> boardFreeList = boardFreeService.getBoardFreeList();
-		
-		return "Board/BoardFree/board_free_main.jsp";
-	}
+	// 글 목록 조회
+//	@GetMapping(value = {"/BoardFree/board_free_main", "/BoardFree/board_free_main/{page}"})
+//	public String boardMain(BoardFreeSearchDto boardFreeSearchDto, @PathVariable("page") Optional<Integer> page, Model model) {
+//		Pageable pageable = PageRequest.of(page.isPresent() ? page.get(): 0, 10);
+//		
+//		Page<BoardFree> boardFreeLists = boardFreeService.getBoardFreePage(boardFreeSearchDto, pageable);
+//		
+//		model.addAttribute("boardFreeLists", boardFreeLists);
+//		model.addAttribute("boardFreeSearchDto", boardFreeSearchDto);
+//		model.addAttribute("maxPage", 5);
+//		
+//		return "Board/BoardFree/board_free_main";
+//	}
 	
 	@GetMapping(value = "/BoardFree/board_free_update")
 	public String boardUpdate(Model model) {
