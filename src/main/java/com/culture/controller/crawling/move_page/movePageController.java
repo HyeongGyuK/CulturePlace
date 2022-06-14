@@ -22,4 +22,14 @@ public class movePageController {
 	public String moveReviewBoard() {
 		return "Board/Board_Review/boardReview_main.jsp";
 	}
+	
+	@GetMapping(value = "/free_board")
+	public String freeReviewBoard() {
+		return "Board/BoardFree/board_free_main.jsp";
+	}
+	
+	@GetMapping(value = "/ticket_board")
+	public String ticketReviewBoard() {
+		return "Board/TicketTrade/ticket_trade_main.jsp";
+	}
 }
