@@ -1,10 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="./../Board_Common/common.jsp" %>
+<%@ include file="./../../Intro/header/nav.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
+ 	int twelve = 12; 
 	int offset = 1; // 양식의 label 너비
 	int content = twelve - 1*offset; //양식의 입력
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,7 +66,6 @@
 									<option value="">----카테고리를 선택해주세요----</option>		
 								    <option value="play">연극</option>								    
 								    <option value="musical">뮤지컬</option>	
-								    <option value="movie">영화</option>							    
 								    <option value="concert">콘서트</option>
 								    <option value="classic">클래식/오페라</option>	
 								    <option value="gugak">국악</option>	

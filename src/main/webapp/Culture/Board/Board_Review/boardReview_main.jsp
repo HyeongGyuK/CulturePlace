@@ -1,6 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="./../Board_Common/common.jsp" %>
+<%@ include file="./../../Intro/header/nav.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%
+ 	// contextPath : 해당 애플리케이션의 이름(=컨덱스트 이름)
+ 	String contextPath = request.getContextPath();
+ 
+ 	// 서블릿 매핑 이름
+ 	String mapping = "/Culture";
+ 	// url 패턴
+ 
+ 	// 폼 태그에서 사용할 공용 변수
+ 	String yesForm = contextPath+mapping;
+
+ 	// 폼이 없는 <a>,<img> 태그에서 사용할 공용 변수
+ 	String noForm=contextPath+mapping+"?command=";
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,9 +27,9 @@
 		$(document).ready(function(){
 		
 			$('#writeBtn').hover(function(){
-				$(this).css({"background-color": "#6255f6","color":"#FFFFFF"});
+				$(this).css({"background-color": "black","color":"#FFFFFF"});
 			}, function(){
-				$(this).css({"background-color": "#FFFFFF", "color":"#6255f6", "border":"1px solid #6255f6"});
+				$(this).css({"background-color": "black", "color":"black", "border":"1px solid black});
 			});
 			
 		});
@@ -24,11 +41,11 @@
 		body{font-family: 'Noto Sans KR', sans-serif;}
 	
 		.list-tab{width:1184px; margin-top:72px; margin-left:auto; margin-right:auto; text-align:center;}
-	  	.list-tab li:hover p{color:#74eb8b; background-color:#6255f6; border-radius:20px;}
+	  	.list-tab li:hover p{color:white; background-color:black; border-radius:20px;}
 	  	.ul01{width:1184px }
 	    .ul01 li{list-style:none; display:inline-block; width:143.63px; height:56px; line-height:56px; background-color:#f5f5f6;
 	    	  	 border-radius:20px;}
-   	    .ul01 p{font-size:16px; font-weight:700; color:#6255f6;}
+   	    .ul01 p{font-size:16px; font-weight:700; color:black;}
    	    .list-data{width:1184px; height:1025px; margin-top:72px; margin-left:auto; margin-right:auto;}
 		.ul02 li{list-style:none; float:left; 
 				 width:376px; height:481.6px; margin-bottom:61px; margin-left:14px; }
@@ -67,7 +84,6 @@
 			<ul class="ul01">
 				<a href=""><li><p><span>연극</span></p></li></a>
 				<a href=""><li><p><span>뮤지컬</span></p></li></a>
-				<a href=""><li><p><span>영화</span></p></li></a>
 				<a href=""><li><p><span>콘서트</span></p></li></a>
 				<a href=""><li><p><span>클래식/오페라</span></p></li></a>
 				<a href=""><li><p><span>국악</span></p></li></a>
@@ -154,7 +170,7 @@
 		<div id="btnBox">
 				<a href="/board/insert"
 				class="btn btn-primary pull-right"
-				style="background-color: #FFFFFF; color: #6255f6; border: 1px solid #6255f6; box-sizing: border-box; font-size:18px; margin-top:-50px;"><b>글쓰기</b></a>
+				style="background-color: #FFFFFF; color: black; border: 1px solid black; box-sizing: border-box; font-size:18px; margin-top:-50px;"><b>글쓰기</b></a>
 				
 		</div>
 	

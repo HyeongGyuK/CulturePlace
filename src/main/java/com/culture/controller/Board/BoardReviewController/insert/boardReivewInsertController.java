@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping(value = "/board")
-public class boardReivewInsert {
+public class boardReivewInsertController {
 
 	@GetMapping(value = "/insert")
 	public String reviewInsert() {

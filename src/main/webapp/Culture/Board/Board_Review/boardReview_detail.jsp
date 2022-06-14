@@ -1,6 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="./../Board_Common/common.jsp" %>
+<%@ include file="./../../Intro/header/nav.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%
+ 	// contextPath : 해당 애플리케이션의 이름(=컨덱스트 이름)
+ 	String contextPath = request.getContextPath();
+ 
+ 	// 서블릿 매핑 이름
+ 	String mapping = "/Culture";
+ 	// url 패턴
+ 
+ 	// 폼 태그에서 사용할 공용 변수
+ 	String yesForm = contextPath+mapping;
+
+ 	// 폼이 없는 <a>,<img> 태그에서 사용할 공용 변수
+ 	String noForm=contextPath+mapping+"?command=";
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -125,7 +142,7 @@
 						pageContext.setAttribute("crcn", "\r\n");
 						pageContext.setAttribute("br", "<br/>");
 					%>
-					<td colspan="6"><p id="text"></p>재밌어요~~
+					<td colspan="6"><p id="text"></p>재밌어요~
 						${fn:replace(bean.content, crcn, br )}
 					</td>
 				</tr>
