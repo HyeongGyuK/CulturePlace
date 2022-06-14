@@ -145,7 +145,9 @@ html, body {
 	width: 35%;
 	margin-right: 10px;
 	height: 100px;
-	box-shadow: 0 0px 10px 0px
+	box-shadow: 0 0px 10px 0px;
+	background-position:center;
+	background-repeat:no-repeat;
 }
 
 /* .swiper-slide-active{ */
