@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="./../../Intro/header/nav.jsp" %>
-<<<<<<< HEAD
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -19,8 +18,6 @@
  	// 폼이 없는 <a>,<img> 태그에서 사용할 공용 변수
  	String noForm=contextPath+mapping+"?command=";
 %>
-=======
->>>>>>> origin/master
 <!DOCTYPE html>
 <html>
 <head>
