@@ -25,7 +25,7 @@ public class UserController {
 	@GetMapping(value = "/login")
 	public String login() {
 		System.out.println("login controller");
-		return "../../Common/Member/Login/memberLoginForm.jsp";
+		return "Common/Member/Login/memberLoginForm.jsp";
 	}
 	
 
@@ -50,9 +50,9 @@ public class UserController {
 			}
 			model.addAttribute("errorMsg", errorMsg);
 
-			return "../../Common/Member/Login/memberForm.jsp";
+			return "Common/Member/Login/memberForm.jsp";
 		}
-		return "../../Common/Member/Login/memberForm.jsp";
+		return "Common/Member/Login/memberForm.jsp";
 	}
 	
 
@@ -60,7 +60,7 @@ public class UserController {
 	@GetMapping(value = "/new")
 	public String join() {
 		System.out.println("join controller");
-		return "../../Common/Member/Login/memberJoinTest.jsp";
+		return "Common/Member/SignUp/memberJoinTest.jsp";
 	}
 	
 	
@@ -89,7 +89,7 @@ public class UserController {
 		   
 		   
 		   
-		   return "../../Common/Member/Login/memberForm.jsp";
+		   return "Common/Member/Login/memberForm.jsp";
 	   }
   
 	   return "redirect:/";

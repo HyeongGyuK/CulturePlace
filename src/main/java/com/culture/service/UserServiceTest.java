@@ -25,11 +25,10 @@ public class UserServiceTest {
     //우리가 form에서 입력하여 넣은 데이터라고 보면 됩니다.
     private User createUser(){
         UserFormDto userFormDto = new UserFormDto();
-        userFormDto.setEmail("test@email.com");
-        userFormDto.setName("홍길동");
-        userFormDto.setAddress("서울시 마포구 합정동");
-        userFormDto.setPassword("1234");
-        userFormDto.setPasswordCheck("1234");
+        userFormDto.setEmail("Joo@email.com");
+        userFormDto.setName("주병훈");
+        userFormDto.setAddress("서울시 마포구 ㅇㅇㅇ");
+        userFormDto.setPassword("123456");
 
         return User.createUser(userFormDto, passwordEncoder);
     }

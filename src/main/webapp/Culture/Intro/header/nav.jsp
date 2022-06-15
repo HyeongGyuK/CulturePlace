@@ -47,10 +47,10 @@
         <div class="common_navbar_login"> <!-- 로그인 회원가입  // 로그아웃 회원정보수정(or MyPage) -->
             <ul>
                 <li>
-                    <a href="/members/login"><p class="common_navbar_login_p">로그인</p></a>
+                    <a href="/users/login"><p class="common_navbar_login_p">로그인</p></a>
                 </li>
                 <li>
-                    <a href="/members/new"><p class="common_navbar_login_p">회원가입</p></a>
+                    <a href="/users/new"><p class="common_navbar_login_p">회원가입</p></a>
                 </li>
             </ul>
         </div>
