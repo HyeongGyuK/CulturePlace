@@ -100,13 +100,11 @@ label {
 }
 </style>
 
-<%
-int wid = 8;
-%>
+
 <!-- 사용자 스크립트 추가 -->
 
 <div class="LogJoinBox">
-    <form action="/members/new" role="form" method="post">
+    <form action="/users/new" role="form" method="post">
     	<h2 align="center">회원가입</h2>
     	
         <div class="form-group"  id="idBox1">

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%-- <%@ include file="../main/header/nav.jsp"%> --%>    
+<%@ include file="./../Member_Common/common.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -192,16 +193,30 @@ body {
   }
 } */
 </style>
+
+<script type="text/javascript">
+		$('.idpasswordborder').addClass('idpasswordborder');
+		if(${requestScope.messagelogin=="아이디 또는 패스워드가 틀렸습니다."}){
+			alert('${requestScope.messagelogin}');
+			console.log('${requestScope.messagelogin}');
+		}else{
+			console.log('로그인 페이지 이동');
+		}
+		if(${requestScope.joinmessage!=null}){
+			alert('${requestScope.joinmessage}');
+		}
+</script>
+
 </head>
 <body>
    <div class="login-box">
   <h2>Login</h2>
   <form role="form" method="post" action="/members/login">
-    <div class="user-box">
+    <div class="user-box ">
       <input type="id" name="email" class="form-control" required="">
-      <label th:for=""id"" class="idAddress">Username</label>
+      <label th:for=""id"" class="idAddress" >Username</label>
     </div>
-    <div class="user-box">
+    <div class="user-box idpasswordborder">
       <input type="password" name="password" id="password" class="form-control" required="">
       <label th:for="password" id="password01">Password</label>
     </div>

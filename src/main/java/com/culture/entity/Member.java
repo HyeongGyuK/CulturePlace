@@ -1,13 +1,22 @@
 package com.culture.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import com.culture.constant.Role;
 import com.culture.dto.MemberFormDto;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.security.crypto.password.PasswordEncoder;
-
-import javax.persistence.*;
 
 @Entity
 @Table(name = "member")
