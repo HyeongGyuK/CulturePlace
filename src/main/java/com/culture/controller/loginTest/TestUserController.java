@@ -13,8 +13,8 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@Controller
-public class UserController {
+@Controller(value = "TestUserController")
+public class TestUserController {
 	
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
 	public String join() {
