@@ -29,8 +29,12 @@
 			height: 500px;
 			overflow: auto;
 		}
-		.chating p{
-			color: #fff;
+		.chating .me{
+			color: #F6F6F6;
+			text-align: right;
+		}
+		.chating .others{
+			color: #FFE400;
 			text-align: left;
 		}
 		input{
@@ -45,7 +49,7 @@
 
 <script type="text/javascript">
 	var ws;
-
+	
 	function wsOpen(){
 		ws = new WebSocket("ws://" + location.host + "/chating");
 		wsEvt();
@@ -53,23 +57,39 @@
 		
 	function wsEvt() {
 		ws.onopen = function(data){
-			//소켓이 열리면 초기화 세팅하기
+			//소켓이 열리면 동작
 		}
 		
 		ws.onmessage = function(data) {
+			//메시지를 받으면 동작
 			var msg = data.data;
 			if(msg != null && msg.trim() != ''){
-				$("#chating").append("<p>" + msg + "</p>");
+				var d = JSON.parse(msg);
+				if(d.type == "getId"){
+					var si = d.sessionId != null ? d.sessionId : "";
+					if(si != ''){
+						$("#sessionId").val(si); 
+					}
+				}else if(d.type == "message"){
+					if(d.sessionId == $("#sessionId").val()){
+						$("#chating").append("<p class='me'>나 :" + d.msg + "</p>");	
+					}else{
+						$("#chating").append("<p class='others'>" + d.userName + " :" + d.msg + "</p>");
+					}
+						
+				}else{
+					console.warn("unknown type!")
+				}
 			}
 		}
-
+	
 		document.addEventListener("keypress", function(e){
 			if(e.keyCode == 13){ //enter press
 				send();
 			}
 		});
 	}
-
+	
 	function chatName(){
 		var userName = $("#userName").val();
 		if(userName == null || userName.trim() == ""){
@@ -81,11 +101,15 @@
 			$("#yourMsg").show();
 		}
 	}
-
+	
 	function send() {
-		var uN = $("#userName").val();
-		var msg = $("#chatting").val();
-		ws.send(uN+" : "+msg);
+		var option ={
+			type: "message",
+			sessionId : $("#sessionId").val(),
+			userName : $("#userName").val(),
+			msg : $("#chatting").val()
+		}
+		ws.send(JSON.stringify(option))
 		$('#chatting').val("");
 	}
 </script>
@@ -93,6 +117,8 @@
 <body>
 	<div id="container" class="container">
 		<h1>채팅</h1>
+		<input type="hidden" id="sessionId" value="">
+		
 		<div id="chating" class="chating">
 		</div>
 		
