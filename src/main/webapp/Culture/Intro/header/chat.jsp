@@ -167,7 +167,26 @@
 	}
 	
 	function goRoom(number, name){
-		location.href="/moveChating?roomName="+name+"&"+"roomNumber="+number;
+		var result = "";
+// 		location.href="/moveChating?roomName="+name+"&"+"roomNumber="+number;
+		$.ajax({
+			type: "POST",
+			url: "/moveChating?roomName=" + name + "&" + "rommNumber=" + number,
+			dataType: "text",
+			data: {
+				"roomName": name,
+				"roomNumber": number
+			},
+			async: false,
+			success: function(data){
+				alert("성공 : " + data);
+				result = data;
+				$("#chat_area").append(result);
+			},
+			error: function(request,status,error){
+				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			}
+		});
 	}
 	
 	function createChatingRoom(res){
@@ -252,6 +271,10 @@
 					</tr>
 				</table>
 			</div>
+        </div>
+        
+        <div id="chat_area">
+        
         </div>
     </div>
 </body>

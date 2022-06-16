@@ -7,6 +7,7 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -54,8 +55,9 @@ public class ChatController {
 		return roomList;
 	}
 	
-	@RequestMapping("/moveChating")
+	@PostMapping("/moveChating")
 	public ModelAndView chating(@RequestParam HashMap<String, String> params) {
+		String htmlCode = "";
 		ModelAndView mv = new ModelAndView();
 		int roomNumber = Integer.parseInt((String)params.get("roomNumber"));
 		
@@ -64,7 +66,36 @@ public class ChatController {
 		if(new_list != null && new_list.size() > 0) {
 			mv.addObject("roomName", params.get("roomName"));
 			mv.addObject("roomNumber", params.get("roomNumber"));
-			mv.setViewName("Test/WebSocketTest.jsp");
+//			mv.setViewName("Test/WebSocketTest.jsp");
+			
+			htmlCode += "<div id=\"container\"> class\"container\"";
+			htmlCode += "<h1>" + params.get("roomName") + "의 채팅방</h1>";
+			htmlCode += "<input type\"hidden\" id=\"sessionId\" value=\"\"";
+			htmlCode += "<input type\"hidden\" id=\"roomNumber\" value=\"" + params.get("roomNumber") + "\">";
+			htmlCode += "<div id=\"chating\" class=\"chating\">";
+			htmlCode += "</div>";
+			
+			htmlCode += "<div id=\"yourName\">";
+			htmlCode += "<table class=\"inputTable\">";
+			htmlCode += "<tr>";
+			htmlCode += "<th>사용자명</th>";
+			htmlCode += "<th><input type=\"text\" name=\"userName\" id=\"userName\"></th>";
+			htmlCode += "<th><button onclick=\"chatName()\" id=\"startBtn\">이름 등록</button></th>";
+			htmlCode += "</tr>";
+			htmlCode += "</table>";
+			htmlCode += "</div>";
+			htmlCode += "<div id=\"yourMsg\">";
+			htmlCode += "<table class=\"inputTable\">";
+			htmlCode += "<tr>";
+			htmlCode += "<th>메시지</th>";
+			htmlCode += "<th><input id=\"chatting=\" placeholder=\"보내실 메시지를 입력하세요.\"></th>";
+			htmlCode += "<th><button onclick=\"send()\" id=\"sendBtn\">보내기</button></th>";
+			htmlCode += "</tr>";
+			htmlCode += "</table>";
+			htmlCode += "</div>";
+			htmlCode += "</div>";
+			
+			mv.addObject("chatHtml", htmlCode);
 		}else {
 			mv.setViewName("Test/room.jsp");
 		}
