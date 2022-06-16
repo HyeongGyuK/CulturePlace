@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ include file="./chat.jsp" %>
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
@@ -20,6 +21,40 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     
     <link rel="stylesheet" type="text/css" href="/CulturePlace/Intro/nav.css"> <!-- 스타일시트 -->
     <script src="/CulturePlace/Intro/nav.js"></script> <!-- 자바스크립트 -->
+   
+   
+   <style type="text/css">
+        .chat_container{
+            position: fixed;
+            right: 40px;
+            bottom:210px;
+            z-index:99999;
+            display: none;
+            box-sizing: content-box;
+        }
+        
+        .category_box a {
+            text-decoration: none;
+            width: 100%;
+            color:black;
+        }
+        
+        .category_box h3 {
+            margin:0;
+        }
+        
+        .chat_space{
+        	background:black;
+        }
+    </style>
+    
+    <script type="text/javascript">
+        $(function (){
+            $(".chat_icon").click(function(){
+            $(".chat_container").toggle("slow");
+          });
+        });
+    </script>
    
 </head>
 
@@ -103,13 +138,13 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     
     
     <!-- chat 아이콘 -->
-    <a href="#" class="chat_icon"> <span class="chat_icon">
+    <a href="#" class="chat_icon"> <span>
             <img class="chat_icon_img" src="/Culture/images/Intro/header/chat.png">
         </span>
     </a>
     
     <!-- chat bot 아이콘 -->
-    <a href="#" class="chatbot_icon"> <span class="chatbot_icon">
+    <a href="#" class="chatbot_icon"> <span>
             <img class="chatbot_icon_img" src="/Culture/images/Intro/header/chatbot.png">
         </span>
     </a>
