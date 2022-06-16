@@ -5,7 +5,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/Culture/Intro/header/nav.jsp"%>
 <%-- <jsp:include page="/Culture/Intro/header/nav.html"/> --%>
-<%-- <jsp:include page="CulturePlace/Common/nav.hmtl"></jsp:include> --%>
+<jsp:include page="CulturePlace/Common/nav.hmtl"></jsp:include>
 
 <%@ include file="./slide/slide.jsp"%>
 
