@@ -22,13 +22,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     	http.csrf().disable();
         //차후 구성할 예정
         http.formLogin()
-                .loginPage("/members/login") //로그인 페이지 이동
+                .loginPage("/users/login") //로그인 페이지 이동
                 .defaultSuccessUrl("/") //메인 페이지 이동
-                .usernameParameter("email") // email로 체크
-                .failureUrl("/members/login/error")
+                .usernameParameter("id") // email로 체크
+                .passwordParameter("password")
+                .failureUrl("/users/login/error")
                 .and()
                 .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/members/logout")) //사용하지 않고 logout("/members/logout") 이렇게 바로 사용해도 됨.
+                .logoutRequestMatcher(new AntPathRequestMatcher("/users/logout")) //사용하지 않고 logout("/members/logout") 이렇게 바로 사용해도 됨.
                 .logoutSuccessUrl("/") ; //메인페이지
 
         /*

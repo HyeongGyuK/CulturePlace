@@ -3,7 +3,10 @@
 <%@page import="java.util.LinkedHashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/Culture/Intro/header/nav.jsp"%>
+<%-- <%@ include file="/Culture/Intro/header/nav.jsp"%> --%>
+<%-- <jsp:include page="/Culture/Intro/header/nav.html"/> --%>
+<jsp:include page="CulturePlace/Common/nav.hmtl"></jsp:include>
+
 <%@ include file="./slide/slide.jsp"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -39,7 +42,6 @@
 <link rel="stylesheet" href="/CulturePlace/CulturePlaceMain/main/imageReview.css">
 </head>
 <body>
-
 	<div class="header_text">
 		<div class="top">
 			<h2>연극 예매 Top 5</h2>

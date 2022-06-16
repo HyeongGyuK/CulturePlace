@@ -89,6 +89,11 @@
 					로그인
 	     		</a>
 			</li>
+			<li><a href="">
+				<span class="glyphicon glyphicon-log-in"></span> 
+					로그아웃
+	     		</a>
+			</li>
 		</ul>
 	</div>
 </body>

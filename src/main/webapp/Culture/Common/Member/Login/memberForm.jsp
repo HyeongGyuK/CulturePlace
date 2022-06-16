@@ -210,12 +210,12 @@ label {
 		<div style="text-align: center" id="box1">
             <button type="submit" class="btn btn-primary">회원가입</button>
         </div>
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+        
         <div style="text-align: center" id="box2">
          <a href="http://localhost:8999/users/new"><button type="button" class="btn btn-primary"> 돌아가기</button></a>
         </div>
 		</div>
-        
-         
 
    </form>
 </div>
