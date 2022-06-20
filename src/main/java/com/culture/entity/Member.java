@@ -42,7 +42,7 @@ public class Member {
     public static Member createMember(MemberFormDto memberFormDto, PasswordEncoder passwordEncoder){
         Member member = new Member();
         
-        member.setName(memberFormDto.getId());
+        member.setName(memberFormDto.getName());
         member.setEmail(memberFormDto.getEmail());
         member.setAddress(memberFormDto.getAddress());
         //비밀번호 암호화 하는 방법
