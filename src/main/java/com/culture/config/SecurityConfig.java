@@ -22,7 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     	http.csrf().disable();
         //차후 구성할 예정
         http.formLogin()
-                .loginPage("/login") //로그인 페이지 이동
+                .loginPage("/users/login") //로그인 페이지 이동
                 .defaultSuccessUrl("/") //메인 페이지 이동
                 .usernameParameter("id") // email로 체크
                 .passwordParameter("password")
@@ -36,21 +36,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             authorizeRequests : 시큐리티에서 request를 사용하고자 할때 사용하는 메소드 입니다.
             permitAll(): 로그인 하지 않아도 접근 가능하게 할께요.
             anyRequest().authenticated() : 상기 위에서 열거한 내용 이외에 모든 항목 인증을 요구합니다.
-        * */
-//        http.authorizeRequests()
-//                .mvcMatchers("/", "/members/**", "/item/**", "/images/**").permitAll()
-//                .mvcMatchers("/admin/**").hasRole("ADMIN")
-//                .anyRequest().authenticated();
+        */
+        http.authorizeRequests()
+                .mvcMatchers("/", "/users/**", "/item/**", "/images/**", "/Culture/images/**", "/CulturePlaceMain/**", "/test/**").permitAll()
+                .mvcMatchers("/admin/**").hasRole("ADMIN")
+                .anyRequest().authenticated();
 
         /* 인증받지 못한 사용자가 접근 시도시 http 응답 코드 401울 보여 줍니다. */
-//        http.exceptionHandling().authenticationEntryPoint((AuthenticationEntryPoint) new CustomAuthenticationEntryPoint());
+        http.exceptionHandling().authenticationEntryPoint((AuthenticationEntryPoint) new CustomAuthenticationEntryPoint());
     }
 
     @Override
     public void configure(WebSecurity web) throws Exception{
         // 다음 항목들은 인증 절차를 무시하도록 하겠습니다.
-        web.ignoring().antMatchers("/css/**", "/js/**", "/img/**");
+        web.ignoring().antMatchers("/css/**", "/js/**", "/img/**", "/CulturePlace/**", "/Culture/**", "/member/**", "/test/**");
     }
+//    권한을 주어야 로그인 화면이 나타납니다.
 
 
     @Autowired

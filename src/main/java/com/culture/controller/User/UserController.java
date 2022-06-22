@@ -25,13 +25,13 @@ public class UserController {
 	@GetMapping(value = "/login")
 	public String login() {
 		System.out.println("login controller");
-		return "Common/Member/Login/memberLoginForm.jsp";
+		return "thymeleaf/member/LoginTest";
 	}
 	
 
 	@GetMapping(value = "/login/error")
-	public String login(@Valid UserFormDto userFormDto, BindingResult bindingResult, Model model) {
-		System.out.println("userFormDto");
+	public String login(@Valid MemberFormDto memberFormDto, BindingResult bindingResult, Model model) {
+		System.out.println("memberFormDto");
 
 		if (bindingResult.hasErrors()) {
 			System.out.println("에러");
@@ -50,25 +50,27 @@ public class UserController {
 			}
 			model.addAttribute("errorMsg", errorMsg);
 
-			return "Common/Member/Login/memberForm.jsp";
+			return "thymeleaf/member/LoginTest";
 		}
-		return "Common/Member/Login/memberForm.jsp";
+		return "thymeleaf/member/LoginTest";
 	}
 	
 
 	
 	@GetMapping(value = "/new")
-	public String join() {
+	public String join(Model model) {
 		System.out.println("join controller");
-		return "Common/Member/SignUp/memberJoinTest.jsp";
+
+		model.addAttribute("memberFormDto", new MemberFormDto());
+		return "thymeleaf/member/test";
 	}
-	
+
 	
 	
 	   
    @PostMapping(value = "/new")
-   public String joinProc(@Valid UserFormDto userFormDto, BindingResult bindingResult, Model model) {
-	   System.out.println(userFormDto);
+   public String joinProc(@Valid MemberFormDto memberFormDto, BindingResult bindingResult, Model model) {
+	   System.out.println(memberFormDto);
       
 	   if(bindingResult.hasErrors()) {
 		   System.out.println("에러");
@@ -89,7 +91,7 @@ public class UserController {
 		   
 		   
 		   
-		   return "Common/Member/Login/memberForm.jsp";
+		   return "thymeleaf/member/test";
 	   }
   
 	   return "redirect:/";
