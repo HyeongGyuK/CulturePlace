@@ -1,0 +1,16 @@
+/* boardFree 공용부 */
+#template{
+    display: flex; width: 100%;
+    justify-content: center; margin: 150px 0px 150px 0px;
+}
+#container{
+    width: 60%;
+}
+#title{
+    border-bottom: 4px solid gray;
+    width:100%;
+}
+
+#board{
+    border-collapse: collapse; width:100%;
+}

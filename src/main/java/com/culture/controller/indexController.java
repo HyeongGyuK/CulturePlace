@@ -75,7 +75,7 @@ public class indexController {
 
     @RequestMapping(value = "/CommunityMain", method = RequestMethod.GET)
     public String goCommunityMain() {
-        return "Board/BoardFree/board_free_main.jsp";
+        return "thymeleaf/Board/BoardFree/board_free_main";
     }
 
 }
