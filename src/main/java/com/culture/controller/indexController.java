@@ -94,9 +94,9 @@ public class indexController {
         return "CulturePlace/main/main";
     }
 
-    @RequestMapping(value = "/CommunityMain", method = RequestMethod.GET)
-    public String goCommunityMain() {
-        return "Board/BoardFree/board_free_main.jsp";
+    @RequestMapping(value = "/board/test", method = RequestMethod.GET)
+    public String boardtest(Model model) {
+        return "thymeleaf/Board/BoardFree/boardTest";
     }
 
 }

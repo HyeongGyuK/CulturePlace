@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{thymeleaf/Board/BoardFree/boardFreeLayout}">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Insert title here</title>
+
+    <th:block layout:fragment="script">
+        <script th:inline="javascript">
+            $(document).ready(function(){
+			    // 로그인 구현 해야함.
+			    /*$('#board_write').click(function(){
+                if(${whologin == 0}){
+                    alert('로그인 하셔야 게시글 작성이 가능합니다.');
+                    $("#board_write").attr("href", "meLogin");
+                });*/
+
+                $('.boardList').hover(function(){
+                    $(this).css({"background-color":"rgb(104, 105, 172, 0.3)"});
+                }, function(){
+                    $(this).css({"background-color":"#FFFFFF"});
+                });
+
+                $('#board_write').hover(function(){
+                    $(this).css({"background-color":"rgb(104, 105, 172, 0.3)"});
+                }, function(){
+                    $(this).css({"background-color":"#FFFFFF"});
+                });
+
+                // 검색 버튼
+                $("#searchBtn").on("click",function(e) {
+                    e.preventDefault();
+                    page(0);
+                });
+			});
+
+			function page(page){
+	            var searchBy = $("#searchBy").val();
+	            var searchQuery = $("#searchQuery").val();
+
+	            location.href="/BoardFree/board_free_main/boardFree/" + page +
+	            + "&searchBy=" + searchBy
+	            + "&searchQuery=" + searchQuery;
+	        }
+        </script>
+    </th:block>
+
+    <th:block layout:fragment="css">
+
+        <style>
+			a{text-decoration: none; color: black;}
+
+			.pagination .active a{background-color:#551527; border:1px solid #500020;}
+			.pagination .active a:hover{background-color:#773849; border:1px solid #500020;}
+
+            #boardColumn{
+                text-align: center; height: 70px;
+                border-bottom: 1px solid gray;
+                border-top: 3px solid gray;
+                background-color: lightyellow;
+                font-weight: bold; font-size: 15px;
+            }
+            .boardList{
+                height: 50px;
+                text-align: center;
+                border-bottom: 1px solid gray;
+                background-color: #FFFFFF;
+            }
+
+            .boardNo{width: 10%;}
+            .boardTitle{width: 40%;}
+            .boardWriter{width: 20%;}
+            .boardDate{width: 20%;}
+            .boardReadHit{width: 10%;}
+
+            #notice{
+                width: 98%; border-radius: 7px;
+                margin: 1px; margin: 5px auto;
+            }
+
+            #noticeTitle{
+                text-align: center; font-weight: bold;
+                margin: 0; inline-height: 28px; padding: 2px;
+                border-bottom: 2px solid gray; font-size: 20px;
+            }
+
+            #noticeColumn{
+                font-size: 15px; font-weight: bold;
+                border-bottom: 2px solid gray; text-align: center;
+            }
+
+            .noticeList{
+                width:50%; height: 20px;
+                text-align: center; margin-top: 2px;
+                border-bottom: 1px solid gray; font-size: 14px;
+            }
+
+            #board_write{
+                background-color:#FFFFFF; color: #6667AB;
+                box-sizing:border-box; margin-top: 10px; float:right;
+                border: 1px solid #6667AB;
+            }
+
+            .boardList :nth-child(2), .noticeList :nth-child(2){text-align: left;}
+            .boardList a, .noticeList a{color:black;}
+
+        </style>
+    </th:block>
+
+</head>
+<body>
+<div layout:fragment="content">
+    <div id="template">
+        <div id="container">
+            <div id="title">
+                <h2 style="font-weight: bold;">
+                    자유 게시판
+                </h2>
+            </div>
+
+            <div id="notice">
+                <div id="noticeTitle">공지사항</div>
+                <table style="width:100%;">
+                    <tr id="noticeColumn">
+                        <td width="10%;">No</td>
+                        <td width="40%;" >제목</td>
+                        <td width="20%;">작성자</td>
+                        <td width="20%;">작성 일자</td>
+                        <td width="10%;">조회수</td>
+                    </tr>
+
+                    <tr class="noticeList">
+                        <td>
+
+                        </td>
+                        <td><a href="">공지사항</a></td>
+                        <td>관리자</td>
+                        <td>2022-05-21</td>
+                        <td>100</td>
+                    </tr>
+                </table>
+            </div>
+            <form class="form-inline" th:action="@{'/CommunityMain/' + ${boardFreeLists.number}}"
+                  role="form" method="get" th:object="${boardFreeLists}">
+                <table id="board">
+                    <thead>
+                    <tr id="boardColumn">
+                        <td class="boardNo">No</td>
+                        <td class="boardTitle">제목</td>
+                        <td class="boardWriter">작성자</td>
+                        <td class="boardDate">작성일자</td>
+                        <td class="boardReadHit">조회수</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="boardList" th:each="boardFree, status: ${boardFreeLists.getContent()}">
+                        <td th:text="${boardFree.board_no}"></td>
+                        <td>
+                            <a th:href="'/CommunityMain/board_free_detail/' + ${boardFree.board_no}"
+                               th:text="${boardFree.board_title}"></a>
+                        </td>
+                        <td th:text="${boardFree.board_writer}"></td>
+                        <td th:text="${boardFree.board_regdate}"></td>
+                        <td th:text="${boardFree.board_readhit}"></td>
+                    </tr>
+                    </tbody>
+
+                    <tfoot th:with="start=${(boardFreeLists.number/maxPage)*maxPage + 1}, end=(${(boardFreeLists.totalPages == 0) ? 1 : (start + (maxPage - 1) < boardFreeLists.totalPages ? start + (maxPage - 1) : boardFreeLists.totalPages)})">
+                    <td colspan="10" align="center">
+                        <div>
+                            <a href="/BoardFree/board_free_write" class="btn btn-primary pull-right" id="board_write"><b>글쓰기</b></a>
+
+                            <ul class="pagination justify-content-center" style="cursor:pointer; ">
+                                <li class="page-item" th:classappend="${boardFreeLists.first}?'disabled'">
+                                    <a th:onclick="'javascript:page(' + ${boardFreeLists.number - 1} + ')'"
+                                       aria-label='Previous' class="page-link">
+                                        <span aria-hidden='true'>Previous</span>
+                                    </a>
+                                </li>
+
+                                <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}"
+                                    th:classappend="${boardFreeLists.number eq page-1}?'active':''">
+                                    <a th:onclick="'javascript:page(' + ${page - 1} + ')'" th:inline="text"
+                                       class="page-link">[[${page}]]</a>
+                                </li>
+
+                                <li class="page-item" th:classappend="${boardFreeLists.last}?'disabled'">
+                                    <a th:onclick="'javascript:page(' + ${boardFreeLists.number + 1} + ')'"
+                                       aria-label='Next' class="page-link">
+                                        <span aria-hidden='true'>Next</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <div class="form-inline justify-content-center" th:object="${boardFreeSearchDto}">
+                            <div class="form-group">
+                                <select class="form-control btn-xs" th:field="*{searchBy}">
+                                    <option value="all">전체 검색
+                                    <option value="board_title">제목
+                                    <option value="board_writer">작성자
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <input th:field="*{searchQuery}" type="text"
+                                       class="form-control btn-xs" placeholder="검색 키워드 입력">
+                            </div>
+                            <button id="searchBtn" class="btn btn-default" type="submit">검색</button>
+                            <button class="btn btn-default" type="button" onclick="searchAll();">전체 검색</button>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <p class="form-control-static"></p>
+                        </div>
+                    </td>
+                    </tfoot>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
