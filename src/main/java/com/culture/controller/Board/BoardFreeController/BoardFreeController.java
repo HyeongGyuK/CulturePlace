@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.xml.ws.Service;
 import java.util.Optional;
 
 @Controller
@@ -21,7 +22,7 @@ public class BoardFreeController {
 
 	private final BoardFreeService boardFreeService;
 
-	@GetMapping(value = "/BoardFree/board_free_write")
+	@GetMapping(value = "/CommunityMain/board_free_write")
 	public String boardForm(Model model) {
 		return "thymeleaf/Board/BoardFree/board_free_write";
 	}
@@ -71,13 +72,13 @@ public class BoardFreeController {
 		return "thymeleaf/Board/BoardFree/board_free_main";
 	}
 
-	@GetMapping(value = "/BoardFree/board_free_update")
+	@GetMapping(value = "/CommunityMain/board_free_update")
 	public String boardUpdate(Model model) {
 		return "thymeleaf/Board/BoardFree/board_free_update";
 	}
 
 	// 게시판 상세 정보
-	@GetMapping(value = "/BoardFree/board_free_detail/{board_no}")
+	@GetMapping(value = "/CommunityMain/board_free_detail/{board_no}")
 	public String boardFreeDetail(Model model, @PathVariable("board_no") Long board_no) {
 
 		BoardFreeDto boardFreeDto = boardFreeService.getBoardDetail(board_no);
@@ -85,13 +86,14 @@ public class BoardFreeController {
 		return "thymeleaf/Board/BoardFree/board_free_detail";
 	}
 
-	@GetMapping(value = "/BoardFree/board_notice_detail")
+	@GetMapping(value = "/CommunityMain/board_notice_detail")
 	public String noticeDetail(Model model) {
 		return "thymeleaf/Board/BoardFree/board_notice_detail";
 	}
 
-	@GetMapping(value = "/BoardFree/board_notice_update")
+	@GetMapping(value = "/CommunityMain/board_notice_update")
 	public String noticeUpdate(Model model) {
 		return "thymeleaf/Board/BoardFree/board_notice_update";
 	}
+
 }
