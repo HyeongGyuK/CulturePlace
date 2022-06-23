@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/") //메인 페이지 이동
                 .usernameParameter("id") // email로 체크
                 .passwordParameter("password")
-                .failureUrl("/login/error")
+                .failureUrl("/users/login/error")
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout")) //사용하지 않고 logout("/members/logout") 이렇게 바로 사용해도 됨.
@@ -38,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             anyRequest().authenticated() : 상기 위에서 열거한 내용 이외에 모든 항목 인증을 요구합니다.
         */
         http.authorizeRequests()
-                .mvcMatchers("/", "/users/**", "/item/**", "/images/**", "/Culture/images/**", "/CulturePlaceMain/**", "/test/**").permitAll()
+                .mvcMatchers("/", "/users/**", "/item/**", "/images/**", "/Culture/images/**", "/CulturePlaceMain/**", "/test/**", "/login/**", "/members/**").permitAll()
                 .mvcMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated();
 
@@ -49,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception{
         // 다음 항목들은 인증 절차를 무시하도록 하겠습니다.
-        web.ignoring().antMatchers("/css/**", "/js/**", "/img/**", "/CulturePlace/**", "/Culture/**", "/member/**", "/test/**");
+        web.ignoring().antMatchers("/css/**", "/js/**", "/img/**", "/CulturePlace/**", "/Culture/**", "/members/**", "/test/**");
     }
 //    권한을 주어야 로그인 화면이 나타납니다.
 

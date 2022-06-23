@@ -48,7 +48,7 @@ public class UserController {
 
 				errorMsg.put(field, message);
 			}
-			model.addAttribute("errorMsg", errorMsg);
+			model.addAttribute("loginErrorMsg", errorMsg);
 
 			return "thymeleaf/member/LoginTest";
 		}

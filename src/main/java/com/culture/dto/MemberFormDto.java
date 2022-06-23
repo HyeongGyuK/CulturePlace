@@ -11,10 +11,10 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
 // Dto 객체 : 가입 화면에서 데이터(Data)가 전송(Transfer)될 때 값을 저장할 객체(Object)
-@Getter @Setter @ToString
+@Getter @Setter
 public class MemberFormDto {
 	@NotBlank(message = "아이디은 필수 입력 값입니다.")
-	private Long id;
+	private String id;
 
 	@NotEmpty(message = "비밀번호는 필수 입력 값입니다.")
 	@Length(min = 8, max = 16, message = "비밀번호는 8자 이상 16자 이하로 입력해주세요.")
