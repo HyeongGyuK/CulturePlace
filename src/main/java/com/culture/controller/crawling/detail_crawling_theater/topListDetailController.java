@@ -23,7 +23,7 @@ public class topListDetailController {
 	@Getter @Setter
 	private static Map<String, String> detailList;
 	
-	@GetMapping(value = "/detailPage")
+	@GetMapping(value = "/culturePlace/detailPage")
 	public static String getDetailCraw(@RequestParam(value = "playCode", required = false) String playCode, @RequestParam(value = "imgUrl", required = false) String imgUrl, @RequestParam(value = "theaterTopFiveTitle", required = false) String theaterTopFiveTitle, Model model) {
 		detailList = new HashMap<String, String>();
 //		System.out.println(playCode);
@@ -51,7 +51,7 @@ public class topListDetailController {
 			e.printStackTrace();
 		}
 		
-		return "CulturePlace/Detail/main_detail.jsp";
+		return "CulturePlace/Detail/main_detail";
 	}
 	
 	public static void getIntroduction(Document document) {

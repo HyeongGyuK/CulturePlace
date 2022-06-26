@@ -55,7 +55,7 @@
 		<ul style="width: 98%">
 			<c:forEach var="topFiveTheaterImg" items="<%=theaterTopFiveCodeNImg %>" varStatus="status">
 				<li class="item item1">
-					<a href="/detailPage?playCode=${topFiveTheaterImg.key }&imgUrl=${topFiveTheaterImg.value}&theaterTopFiveTitle=<%=topTheaterList.get(theaterImgCnt) %>">
+					<a href="/culturePlace/detailPage?playCode=${topFiveTheaterImg.key }&imgUrl=${topFiveTheaterImg.value}&theaterTopFiveTitle=<%=topTheaterList.get(theaterImgCnt) %>">
 						<div class="image" style="background-image: url('${topFiveTheaterImg.value}');"></div>
 						<p class="item_p">바로가기</p>
 					</a>
@@ -81,7 +81,7 @@
 		<ul style="width: 98%">
 			<c:forEach var="topFiveMusicalImg" items="<%=musicalTopFiveCodeNImg %>" varStatus="status">
 				<li class="item item1">
-					<a href="/detailPage?playCode=${topFiveMusicalImg.key }&imgUrl=${topFiveMusicalImg.value}&theaterTopFiveTitle=<%=topMusicalList.get(musicalImgCnt) %>">
+					<a href="/culturePlace/detailPage?playCode=${topFiveMusicalImg.key }&imgUrl=${topFiveMusicalImg.value}&theaterTopFiveTitle=<%=topMusicalList.get(musicalImgCnt) %>">
 						<div class="image" style="background-image: url('${topFiveMusicalImg.value}');">사진</div>
 						<p class="item_p">바로가기</p>
 					</a>

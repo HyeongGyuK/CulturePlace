@@ -15,21 +15,21 @@ public class movePageController {
 		
 		model.addAttribute("playNum", playNum);
 		
-		return "CulturePlace/Detail/culturePlaceDB.jsp";
+		return "CulturePlace/Detail/culturePlaceDB";
 	}
 	
 	@GetMapping(value = "/review_board")
 	public String moveReviewBoard() {
-		return "Board/Board_Review/boardReview_main.jsp";
+		return "Board/Board_Review/boardReview_main";
 	}
 	
 	@GetMapping(value = "/free_board")
 	public String freeReviewBoard() {
-		return "Board/BoardFree/board_free_main.jsp";
+		return "Board/BoardFree/board_free_main";
 	}
 	
 	@GetMapping(value = "/ticket_board")
 	public String ticketReviewBoard() {
-		return "Board/TicketTrade/ticket_trade_main.jsp";
+		return "Board/TicketTrade/ticket_trade_main";
 	}
 }

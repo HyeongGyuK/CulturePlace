@@ -25,7 +25,7 @@ import lombok.Setter;
 
 @Controller
 @ResponseBody
-@RequestMapping(value = "/allTheaterList", method = RequestMethod.POST)
+@RequestMapping(value = "/culturePlace/allTheaterList", method = RequestMethod.POST)
 public class allListTheaterCrawController {
 
 	@Getter @Setter
@@ -70,7 +70,9 @@ public class allListTheaterCrawController {
 			}else {
 				pageNum = getPageNum(document).trim();
 			}
+//			System.out.println("aaaaaa");
 //			System.out.println(pageNum);
+//			System.out.println("bbbbbbb");
 			
 			int pNum = Integer.parseInt(pageNum);
 			
@@ -116,7 +118,7 @@ public class allListTheaterCrawController {
 				result = getPagingHtml();
 				
 //				System.out.println("result3 : " + result);
-			}else if(url == "http://www.playdb.co.kr/playdb/playdblist.asp?sReqMainCategory=000003" || url.equals("http://www.playdb.co.kr/playdb/playdblist.asp?sReqMainCategory=000003")){
+			}else if(url == "http://www.playdb.co.kr/playdb/playdblist.asp?sReqMainCategory=000003&sReqSubCategory=&sReqDistrict=&sReqTab=2&sPlayType=2&sStartYear=&sSelectType=1" || url.equals("http://www.playdb.co.kr/playdb/playdblist.asp?sReqMainCategory=000003&sReqSubCategory=&sReqDistrict=&sReqTab=2&sPlayType=2&sStartYear=&sSelectType=1")){
 				for(int i = 1; i <= pNum; i++) {
 					String theaterListUrl = "http://www.playdb.co.kr/playdb/playdblist.asp?Page=" + i + "&sReqMainCategory=000003&sReqSubCategory=&sReqDistrict=&sReqTab=2&sPlayType=2&sStartYear=&sSelectType=";
 					
@@ -202,12 +204,13 @@ public class allListTheaterCrawController {
 	
 	public static String getPageNum(Document document) {
 		int dancingIdx = document.baseUri().indexOf("sReqMainCategory=");
-//		System.out.println(dancingIdx);
+//		System.out.println("dancingIdx : " + dancingIdx);
 		String dancingSub = document.baseUri().substring(dancingIdx+17, dancingIdx+23);
 		Elements pnEle = null;
 		StringBuilder sb = new StringBuilder();
 		
 //		System.out.println(dancingSub);
+//		System.out.println(document.baseUri());
 //		System.out.println(document.html());
 		
 		if(dancingSub == "000005" || dancingSub.equals("000005")) {
@@ -229,6 +232,7 @@ public class allListTheaterCrawController {
 			pnEle = document.select("div.container1 > table > tbody > tr:nth-last-of-type(1) > td > table > tbody > tr:nth-last-of-type(1) > td > a:nth-last-of-type(1)");
 			for(Element element : pnEle) {
 				for(Element td : element.select("font")) {
+//					System.out.println("td.text : " + td.text());
 					sb.append(td.text());
 					sb.append(" ");
 				}
@@ -371,7 +375,7 @@ public class allListTheaterCrawController {
 				htmlCode += "</ul>";
 			}else if(cnt % 7 == 0) {
 				htmlCode += "<li class=\"item item1\">";
-				htmlCode += "<a href=\"/detailPage?playCode=" + key + "&imgUrl=" + value + "&theaterTopFiveTitle=" + theaterCodeNTitle.get(key) + "\">";
+				htmlCode += "<a href=\"/culturePlace/detailPage?playCode=" + key + "&imgUrl=" + value + "&theaterTopFiveTitle=" + theaterCodeNTitle.get(key) + "\">";
 				htmlCode += "<div class=\"image\" style=\"background-image: url('" + value + "');\">사진</div>";
 				htmlCode += "<p class=\"item_p\">바로가기<p>";
 				htmlCode += "</a>";
@@ -383,7 +387,7 @@ public class allListTheaterCrawController {
 				htmlCode += "<ul style=\"width:100%\">";
 			}else {
 				htmlCode += "<li class=\"item item1\">";
-				htmlCode += "<a href=\"/detailPage?playCode=" + key + "&imgUrl=" + value + "&theaterTopFiveTitle=" + theaterCodeNTitle.get(key) + "\">";
+				htmlCode += "<a href=\"/culturePlace/detailPage?playCode=" + key + "&imgUrl=" + value + "&theaterTopFiveTitle=" + theaterCodeNTitle.get(key) + "\">";
 				htmlCode += "<div class=\"image\" style=\"background-image: url('" + value + "');\">사진</div>";
 				htmlCode += "<p class=\"item_p\">바로가기<p>";
 				htmlCode += "</a>";

@@ -335,7 +335,7 @@ html, body {
 					if(this.realIndex == 0){
 						$.ajax({
 							type: "POST",
-							url: "/allTheaterList/allList",
+							url: "/culturePlace/allTheaterList/allList",
 							dataType: "text",
 							data: {
 								theaterUrl: "http://www.playdb.co.kr/playdb/playdblist.asp?sReqMainCategory=000002"
@@ -362,7 +362,7 @@ html, body {
 						result = "";
 						$.ajax({
 							type: "POST",
-							url: "/allTheaterList/allList",
+							url: "/culturePlace/allTheaterList/allList",
 							dataType: "text",
 							data: {
 								theaterUrl: "http://www.playdb.co.kr/playdb/playdblist.asp?sReqMainCategory=000001"
@@ -390,10 +390,10 @@ html, body {
 						result = "";
 						$.ajax({
 							type: "POST",
-							url: "/allTheaterList/allList",
+							url: "/culturePlace/allTheaterList/allList",
 							dataType: "text",
 							data: {
-								theaterUrl: "http://www.playdb.co.kr/playdb/playdblist.asp?sReqMainCategory=000003"
+								theaterUrl: "http://www.playdb.co.kr/playdb/playdblist.asp?sReqMainCategory=000003&sReqSubCategory=&sReqDistrict=&sReqTab=2&sPlayType=2&sStartYear=&sSelectType=1"
 							},
 							async:false,
 							success: function(data){
@@ -419,7 +419,7 @@ html, body {
 						result = "";
 						$.ajax({
 							type: "POST",
-							url: "/allTheaterList/allList",
+							url: "/culturePlace/allTheaterList/allList",
 							dataType: "text",
 							data: {
 								theaterUrl: "http://www.playdb.co.kr/playdb/playdblist.asp?sReqMainCategory=000004"
@@ -447,7 +447,7 @@ html, body {
 						result = "";
 						$.ajax({
 							type: "POST",
-							url: "/allTheaterList/allList",
+							url: "/culturePlace/allTheaterList/allList",
 							dataType: "text",
 							data: {
 								theaterUrl: "http://www.playdb.co.kr/playdb/playdblist.asp?sReqMainCategory=000005"
@@ -475,7 +475,7 @@ html, body {
 						result = "";
 						$.ajax({
 							type: "POST",
-							url: "/allTheaterList/allList",
+							url: "/culturePlace/allTheaterList/allList",
 							dataType: "text",
 							data: {
 								theaterUrl: "http://www.playdb.co.kr/playdb/playdblist.asp?sReqMainCategory=000007"
