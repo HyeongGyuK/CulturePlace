@@ -84,8 +84,9 @@ public class indexController {
 
             return "redirect:/"; // <--문제 없으면 메인 페이지로 이동
         } catch (IllegalStateException e) {
-            return "thymeleaf/member/test"; //<--문제 생기면 회원가입 폼으로
+            model.addAttribute("errorMessage", e.getMessage());
 
+            return "thymeleaf/member/test"; //<--문제 생기면 회원가입 폼으로
         }
     }
 

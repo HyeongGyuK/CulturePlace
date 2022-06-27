@@ -24,7 +24,10 @@ import lombok.ToString;
 @Getter @Setter @ToString
 public class Member {
     @Id
-    @Column(name = "member_id") //데이터 베이스 컬림이 됨.
+    @Column(name = "member_idSn") //데이터 베이스 컬림이 됨.
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long idSn;
+
     private String id;
 
     private String name;
@@ -42,7 +45,7 @@ public class Member {
     public static Member createMember(MemberFormDto memberFormDto, PasswordEncoder passwordEncoder){
         Member member = new Member();
 
-        member.setId(member.getId());
+        member.setId(memberFormDto.getId());
         member.setName(memberFormDto.getName());
         member.setEmail(memberFormDto.getEmail());
         member.setAddress(memberFormDto.getAddress());
