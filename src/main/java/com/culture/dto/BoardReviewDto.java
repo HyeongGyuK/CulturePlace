@@ -23,9 +23,6 @@ public class BoardReviewDto {
 	@NotBlank(message = "내용을 입력해주세요.")
 	private String b_content;
 
-	@NotBlank(message = "이미지를 첨부해주세요.")
-	private String b_image;
-
 	private LocalDateTime b_regdate;
 	private Integer b_readhit;
 
