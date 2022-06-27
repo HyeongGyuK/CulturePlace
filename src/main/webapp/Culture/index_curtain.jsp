@@ -97,27 +97,27 @@
         });
 
     TweenMax.to(".loader", 2.2, {
-        delay: 3,
+        delay: 1,
         top: "-100%",
         ease: Expo.easeInOut
     });
 
     TweenMax.from(".logo", 2, {
-        delay: 4.5,
+        delay: 2.5,
         y: 10,
         opacity: 0,
         ease: Expo.easeInOut
     });
 
     TweenMax.from("#figure-left", 2, {
-        delay: 4.8,
+        delay: 2.8,
         y: 10,
         opacity: 0,
         ease: Expo.easeInOut
     });
-    
+
     TweenMax.from("#figure-right", 2, {
-        delay: 4.8,
+        delay: 2.8,
         y: 10,
         opacity: 0,
         ease: Expo.easeInOut
