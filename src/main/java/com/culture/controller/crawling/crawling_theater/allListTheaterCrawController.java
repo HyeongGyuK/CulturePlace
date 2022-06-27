@@ -223,6 +223,7 @@ public class allListTheaterCrawController {
 //				}
 //			}
 			String classPageNum = pnEle.text();
+//			System.out.println(pnEle.text());
 			
 			int pNumIdx = classPageNum.indexOf("/");
 			String pNumSub = classPageNum.substring(pNumIdx+1, pNumIdx+2);
@@ -237,9 +238,15 @@ public class allListTheaterCrawController {
 					sb.append(" ");
 				}
 			}
+
+//			System.out.println("aaa " + sb.toString() + " bbb");
+			if(sb.toString().trim().equals("") || sb.toString().trim() == "" || sb.toString().trim().equals(null) || sb.toString().trim() == null){
+				pnEle = document.select("#contents > div.container1 > table > tbody > tr:nth-last-of-type(1) > td > table > tbody > tr:nth-last-of-type(1) > td > b");
+
+//				System.out.println("aaa " + pnEle.text() + " bbb");
+				sb.append(pnEle.text());
+			}
 		}
-		
-		
 		
 		return sb.toString();
 	}

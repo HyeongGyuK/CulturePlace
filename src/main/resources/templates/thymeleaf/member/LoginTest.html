@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{thymeleaf/layouts/layout1}"
+      layout:decorate="~{thymeleaf/layouts/cultureLayout}"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <meta sec:authorize="isFullyAuthenticated()" th:if="${_csrf}" name="_csrf" th:content="${_csrf.token}"/>
