@@ -23,14 +23,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //차후 구성할 예정
         http.formLogin()
                 .loginPage("/users/login") //로그인 페이지 이동
-                .defaultSuccessUrl("/") //메인 페이지 이동
+                .defaultSuccessUrl("/CulturePlaceMain") //메인 페이지 이동
                 .usernameParameter("MId") // email로 체크
                 .passwordParameter("password")
                 .failureUrl("/users/login/error")
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout")) //사용하지 않고 logout("/members/logout") 이렇게 바로 사용해도 됨.
-                .logoutSuccessUrl("/") ; //메인페이지
+                .logoutSuccessUrl("/CulturePlaceMain") ; //메인페이지
 
         /*
             authorizeRequests : 시큐리티에서 request를 사용하고자 할때 사용하는 메소드 입니다.

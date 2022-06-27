@@ -39,7 +39,7 @@ public class indexController {
     public String loginError(Model model) {
         //"loginErrorMsg"와 관련된 내용은 파일 memberLoginForm.html 안에 구현 되어 있습니다.
         model.addAttribute("loginErrorMsg", "아이디 또는 비밀번호를 확인해주세요.");
-        return "thymeleaf/member/LoginTest";}
+        return "thymeleaf/member/UsersLogin";}
 
 
     @GetMapping(value = "/test")
@@ -47,7 +47,7 @@ public class indexController {
         System.out.println("test controller start");
 
         model.addAttribute("memberFormDto", new MemberFormDto());
-        return "thymeleaf/member/test";
+        return "thymeleaf/member/UsersJoin";
     }
 
     private final MemberService memberService;
@@ -75,7 +75,7 @@ public class indexController {
             }
             model.addAttribute("errorMsg", errorMsg);
 
-            return "thymeleaf/member/test";    //<-- 회원가입 폼으로 이동합니다.
+            return "thymeleaf/member/UsersJoin";    //<-- 회원가입 폼으로 이동합니다.
         }
 
         try {
@@ -86,7 +86,7 @@ public class indexController {
         } catch (IllegalStateException e) {
             model.addAttribute("errorMessage", e.getMessage());
 
-            return "thymeleaf/member/test"; //<--문제 생기면 회원가입 폼으로
+            return "thymeleaf/member/UsersJoin"; //<--문제 생기면 회원가입 폼으로
         }
     }
 

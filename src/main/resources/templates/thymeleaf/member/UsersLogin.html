@@ -1,14 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%-- <%@ include file="../main/header/nav.jsp"%> --%>    
-<%@ include file="./../Member_Common/common.jsp" %>
 <!DOCTYPE html>
-<html>
-<head>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{thymeleaf/layouts/cultureLayout}"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<style type="text/css">
-   html {
+<meta sec:authorize="isFullyAuthenticated()" th:if="${_csrf}" name="_csrf" th:content="${_csrf.token}"/>
+<meta sec:authorize="isFullyAuthenticated()" th:if="${_csrf}" name="_csrf_header" th:content="${_csrf.headerName}"/>
+<meta sec:authorize="isFullyAuthenticated()" th:if="${_csrf}" name="_csrf_parameter" th:content="${_csrf.parameterName}"/>
+
+
+<th:block layout:fragment="css">
+    <style>
+
+  html {
   height: 100%;
 }
 body {
@@ -16,7 +22,7 @@ body {
   padding:0;
   font-family: sans-serif;
   /* background: linear-gradient(#141e30, #243b55);  */
-  background: white; 
+  background: white;
 }
 
 .login-box {
@@ -87,7 +93,7 @@ body {
   margin-top: 40px;
   margin-left: 105px;
   letter-spacing: 4px;
-  
+
 }
 
 .login-box button:hover {
@@ -101,17 +107,21 @@ body {
 }
 
 	.findli{
-			
+
 			font-size: 13px;
 			display: inline-block;
 			text-align: center;
 			color: #FFF5EE
 		}
-		
+
 	a{
 		color: black;
 	}
-	
+
+    .error {
+        color: #bd2130;
+    }
+
 
 /* .login-box a span {
   position: absolute;
@@ -191,49 +201,49 @@ body {
   50%,100% {
     bottom: 100%;
   }
+
 } */
-</style>
+    </style>
+</th:block>
 
-<script type="text/javascript">
-		$('.idpasswordborder').addClass('idpasswordborder');
-		if(${requestScope.messagelogin=="아이디 또는 패스워드가 틀렸습니다."}){
-			alert('${requestScope.messagelogin}');
-			console.log('${requestScope.messagelogin}');
-		}else{
-			console.log('로그인 페이지 이동');
-		}
-		if(${requestScope.joinmessage!=null}){
-			alert('${requestScope.joinmessage}');
-		}
-</script>
 
-</head>
-<body>
-   <div class="login-box">
+
+<!--  <script type="text/javascript">-->
+<!--		$('.idpasswordborder').addClass('idpasswordborder');-->
+<!--		if(${requestScope.messagelogin=="아이디 또는 패스워드가 틀렸습니다."}){-->
+<!--			alert('${requestScope.messagelogin}');-->
+<!--			console.log('${requestScope.messagelogin}');-->
+<!--		}else{-->
+<!--			console.log('로그인 페이지 이동');-->
+<!--		}-->
+<!--		if(${requestScope.joinmessage!=null}){-->
+<!--			alert('${requestScope.joinmessage}');-->
+<!--		}-->
+<!--</script>-->
+
+
+
+<div layout:fragment="content" class="login-box">
   <h2>Login</h2>
-  <form role="form" method="post" action="/members/login">
+  <form role="form" method="post" action="/users/login">
     <div class="user-box ">
-      <input type="id" name="email" class="form-control" required="">
-      <label th:for=""id"" class="idAddress" >Username</label>
+      <input type="text" name="MId" class="form-control" required="아이디를 입력해주세요">
+      <label th:for="MId" class="idAddress" >UserId</label>
     </div>
+
     <div class="user-box idpasswordborder">
-      <input type="password" name="password" id="password" class="form-control" required="">
-      <label th:for="password" id="password01">Password</label>
+      <input type="password" name="password" id="password" class="form-control" required="비밀번호 입력">
+      <label th:for="password">Password</label>
     </div>
-   <p th:if="${loginErrorMsg}" class="error" th:text="${loginErrorMsg}"></p>
-        <button class="btn btn-primary" id="join01">로그인</button>
-        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-        
-        
-		<div>
-        <ul id="findul" class="idsearch">
-			<li id="findli3" class="findli"><a href="">회원가입</a></li>
-		</ul>
-		</div>
+
+
+    <p th:if="${loginErrorMsg}" class="error" th:text="${loginErrorMsg}"></p>
+
+    <button class="btn btn-primary" id="join01">로그인</button>
+    <button type="button" class="btn btn-primary" onClick="location.href='/users/new'">회원가입</button>
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
   </form>
 </div>
-</body>
 </html>
 
 
- 
