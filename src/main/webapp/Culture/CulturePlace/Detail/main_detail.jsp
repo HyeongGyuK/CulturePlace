@@ -82,6 +82,7 @@ div{
 	}
 	.detail_info > h3{
 		padding-bottom: 20px;
+
 	}
 	.h3_div{
 		background-color: white;
@@ -289,12 +290,12 @@ margin: 0 0 3px 40px;
 					${detailList.introduction }
 				</dd>
 				</dl>
-		</div>	
-	</div>
-	<div class="casting_info">
-		<div >
-			<h3>출연진</h3>
+                <div class="h3_div" id="cont_h3">
+                    <h3>출연진</h3>
+                </div>
 		</div>
+	</div>
+	<div class="detail_page">
 		<div>
 		${detailList.casting }
 		</div>

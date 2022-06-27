@@ -59,7 +59,7 @@
 
         }
 
-        @media(max-width:1151px) {
+        /*@media(max-width:1151px) {
             .common_navbar_menu>ul {
                 visibility: hidden;
             }
@@ -85,7 +85,7 @@
                visibility: hidden;
 
             }
-        }
+        }*/
 
 
 
@@ -199,7 +199,7 @@
             /*a 속성에 hover시 after를 기존 크기로 변경*/
         }
         
-        .common_navbar_menu_culturedb_hover_p, .common_navbar_menu_community_hover_p { /* 하위메뉴 밑줄 위치 */
+        .common_navbar_menu_culturedb_hover_p, .common_navbar_menu_community_hover_p, .common_navbar_menu_chat_hover_p { /* 하위메뉴 밑줄 위치 */
             height:17px;
             font-size: 17px;
         }
@@ -208,6 +208,9 @@
             display: none;
         }
         .common_navbar_menu_community_hover{
+            display: none;
+        }
+        .common_navbar_menu_chat_hover{
             display: none;
         }
 

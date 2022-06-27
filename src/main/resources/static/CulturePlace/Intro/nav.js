@@ -42,7 +42,8 @@
                 $(".common_navbar_menu_culturedb_hover").css({"display":"block"});
                 $(".common_navbar_menu_culturedb_hover_p").css({"color":"white", "display":"block"});
                 $(".common_navbar_menu_community_hover").css("display","none");
-                
+                $(".common_navbar_menu_chat_hover").css("display","none");
+
                 $('.common_header').addClass('hover_header');
                 $('.common_navbar_menu_p').addClass('hover_menu');
                 $('.common_navbar_login_p').addClass('hover_menu');
@@ -62,7 +63,8 @@
                 $(".common_navbar_menu_community_hover").css({"display":"block"});
                 $(".common_navbar_menu_community_hover_p").css({"color":"white", "display":"block"});
                 $(".common_navbar_menu_culturedb_hover").css("display","none");
-                
+                $(".common_navbar_menu_chat_hover").css("display","none");
+
                 $('.common_header').addClass('hover_header');
                 $('.common_navbar_menu_p').addClass('hover_menu');
                 $('.common_navbar_login_p').addClass('hover_menu');
@@ -71,6 +73,26 @@
             $(".common_header").mouseleave(function(){
                 $(".common_navbar_menu_hover").css({"display":"none"});
                 
+                $('.common_header').removeClass('hover_header');
+                $('.common_navbar_menu_p').removeClass('hover_menu');
+                $('.common_navbar_login_p').removeClass('hover_menu');
+            });
+
+            $("#Chat_hover").mouseenter(function(){
+                $(".common_navbar_menu_hover").css({"background":"black", "display":"block", "text-align":"center"});
+                $(".common_navbar_menu_chat_hover").css({"display":"block"});
+                $(".common_navbar_menu_chat_hover_p").css({"color":"white", "display":"block"});
+                $(".common_navbar_menu_culturedb_hover").css("display","none");
+                $(".common_navbar_menu_community_hover").css("display","none");
+
+                $('.common_header').addClass('hover_header');
+                $('.common_navbar_menu_p').addClass('hover_menu');
+                $('.common_navbar_login_p').addClass('hover_menu');
+            });
+
+            $(".common_header").mouseleave(function(){
+                $(".common_navbar_menu_hover").css({"display":"none"});
+
                 $('.common_header').removeClass('hover_header');
                 $('.common_navbar_menu_p').removeClass('hover_menu');
                 $('.common_navbar_login_p').removeClass('hover_menu');

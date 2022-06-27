@@ -78,6 +78,11 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
                         <p class="common_navbar_menu_p" id="Community_hover">Community</p>
                     </a>
                 </li>
+                <li>
+                    <a href="#">
+                        <p class="common_navbar_menu_p" id="Chat_hover">Chat</p>
+                    </a>
+                </li>
             </ul>
         </div>
         <div class="common_navbar_login"> <!-- 로그인 회원가입  // 로그아웃 회원정보수정(or MyPage) -->
@@ -124,6 +129,26 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 				<li>
 				    <a href="/move/ticket_board"><p class="common_navbar_menu_community_hover_p">거래게시판</p></a>
 				</li>
+            </ul>
+            <ul class="common_navbar_menu_chat_hover">
+                <li>
+                    <a href="#"><p class="common_navbar_menu_chat_hover_p">뮤지컬</p></a>
+                </li>
+                <li>
+                    <a href="#"><p class="common_navbar_menu_chat_hover_p">연극</p></a>
+                </li>
+                <li>
+                    <a href="#"><p class="common_navbar_menu_chat_hover_p">콘서트</p></a>
+                </li>
+                <li>
+                    <a href="#"><p class="common_navbar_menu_chat_hover_p">무용</p></a>
+                </li>
+                <li>
+                    <a href="#"><p class="common_navbar_menu_chat_hover_p">클래식/오페라</p></a>
+                </li>
+                <li>
+                    <a href="#"><p class="common_navbar_menu_chat_hover_p">국악</p></a>
+                </li>
             </ul>
         </div>
     </div>
