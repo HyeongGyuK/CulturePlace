@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ include file="./chat.jsp" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
+<%@ include file="./chat.jsp" %>
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
@@ -87,15 +88,21 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
         </div>
         <div class="common_navbar_login"> <!-- 로그인 회원가입  // 로그아웃 회원정보수정(or MyPage) -->
             <ul>
-                <li sec:authorize="isAnonymous()">
-                    <a href="/users/login"><p class="common_navbar_login_p">로그인</p></a>
-                </li>
-                <li sec:authorize="isAuthenticated()">
-                    <a href="/users/logout"><p class="common_navbar_login_p">로그아웃</p></a>
-                </li>
-                <li sec:authorize="isAnonymous()">
-                    <a href="/users/new"><p class="common_navbar_login_p">회원가입</p></a>
-                </li>
+                <s:authorize access="isAnonymous()">
+                    <li>
+                        <a href="/users/login"><p class="common_navbar_login_p">로그인</p></a>
+                    </li>
+                </s:authorize>
+                <s:authorize access="isAuthenticated()">
+                    <li>
+                        <a href="/logout"><p class="common_navbar_login_p">로그아웃</p></a>
+                    </li>
+                </s:authorize>
+                <s:authorize access="isAnonymous()">
+                    <li>
+                        <a href="/users/new"><p class="common_navbar_login_p">회원가입</p></a>
+                    </li>
+                </s:authorize>
             </ul>
         </div>
         <div class="common_navbar_menu_hover"> <!-- 하위메뉴 -->

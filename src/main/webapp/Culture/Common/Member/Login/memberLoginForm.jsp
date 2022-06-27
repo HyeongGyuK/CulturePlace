@@ -227,8 +227,6 @@ body {
         
 		<div>
         <ul id="findul" class="idsearch">
-			<li id="findli1" class="findli"><a href="">아이디 찾기</a></li>
-			<li id="findli2" class="findli"><a href="">비밀번호 찾기</a></li>
 			<li id="findli3" class="findli"><a href="">회원가입</a></li>
 		</ul>
 		</div>
