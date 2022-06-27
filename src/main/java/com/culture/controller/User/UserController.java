@@ -7,6 +7,10 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import com.culture.entity.Member;
+import com.culture.service.MemberService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.culture.dto.MemberFormDto;
 import com.culture.dto.UserFormDto;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller(value = "UserController")
 @RequestMapping(value = "/users")
@@ -25,7 +30,7 @@ public class UserController {
 	@GetMapping(value = "/login")
 	public String login() {
 		System.out.println("login controller");
-		return "thymeleaf/member/LoginTest";
+		return "thymeleaf/member/UsersLogin";
 	}
 	
 
@@ -49,11 +54,11 @@ public class UserController {
 //				errorMsg.put(field, message);
 //			}
 //			model.addAttribute("loginErrorMsg", errorMsg);
-			model.addAttribute("loginErrorMsg", "아이디 또는 비밀번호를 확인해주세요");
+			model.addAttribute("loginErrorMsg", "아이디 또는 비밀번호를 확인해주세요.");
 
-			return "thymeleaf/member/LoginTest";
+			return "thymeleaf/member/UsersLogin";
 		}
-		return "thymeleaf/member/LoginTest";
+		return "thymeleaf/member/UsersLogin";
 	}
 	
 
@@ -63,7 +68,7 @@ public class UserController {
 		System.out.println("join controller");
 
 		model.addAttribute("memberFormDto", new MemberFormDto());
-		return "thymeleaf/member/test";
+		return "thymeleaf/member/UsersJoin";
 	}
 
 	
@@ -92,19 +97,17 @@ public class UserController {
 		   
 		   
 		   
-		   return "thymeleaf/member/test";
+		   return "thymeleaf/member/UsersJoin";
 	   }
-  
-	   return "redirect:/";
+
+
+	   System.out.println("aaaaaaaaaaaaaaaaaaaa");
+	   return "CulturePlace/main/main";
    }
    
    
    
 }
-
-
-
-
 
 
 

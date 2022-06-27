@@ -8,7 +8,6 @@ import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
 
 // Dto 객체 : 가입 화면에서 데이터(Data)가 전송(Transfer)될 때 값을 저장할 객체(Object)
 @Getter @Setter
