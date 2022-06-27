@@ -22,15 +22,18 @@ public class BoardReview {
 	@Column(name = "b_no")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long b_no; // PK
-	
+
+	@Column(nullable = true)
+	private String b_writer; // 작성자
+
+	@Column(nullable = true)
+	private String b_category; // 카테고리
+
 	@Column(nullable = true, length = 50)
 	private String b_title; // 제목
 	
 	@Column(nullable = true, length = 50)
 	private String b_content; // 내용
-	
-	@Column(nullable = true)
-	private String b_writer; // 작성자
 	
 	@Column(nullable = true)
 	private LocalDateTime b_regdate; // 작성일자
