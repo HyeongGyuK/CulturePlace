@@ -14,13 +14,10 @@ public class BoardReviewDto {
 	
 	private String b_writer;
 
-	@NotBlank(message = "카테고리를 입력해주세요.")
 	private String b_category;
 	
-	@NotBlank(message = "제목을 입력해주세요.")
 	private String b_title;
 	
-	@NotBlank(message = "내용을 입력해주세요.")
 	private String b_content;
 
 	private LocalDateTime b_regdate;

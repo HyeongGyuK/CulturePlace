@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping(value = "/board")
-public class boardReivewDetailController {
+public class boardReivewMainController {
 
-	@GetMapping(value = "/detail")
+	@GetMapping(value = "/main")
 	public String reviewDetail() {
-		return "Board/Board_Review/boardReview_detail.jsp";
+		return "thymeleaf/boardReview/boardReview_main";
 	}
 	
 }

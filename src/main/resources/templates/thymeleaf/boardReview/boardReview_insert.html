@@ -59,20 +59,20 @@
 					<h2>후기인증</h2>
 				</div>
 				<div class="panel-body" class="col-sm-12">
-					<form name= "join" class="form-horizontal" action="/board/review_insert" method="post" enctype="multipart/form-data">
+					<form role="form" name= "join" class="form-horizontal" action="thymeleaf/boardReview/boardReview_insert" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="command" value="boardReview">
 
 			
 						<div class="form-group">
 							<div class="col-sm-12">
-								<select class="form-control" id="b_category" name="b_category" >
+								<select th:field="*{categoryStatus}" class="custom-select">
 									<option value="">----카테고리를 선택해주세요----</option>		
-								    <option value="play">연극</option>								    
-								    <option value="musical">뮤지컬</option>	
-								    <option value="concert">콘서트</option>
-								    <option value="classic">클래식/오페라</option>	
-								    <option value="gugak">국악</option>	
-								    <option value="dance">무용</option>							    
+								    <option value="PLAY">연극</option>
+								    <option value="MUSICAL">뮤지컬</option>
+								    <option value="CONCERT">콘서트</option>
+								    <option value="CLASSIC">클래식/오페라</option>
+								    <option value="GUGAK">국악</option>
+								    <option value="DANCE">무용</option>
 							  	</select>
 							</div>
 						</div>
