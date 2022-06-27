@@ -27,7 +27,8 @@ public class MemberService implements UserDetailsService {
 
     private void validateDuplicateMember(Member member) {
         //이메일로 체크함, null이 아니면 이미 존재하는 아이디
-        Member findMember = memberRepository.findByEmail(member.getEmail());
+//        Member findMember = memberRepository.findByEmail(member.getEmail());
+        Member findMember = memberRepository.findByMId(member.getMId());
         if(findMember != null){
             throw new IllegalStateException("이미 가입된 회원입니다.");
             
@@ -35,13 +36,14 @@ public class MemberService implements UserDetailsService {
     }
 
     @Override //이메일을 이용하여 회원 정보 찾기 (email이 PK 역할을 합니다.)
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Member member = memberRepository.findByEmail(email);
+    public UserDetails loadUserByUsername(String MId) throws UsernameNotFoundException {
+//        Member member = memberRepository.findByEmail(id);
+        Member member = memberRepository.findByMId(MId);
         if (member == null){// 회원이 존재하지 않는 경우
-            throw new UsernameNotFoundException(email);
+            throw new UsernameNotFoundException(MId);
         }
         return User.builder()
-                .username(member.getEmail())
+                .username(member.getMId())
                 .password(member.getPassword())
                 .roles(member.getRole().toString())
                 .build()

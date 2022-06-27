@@ -16,6 +16,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="_csrf" content="${_csrf.token}">
+<meta name="_csrf_header" content="${_csrf.headerName}">
 <title>Insert title here</title>
 <link rel="stylesheet"
 	href="https://unpkg.com/swiper/swiper-bundle.min.css" />
@@ -312,6 +314,8 @@ html, body {
 	</script>
 	<script>
 	<%-- swiper 구간 --%>
+	var token = $("meta[name='_csrf']").attr("content");
+                var header = $("meta[name='_csrf_header']").attr("content");
 	var result = "";
 	var swiperIndex = ${playNum};
 		const swiper = new Swiper('.swiper-container',{
@@ -337,6 +341,10 @@ html, body {
 							type: "POST",
 							url: "/culturePlace/allTheaterList/allList",
 							dataType: "text",
+							beforeSend : function(xhr){
+                                                /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
+                                                xhr.setRequestHeader(header, token);
+                                            },
 							data: {
 								theaterUrl: "http://www.playdb.co.kr/playdb/playdblist.asp?sReqMainCategory=000002"
 							},
@@ -364,6 +372,10 @@ html, body {
 							type: "POST",
 							url: "/culturePlace/allTheaterList/allList",
 							dataType: "text",
+							beforeSend : function(xhr){
+                                                /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
+                                                xhr.setRequestHeader(header, token);
+                                            },
 							data: {
 								theaterUrl: "http://www.playdb.co.kr/playdb/playdblist.asp?sReqMainCategory=000001"
 							},
@@ -392,6 +404,10 @@ html, body {
 							type: "POST",
 							url: "/culturePlace/allTheaterList/allList",
 							dataType: "text",
+							beforeSend : function(xhr){
+                                                /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
+                                                xhr.setRequestHeader(header, token);
+                                            },
 							data: {
 								theaterUrl: "http://www.playdb.co.kr/playdb/playdblist.asp?sReqMainCategory=000003&sReqSubCategory=&sReqDistrict=&sReqTab=2&sPlayType=2&sStartYear=&sSelectType=1"
 							},
@@ -421,6 +437,10 @@ html, body {
 							type: "POST",
 							url: "/culturePlace/allTheaterList/allList",
 							dataType: "text",
+							beforeSend : function(xhr){
+                                                /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
+                                                xhr.setRequestHeader(header, token);
+                                            },
 							data: {
 								theaterUrl: "http://www.playdb.co.kr/playdb/playdblist.asp?sReqMainCategory=000004"
 							},
@@ -449,6 +469,10 @@ html, body {
 							type: "POST",
 							url: "/culturePlace/allTheaterList/allList",
 							dataType: "text",
+							beforeSend : function(xhr){
+                                                /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
+                                                xhr.setRequestHeader(header, token);
+                                            },
 							data: {
 								theaterUrl: "http://www.playdb.co.kr/playdb/playdblist.asp?sReqMainCategory=000005"
 							},
@@ -477,6 +501,10 @@ html, body {
 							type: "POST",
 							url: "/culturePlace/allTheaterList/allList",
 							dataType: "text",
+							beforeSend : function(xhr){
+                                                /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
+                                                xhr.setRequestHeader(header, token);
+                                            },
 							data: {
 								theaterUrl: "http://www.playdb.co.kr/playdb/playdblist.asp?sReqMainCategory=000007"
 							},

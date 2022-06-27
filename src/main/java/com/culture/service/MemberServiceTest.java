@@ -42,7 +42,7 @@ public class MemberServiceTest {
 
         //assertEquals(기입한 값, 저장된 값) : 두 개의 값에 대한 비교를 수행합니다.
         Assertions.assertEquals(member.getEmail(), savedMember.getEmail());
-        Assertions.assertEquals(member.getId(), savedMember.getId());
+        Assertions.assertEquals(member.getMId(), savedMember.getMId());
         Assertions.assertEquals(member.getAddress(), savedMember.getAddress());
         Assertions.assertEquals(member.getPassword(), savedMember.getPassword());
         Assertions.assertEquals(member.getRole(), savedMember.getRole());

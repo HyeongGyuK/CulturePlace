@@ -37,18 +37,19 @@ public class UserController {
 			System.out.println("에러");
 
 			List<FieldError> list = bindingResult.getFieldErrors();
-			Map<String, String> errorMsg = new HashMap<>();
-
-			for (int i = 0; i < list.size(); i++) {
-				String field = list.get(i).getField();
-				String message = list.get(i).getDefaultMessage();
-
-				System.out.println("필드 = " + field);
-				System.out.println("메세지 = " + message);
-
-				errorMsg.put(field, message);
-			}
-			model.addAttribute("loginErrorMsg", errorMsg);
+//			Map<String, String> errorMsg = new HashMap<>();
+//
+//			for (int i = 0; i < list.size(); i++) {
+//				String field = list.get(i).getField();
+//				String message = list.get(i).getDefaultMessage();
+//
+//				System.out.println("필드 = " + field);
+//				System.out.println("메세지 = " + message);
+//
+//				errorMsg.put(field, message);
+//			}
+//			model.addAttribute("loginErrorMsg", errorMsg);
+			model.addAttribute("loginErrorMsg", "아이디 또는 비밀번호를 확인해주세요");
 
 			return "thymeleaf/member/LoginTest";
 		}

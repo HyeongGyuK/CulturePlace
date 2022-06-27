@@ -19,12 +19,12 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-    	http.csrf().disable();
+//    	http.csrf().disable();
         //차후 구성할 예정
         http.formLogin()
                 .loginPage("/users/login") //로그인 페이지 이동
                 .defaultSuccessUrl("/") //메인 페이지 이동
-                .usernameParameter("id") // email로 체크
+                .usernameParameter("MId") // email로 체크
                 .passwordParameter("password")
                 .failureUrl("/users/login/error")
                 .and()
@@ -50,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception{
         // 다음 항목들은 인증 절차를 무시하도록 하겠습니다.
-        web.ignoring().antMatchers("/css/**", "/js/**", "/img/**", "/CulturePlace/**", "/Culture/**", "/members/**", "/test/**");
+        web.ignoring().antMatchers("/css/**", "/js/**", "/img/**", "/CulturePlace/**", "/Culture/**", "/members/**", "/test/**", "/webapp/Culture/CulturePlace/**");
     }
 //    권한을 주어야 로그인 화면이 나타납니다.
 
