@@ -32,7 +32,7 @@ body {
   width: 400px;
   padding: 40px;
   transform: translate(-50%, -50%);
-  background: #708090;
+  background: black;
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgba(0,0,0,.6);
   border-radius: 10px;
@@ -80,6 +80,24 @@ body {
 }
 
 .login-box form button {
+  font-weight: bolder;
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #FFF5EE;
+  color: black;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  margin-top: 30px;
+  margin-left: 30px;
+  letter-spacing: 4px;
+
+}
+
+.login-box form #login_input {
   position: relative;
   display: inline-block;
   padding: 10px 20px;
@@ -97,6 +115,16 @@ body {
 }
 
 .login-box button:hover {
+  background: black;
+  color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 5px snow,
+              0 0 25px snow,
+              0 0 50px snow,
+              0 0 100px snow;
+}
+
+.login-box #login_input:hover {
   background: black;
   color: white;
   border-radius: 5px;
@@ -202,6 +230,24 @@ body {
     bottom: 100%;
   }
 
+.btn{
+	border-radius: 7px;
+}
+.btn_div{
+	display: inline-block;
+}
+#joinbox{
+
+margin:100px;
+}
+
+.join01{
+
+}
+
+.join02{
+
+}
 } */
     </style>
 </th:block>
@@ -233,15 +279,16 @@ body {
 
     <div class="user-box idpasswordborder">
       <input type="password" name="password" id="password" class="form-control" required="비밀번호 입력">
-      <label th:for="password">Password</label>
+      <label th:for="password" id="password01">Password</label>
     </div>
 
 
     <p th:if="${loginErrorMsg}" class="error" th:text="${loginErrorMsg}"></p>
-
+    <div id="joinbox">
     <button class="btn btn-primary" id="join01">로그인</button>
-    <button type="button" class="btn btn-primary" onClick="location.href='/users/new'">회원가입</button>
+    <button type="button" class="btn btn-primary" onClick="location.href='/users/new'" id="join02">회원가입</button>
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+    </div>
   </form>
 </div>
 </html>
