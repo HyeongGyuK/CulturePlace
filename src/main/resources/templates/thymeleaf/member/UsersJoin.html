@@ -19,7 +19,7 @@
             width : 200px;
         }
         #searchbox{
-            display : inline;
+            display : flex;
         }
 
 
@@ -27,6 +27,10 @@
             width : 800px;
             margin : 0 auto;
             padding : 40px;
+        }
+
+        .form-control{
+            padding-left:6px;
         }
     </style>
 </th:block>
@@ -125,7 +129,7 @@
 
             <input type="button" value="우편번호찾기"
                    onclick="sample6_execDaumPostcode()" class="form-control col-4 postaddress"
-                   style="display:inline; margin-left:-6px; margin-bottom:3px;">
+                   style="display:inline; margin-bottom:1px;">
             </div>
 
 
