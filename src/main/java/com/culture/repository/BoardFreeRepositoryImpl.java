@@ -1,8 +1,9 @@
 package com.culture.repository;
 
-import com.culture.dto.BoardFreeSearchDto;
-import com.culture.entity.BoardFree;
-import com.culture.entity.QBoardFree;
+import com.culture.dto.BoardFreeDto.BoardFreeSearchDto;
+
+import com.culture.entity.boardFree.BoardFree;
+import com.culture.entity.boardFree.QBoardFree;
 import com.querydsl.core.QueryResults;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;

@@ -1,4 +1,4 @@
-package com.culture.dto;
+package com.culture.dto.BoardFreeDto;
 
 import lombok.Getter;
 import lombok.Setter;
