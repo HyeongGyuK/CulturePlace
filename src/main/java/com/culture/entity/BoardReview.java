@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -16,12 +15,12 @@ import lombok.Setter;
 @Entity
 @Table(name = "boardReview")
 @Getter @Setter
-public class BoardReview {
+public class BoardReview extends BaseEntity{
 	
 	@Id
-	@Column(name = "b_no")
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long b_no; // PK
+	@Column(name = "bno")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private Long bno; // PK
 
 	@Column(nullable = true)
 	private String b_writer; // 작성자

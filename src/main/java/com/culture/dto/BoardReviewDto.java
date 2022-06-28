@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Getter @Setter
 public class BoardReviewDto {
 	
-	private Long b_no;
+	private Long bno;
 	
 	private String b_writer;
 
