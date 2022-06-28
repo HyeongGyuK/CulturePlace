@@ -1,9 +1,10 @@
 package com.culture.service;
 
 
-import com.culture.dto.BoardFreeDto;
-import com.culture.dto.BoardFreeSearchDto;
-import com.culture.entity.BoardFree;
+import com.culture.dto.BoardFreeDto.BoardFreeDto;
+import com.culture.dto.BoardFreeDto.BoardFreeSearchDto;
+import com.culture.dto.BoardFreeDto.BoardFreeWriteDto;
+import com.culture.entity.boardFree.BoardFree;
 import com.culture.repository.BoardFreeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -21,11 +22,12 @@ public class BoardFreeService {
 	private final BoardFreeRepository boardFreeRepository;
 
 	// 글 작성
-	public Long savedBoardWrite(BoardFreeDto boardFreeDto) throws Exception {
-		BoardFree boardFree = boardFreeDto.boardWrite();
-		boardFreeRepository.save(boardFree);
+	@Transactional
+	public Long savedBoardFreeWrite(BoardFreeWriteDto boardFreeWriteDto) throws Exception {
+		BoardFree boardWrite = boardFreeWriteDto.boardFreeWrite();
+		boardFreeRepository.save(boardWrite);
 
-		return boardFree.getBoard_no();
+		return boardWrite.getBoard_no();
 	}
 
 	// 전체 글 목록 출력
@@ -35,11 +37,11 @@ public class BoardFreeService {
 
 	// board_free_detail 화면에서 보여줄 Service입니다.
 	@Transactional(readOnly = true)
-    public BoardFreeDto getBoardDetail(Long board_no) {
+	public BoardFreeDto getBoardDetail(Long board_no) {
 		BoardFree boardFree = boardFreeRepository.findById(board_no).orElseThrow(EntityNotFoundException::new);
 
-		BoardFreeDto boardFreeDto = BoardFreeDto.of(boardFree);
+		BoardFreeDto boardFreeDto = BoardFreeWriteDto.of(boardFree);
 
 		return boardFreeDto;
-    }
+	}
 }

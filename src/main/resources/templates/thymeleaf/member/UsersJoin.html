@@ -16,7 +16,7 @@
             width : 200px;
         }
         #searchbox{
-            display : inline;
+            display : flex;
         }
         #addressbox{
             display : inline;
@@ -27,6 +27,10 @@
             width : 800px;
             margin : 0 auto;
             padding : 40px;
+        }
+
+        .form-control{
+            padding-left:6px;
         }
     </style>
 </th:block>
@@ -82,8 +86,13 @@
             <p th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="fieldError">Incorrect data</p>
 
             <input type="button" value="우편번호찾기"
+<<<<<<< HEAD
                    onclick="sample3_execDaumPostcode()" class="form-control col-4 "
                    style="display:inline; margin-left:-6px; margin-bottom:3px;">
+=======
+                   onclick="sample6_execDaumPostcode()" class="form-control col-4 postaddress"
+                   style="display:inline; margin-bottom:1px;">
+>>>>>>> a562ec13e55c35f3b3ef03aea61b220fccc150e1
             </div>
 
 
