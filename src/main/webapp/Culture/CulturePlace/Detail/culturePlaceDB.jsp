@@ -308,7 +308,7 @@ html, body {
 			});
 		} else {
 			$('.leftArea').css({
-				"z-index" : "1"
+				"z-index" : "998"
 			});
 		}
 	</script>
