@@ -5,6 +5,9 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <title>Title</title>
 
+  <!-- 로그인 API-->
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
   <!-- CSS only -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
@@ -26,6 +29,8 @@
 </div>
 
 <div layout:fragment="content" class="content"></div>
+
+<th:block layout:fragment="script"></th:block>
 
 <div th:replace="thymeleaf/fragments/cultureFooter::bbbb">
 </div>
