@@ -1,62 +1,63 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{thymeleaf/layouts/layout1}">
+      layout:decorate="~{thymeleaf/layouts/cultureLayout}">
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-</head>
+    <title>Insert title here</title>
 
+    <th:block layout:fragment="script">
+        <script th:inline="javascript">
+            /*$(document).ready(function(){
 
-<th:block layout:fragment="script">
-    <script th:inline="javascript">
-        $(document).ready(function(){
-
-			$('#writeBtn').hover(function(){
-				$(this).css({"background-color": "black","color":"#FFFFFF"});
-			}, function(){
-				$(this).css({"background-color": "black", "color":"black", "border":"1px solid black});
-			});
-		});
+                $('#writeBtn').hover(function(){
+                    $(this).css({"background-color": "black","color":"#FFFFFF"});
+                }, function(){
+                    $(this).css({"background-color": "black", "color":"black", "border":"1px solid black});
+                });
+            });*/
     </script>
-</th:block>
+    </th:block>
 
-<!-- 사용자 CSS  -->
-<th:block layout:fragment="css">
-    <style>
-       /* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap'); */
-		*{padding:0; margin:0;}
-		body{font-family: 'Noto Sans KR', sans-serif;}
+    <!-- 사용자 CSS  -->
+    <th:block layout:fragment="css">
+        <style>
+           /* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap'); */
+            *{padding:0; margin:0;}
+            body{font-family: 'Noto Sans KR', sans-serif;}
 
-		.list-tab{width:1184px; margin-top:72px; margin-left:auto; margin-right:auto; text-align:center;}
-	  	.list-tab li:hover p{color:white; background-color:black; border-radius:20px;}
-	  	.ul01{width:1184px }
-	    .ul01 li{list-style:none; display:inline-block; width:143.63px; height:56px; line-height:56px; background-color:#f5f5f6;
-	    	  	 border-radius:20px;}
-   	    .ul01 p{font-size:16px; font-weight:700; color:black;}
-   	    .list-data{width:1184px; height:1025px; margin-top:72px; margin-left:auto; margin-right:auto;}
-		.ul02 li{list-style:none; float:left;
-				 width:376px; height:481.6px; margin-bottom:61px; margin-left:14px; }
-		.li02{margin-left:28px; margin-right:28px; }
+            .list-tab{width:1184px; margin-top:72px; margin-left:auto; margin-right:auto; text-align:center;}
+            .list-tab li:hover p{color:white; background-color:black; border-radius:20px;}
+            .ul01{width:1184px }
+            .ul01 li{list-style:none; display:inline-block; width:143.63px; height:56px; line-height:56px; background-color:#f5f5f6;
+                     border-radius:20px;}
+            .ul01 p{font-size:16px; font-weight:700; color:black;}
+            .list-data{width:1184px; height:1025px; margin-top:72px; margin-left:auto; margin-right:auto;}
+            .ul02 li{list-style:none; float:left;
+                     width:376px; height:481.6px; margin-left:14px; } /*margin-bottom: 61px로 되어있었음*/
+            .li02{margin-left:28px; margin-right:28px; }
 
-		.lidiv{width:370px; height:410px; background-color:#f5f5f6; border-radius:20px;}
-		.image-div{width:376px; height:250px;}
-		.image{width:300px; height:350px; margin-top:30px; margin-left:35px;
-		transition: all 0.2s linear;
-		}
-		.aforimg:hover img{transform: scale(1.05);}
+            .lidiv{width:370px; height:410px; background-color:#f5f5f6; border-radius:20px;}
+            .image-div{width:376px; height:250px;}
+            .image{width:300px; height:350px; margin-top:30px; margin-left:35px;
+            transition: all 0.2s linear;
+            }
+            .aforimg:hover img{transform: scale(1.05);}
 
-		.clean-div{width:376px; height:60px;}
-		.clean-list{width:75px; height:30px; margin-top:20px; margin-left:20px;}
+            .clean-div{width:376px; height:60px;}
+            .clean-list{width:75px; height:30px; margin-top:20px; margin-left:20px;}
 
-		.ul02 h6{font-size:18px; margin-top:16px; cursor: pointer; }
+            .ul02 h6{font-size:18px; margin-top:16px; cursor: pointer; }
 
-		#btnBox{width:1184px; height:150px; margin:auto;}
+            #btnBox{width:1184px; height:150px; margin:auto; text-align: right; padding-right: 20px;}
 
-		#rec_update{float:left; border:1px solid black;}
+            #rec_update{float:left; border:1px solid black;}
 
-		.title_likeit{border:1px solid black; box-sizing:border-box; height:20px;}
-    </style>
-</th:block>
+            .title_likeit{border:1px solid black; box-sizing:border-box; height:20px;}
+        </style>
+    </th:block>
+</head>
 
 <body>
 <div layout:fragment="content">
@@ -152,7 +153,7 @@
 
 
     <div id="btnBox">
-        <a href="/board/insert"
+        <a href="/board/insert/new"
            class="btn btn-primary pull-right"
            style="background-color: #FFFFFF; color: black; border: 1px solid black; box-sizing: border-box; font-size:18px; margin-top:-50px;"><b>글쓰기</b></a>
 

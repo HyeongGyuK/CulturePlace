@@ -75,7 +75,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
                     
                 </li>
                 <li>
-                    <a href="/BoardFree/board_free_main">
+                    <a href="/CommunityMain">
                         <p class="common_navbar_menu_p" id="Community_hover">Community</p>
                     </a>
                 </li>
@@ -128,13 +128,13 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
             </ul>
             <ul class="common_navbar_menu_community_hover">
                 <li>
-				    <a href="/move/free_board"><p class="common_navbar_menu_community_hover_p">자유게시판</p></a>
+				    <a href="/CommunityMain"><p class="common_navbar_menu_community_hover_p">자유게시판</p></a>
 				</li>
 				<li>
-				    <a href="/move/review_board"><p class="common_navbar_menu_community_hover_p">리뷰게시판</p></a>
+				    <a href="/board/main"><p class="common_navbar_menu_community_hover_p">리뷰게시판</p></a>
 				</li>
 				<li>
-				    <a href="/move/ticket_board"><p class="common_navbar_menu_community_hover_p">거래게시판</p></a>
+				    <a href="#"><p class="common_navbar_menu_community_hover_p">거래게시판</p></a>
 				</li>
             </ul>
             <ul class="common_navbar_menu_chat_hover">

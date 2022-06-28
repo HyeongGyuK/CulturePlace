@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="~{thymeleaf/layouts/layout1}">
+	  layout:decorate="~{thymeleaf/layouts/cultureLayout}">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
 	<!--추후에 부트스트랩 빼야함 -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -58,15 +57,15 @@
 				<br><br>
 					<h2>후기인증</h2>
 				</div>
-				<div class="panel-body" class="col-sm-12">
+				<div class="panel-body col-sm-12">
 					<form role="form" name= "join" class="form-horizontal" action="thymeleaf/boardReview/boardReview_insert" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="command" value="boardReview">
 
-			
+
 						<div class="form-group">
 							<div class="col-sm-12">
-								<select th:field="*{categoryStatus}" class="custom-select">
-									<option value="">----카테고리를 선택해주세요----</option>		
+								<select class="custom-select"> <!--  th:field="*{categoryStatus}" 제거 -->
+									<option value="">----카테고리를 선택해주세요----</option>
 								    <option value="PLAY">연극</option>
 								    <option value="MUSICAL">뮤지컬</option>
 								    <option value="CONCERT">콘서트</option>
@@ -76,32 +75,32 @@
 							  	</select>
 							</div>
 						</div>
-						
-						
+
+
 						<div class="form-group">
 							<div class="col-sm-12">
 								<input type="text" class="form-control" id="b_title"
 									placeholder="제목을 입력해주세요." name="b_title" value="">
 							</div>
 						</div>
-						<!-- ^[0-9]*$ --> 
-						
-						
+						<!-- ^[0-9]*$ -->
+
+
 						<div class="form-group" >
 							<div class="col-sm-12">
-								<textarea class="form-control" rows="10" id="b_content" name="board_content" 
+								<textarea class="form-control" rows="10" id="b_content" name="board_content"
 								placeholder="내용을 입력해주세요" required></textarea>
 							</div>
 						</div>
-						
-						
+
+
 						<div class="form-group">
 							<div class="col-sm-12">
-								<input type="file" class="form-control" id="b_image" name="b_image">	
+								<input type="file" class="form-control" id="b_image" name="b_image">
 							</div>
 						</div>
-						
-						
+
+
 						<div class="btn-group btn-group-justified">
 							<div class="btn-group">
 								<button type="submit" id="submit" name="submit"
