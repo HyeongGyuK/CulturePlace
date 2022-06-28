@@ -24,6 +24,7 @@ import com.culture.dto.UserFormDto;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller(value = "UserController")
+@RequiredArgsConstructor
 @RequestMapping(value = "/users")
 public class UserController {
 	
@@ -71,9 +72,9 @@ public class UserController {
 		return "thymeleaf/member/UsersJoin";
 	}
 
-	
-	
-	   
+	private final MemberService memberService;
+	private final PasswordEncoder passwordEncoder ;
+
    @PostMapping(value = "/new")
    public String joinProc(@Valid MemberFormDto memberFormDto, BindingResult bindingResult, Model model) {
 	   System.out.println(memberFormDto);
@@ -94,12 +95,12 @@ public class UserController {
 			   errorMsg.put(field, message);
 		   }
 		   model.addAttribute("errorMsg", errorMsg);
-		   
-		   
-		   
+
 		   return "thymeleaf/member/UsersJoin";
 	   }
 
+	   Member member = Member.createMember(memberFormDto, passwordEncoder);
+	   memberService.saveMember(member) ;
 
 	   System.out.println("aaaaaaaaaaaaaaaaaaaa");
 	   return "CulturePlace/main/main";
