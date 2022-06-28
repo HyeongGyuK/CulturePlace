@@ -44,11 +44,9 @@
 <body>
 	<div class="header_text">
 		<div class="top">
-			<h2>연극 예매 Top 5</h2>
+			<h2>뮤지컬 예매 Top 5</h2>
+            <a href="#" class="more_detail"> 더보기</a>
 		</div>
-		<div class="top" id="more_detail2">
-			<a href="#"> 더보기</a>
-		</div>	
 	</div>
 	
 	<div class="list_wrap">
@@ -56,8 +54,9 @@
 			<c:forEach var="topFiveTheaterImg" items="<%=theaterTopFiveCodeNImg %>" varStatus="status">
 				<li class="item item1">
 					<a href="/culturePlace/detailPage?playCode=${topFiveTheaterImg.key }&imgUrl=${topFiveTheaterImg.value}&theaterTopFiveTitle=<%=topTheaterList.get(theaterImgCnt) %>">
-						<div class="image" style="background-image: url('${topFiveTheaterImg.value}');"></div>
-						<p class="item_p">바로가기</p>
+						<div class="image" style="background-image: url('${topFiveTheaterImg.value}');">
+						    <p class="item_p">바로가기</p>
+						</div>
 					</a>
 					<div class="cont">
 						<strong><%=topTheaterList.get(theaterImgCnt) %></strong>
@@ -71,10 +70,8 @@
 	<div class="header_text">
 		<div class="top">
 			<h2>뮤지컬 예매 Top 5</h2>
+			<a href="#" class="more_detail"> 더보기</a>
 		</div>
-		<div class="top" id="more_detail">
-			<a href="#"> 더보기</a>
-		</div>	
 	</div>
 	
 	<div class="list_wrap">

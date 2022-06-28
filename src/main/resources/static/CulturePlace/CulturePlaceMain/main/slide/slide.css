@@ -19,3 +19,7 @@
 	margin-left: 240px;
 	margin-top: 50px;
 }
+
+.bx-controls-direction a{
+    z-index:3;
+}
