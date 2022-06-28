@@ -62,7 +62,6 @@ div{
 		float: none;
 		width:17%;
 		height: 60px;
-		margin-left: 45%;
 		border: 1px hidden;
 		
 	}
@@ -86,11 +85,10 @@ div{
 	}
 	.h3_div{
 		background-color: white;
-		border-bottom: 2px solid black;
+		border-bottom: 2px solid #bbb;
 	}
 	.h3_div > h3{
 		color:black;;
-		margin-left: 45%
 	}
 	
 	.detail_page .posterImg{
@@ -115,7 +113,9 @@ margin: 0;
     
 }
 #cont_h3{
-	border-top: 2px solid black;
+	border-top: 2px solid #bbb;
+	display:flex;
+	justify-content:center;
 }
 .detail_page dt{
 	font-size: 15px;
@@ -160,7 +160,7 @@ a{
 .large_title{
 	margin-top: 25px;
     position: relative;
-    border-bottom: 2px solid #333;
+    border-bottom: 2px solid #bbb;
 }
 #cont_dd{
 margin: 0 0 3px 40px;
@@ -300,11 +300,13 @@ margin: 0 0 3px 40px;
 		${detailList.casting }
 		</div>
 	</div>
-	<div class="load_info">
-			<div class="map_header">
-			<h3>찾아오시는 길</h3>
-			</div>
-	</div>
+	    <div class="detail_page">
+            <div class="plot">
+                <div class="h3_div" id="cont_h3">
+                    <h3>찾아오시는 길</h3>
+                </div>
+            </div>
+        </div>
 	<div class="maps">
 		<div class="real_map">
 			<div id="map" style="width:100%;height:350px;"></div> 
