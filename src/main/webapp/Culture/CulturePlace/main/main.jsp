@@ -54,9 +54,8 @@
 			<c:forEach var="topFiveTheaterImg" items="<%=theaterTopFiveCodeNImg %>" varStatus="status">
 				<li class="item item1">
 					<a href="/culturePlace/detailPage?playCode=${topFiveTheaterImg.key }&imgUrl=${topFiveTheaterImg.value}&theaterTopFiveTitle=<%=topTheaterList.get(theaterImgCnt) %>">
-						<div class="image" style="background-image: url('${topFiveTheaterImg.value}');">
-						    <p class="item_p">바로가기</p>
-						</div>
+						<div class="image" style="background-image: url('${topFiveTheaterImg.value}');"></div>
+                        <p class="item_p">바로가기</p>
 					</a>
 					<div class="cont">
 						<strong><%=topTheaterList.get(theaterImgCnt) %></strong>

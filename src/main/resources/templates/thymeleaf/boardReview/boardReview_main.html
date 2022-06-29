@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{thymeleaf/layouts/cultureLayout}">
+      layout:decorate="~{thymeleaf/layouts/cultureLayout}"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -153,10 +154,11 @@
 
 
     <div id="btnBox">
+        <sec:authorize access="hasAnyRole('USER', 'ADMIN')">
         <a href="/board/insert/new"
            class="btn btn-primary pull-right"
            style="background-color: #FFFFFF; color: black; border: 1px solid black; box-sizing: border-box; font-size:18px; margin-top:-50px;"><b>글쓰기</b></a>
-
+        </sec:authorize>
     </div>
 </div>
 </body>
