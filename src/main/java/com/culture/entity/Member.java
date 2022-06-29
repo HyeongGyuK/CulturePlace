@@ -39,6 +39,8 @@ public class Member {
 
     private String address;
 
+    private String address2;
+
     @Enumerated(EnumType.STRING)
     private Role role; //일반인, 관리자 구분
     // 화면에서 넘어 오는 dto 객체와 비번을 암호화 해주는 객체를 사용하여 Member Entity 객체 생성하기
