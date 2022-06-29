@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{thymeleaf/layouts/cultureLayout}">
+      layout:decorate="~{thymeleaf/layouts/cultureLayout}" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Insert title here</title>
@@ -126,6 +126,7 @@
 <div layout:fragment="content">
 
     <input type="hidden" id="boardFree" th:value="${boardFree.board_no}">
+    <input type="hidden" id="userId" th:value="${userId}">
 
     <div id="template">
         <div id="container">
@@ -136,11 +137,11 @@
             </div>
             <table id="board">
                 <tr id="boardDateReadHit">
-                <td style="width: 60%"></td>
-                <td style="width: 10%; text-align: center;">작성일자</td>
-                <td style="width: 10%; text-align: center;" th:text="${boardFree.board_regdate}"></td>
-                <td style="width: 10%; text-align: center;">조회수</td>
-                <td style="width: 10%; text-align: center;" th:text="${boardFree.board_readhit}">100000</td>
+                    <td style="width: 60%"></td>
+                    <td style="width: 10%; text-align: center;">작성일자</td>
+                    <td style="width: 10%; text-align: center;" th:text="${boardFree.board_regdate}"></td>
+                    <td style="width: 10%; text-align: center;">조회수</td>
+                    <td style="width: 10%; text-align: center;" th:text="${boardFree.board_readhit}">100000</td>
                 </tr>
             </table>
             <ul id="boardDetailInfo">
@@ -150,9 +151,9 @@
 
             <table class="table table-striped" id="content_table">
                 <tbody>
-                <tr id="board_content" th:text="${boardFree.board_content}">
+                <tr id="board_content">
 
-                    <td colspan="6"><p id="text"></p>${fn:replace(bean.content, crcn, br )}</td>
+                    <td colspan="6"><p id="text" th:text="${boardFree.board_content}"></p></td>
                 </tr>
 
                 </tbody>
@@ -163,13 +164,14 @@
                     <td rowspan="1" colspan="4">
                         댓글
                     </td>
-                <tr>
+                </tr>
+
                 <th:choose>
-                    <th:when test="${empty requestScope.commentLists }">
+                    <th:if test="${empty requestScope.commentLists }">
                         <tr>
                             <td colspan="3"><p>댓글이 없습니다.</p></td>
                         </tr>
-                    </c:when>
+                    </th:if>
                     <th:otherwise>
                         <th:each var="comment_bean" items="${requestScope.commentLists }">
                             <tr>
@@ -185,6 +187,7 @@
                             </tr>
                         </th:each>
                     </th:otherwise>
+
                 </th:choose>
             </table>
 
@@ -202,12 +205,14 @@
                     </div>
                 </form>
                 <br/>
-                <a href="/BoardFree/board_free_main" class="btn btn-primary pull-right" id="boardDeleteBtn"
+                <a th:if="${boardFree.board_writer} == ${userId}" href="/BoardFree/board_free_main" class="btn btn-primary pull-right" id="boardDeleteBtn"
                    style="background-color:#FFFFFF; color: #6667AB; border: 1px solid #6667AB; box-sizing:border-box; margin-top: 10px;"><b>삭제</b></a>
-                <a href="/BoardFree/board_free_update" class="btn btn-primary pull-right" id="boardUpdateBtn"
+
+                <a th:if="${boardFree.board_writer} == ${userId}" th:href="'/CommunityMain/board_free_update/' + ${boardFree.board_no}" class="btn btn-primary pull-right" id="boardUpdateBtn"
                    style="background-color:#FFFFFF; color: #6667AB; border: 1px solid #6667AB; box-sizing:border-box; margin-top: 10px;"><b>수정</b></a>
-                <a href="/BoardFree/board_free_main" class="btn btn-primary pull-right" id="goToBoardPage"
-                   style="background-color:#FFFFFF; color: #6667AB; border: 1px solid #6667AB; box-sizing:border-box; margin-top: 10px;"><b>뒤로가기</b></a>
+
+                <!--                <a th:href="${/CommunityMain/}" class="btn btn-primary pull-right" id="goToBoardPage"-->
+                <!--                   style="background-color:#FFFFFF; color: #6667AB; border: 1px solid #6667AB; box-sizing:border-box; margin-top: 10px;"><b>뒤로가기</b></a>-->
             </td>
 
         </div>

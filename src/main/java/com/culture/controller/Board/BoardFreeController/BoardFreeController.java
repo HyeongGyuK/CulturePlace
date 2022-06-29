@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +31,7 @@ public class BoardFreeController {
 
 	private final BoardFreeService boardFreeService;
 
+	// 글 작성 페이지로 이동
 	@GetMapping(value = "/CommunityMain/board_free_write")
 	public String boardForm(Model model) {
 		model.addAttribute("boardFreeWriteDto", new BoardFreeWriteDto());
@@ -93,19 +96,94 @@ public class BoardFreeController {
 		return "thymeleaf/Board/BoardFree/board_free_main";
 	}
 
-	@GetMapping(value = "/CommunityMain/board_free_update")
-	public String boardUpdate(Model model) {
-		return "thymeleaf/Board/BoardFree/board_free_update";
-	}
+//	06-29목표 상단의 주석을 해결하고 게시판 수정과 삭제 기능을 수행하여야 합니다.
+//	나머지 디테일한 정리 는 수요일까지 목표 (게시물을 클릭할 시 조횟수가 올라감, 댓글, 댓글 수정,삭제)
+//	@SessionAttribute
+//	private String userId;
+
+//	private final AuditConfig auditConfig;
+//
+//	private AuditConfig getAuditConfig() {
+//		String userId = Authentication.class.getU
+//		return auditConfig;
+//	}
 
 	// 게시판 상세 정보
 	@GetMapping(value = "/CommunityMain/board_free_detail/{board_no}")
-	public String boardFreeDetail(Model model, @PathVariable("board_no") Long board_no) {
-
+	public String boardFreeDetail(@PathVariable("board_no") Long board_no, Model model, Principal principal) {
 		BoardFreeDto boardFreeDto = boardFreeService.getBoardDetail(board_no);
-		model.addAttribute("boardFree", boardFreeDto);
+
+		if(principal == null){
+			model.addAttribute("boardFree", boardFreeDto);
+		}else{
+			String userId = principal.getName();
+			model.addAttribute("userId", userId);
+			model.addAttribute("boardFree", boardFreeDto);
+
+			// 사용자 아이디 확인 완료
+			System.out.println("사용자 아이디 : " + userId);
+		}
+
 		return "thymeleaf/Board/BoardFree/board_free_detail";
 	}
+
+	// 게시판 수정 폼으로 가기
+	@GetMapping(value = "/CommunityMain/board_free_update/{board_no}")
+	public String boardUpdateForm(@PathVariable("board_no") Long board_no, Model model) {
+		try{
+			BoardFreeDto boardFreeDto = boardFreeService.getBoardDetail(board_no);
+			model.addAttribute("boardFree", boardFreeDto);
+		}catch (EntityNotFoundException e){
+			model.addAttribute("errorMessage", "존재하지 않는 게시물입니다.");
+			model.addAttribute("boardFreeDto", new BoardFreeDto());
+		}
+
+		return "thymeleaf/Board/BoardFree/board_free_update";
+	}
+
+	// 게시판 수정 post로 갱신
+	@PostMapping(value = "/CommunityMain/board_free_update/{board_no}")
+	public String boardUpdate(@Valid BoardFreeWriteDto boardFreeWriteDto,
+							  BindingResult bindingResult,
+							  Model model) throws Exception{
+
+//		if(bindingResult.hasErrors()) {
+//			List<FieldError> list = bindingResult.getFieldErrors();
+//			Map<String, String> errorMsg = new HashMap<>();
+//
+//			for (int i = 0; i < list.size(); i++){
+//				String field = list.get(i).getField();
+//				String message = list.get(i).getDefaultMessage();
+//
+//				errorMsg.put(field, message);
+//			}
+//			model.addAttribute("errorMessage", errorMsg);
+//
+//			return "thymeleaf/Board/BoardFree/board_free_update";
+//		}
+//
+//		if(boardFreeWriteDto.getBoard_title() == null) {
+//			model.addAttribute("errorMessage", "제목은 필수 입력 사항입니다.");
+//			return "thymeleaf/Board/BoardFree/board_free_update";
+//		}
+//
+//		if(boardFreeWriteDto.getBoard_content() == null) {
+//			model.addAttribute("errorMessage", "내용은 필수 입력 사항입니다.");
+//			return "thymeleaf/Board/BoardFree/board_free_update";
+//		}
+//
+//		try {
+//			boardFreeService.boardFreeUpdate(boardFreeWriteDto);
+//		}catch (Exception e) {
+//			model.addAttribute("errorMessage", "게시물 등록중 오류가 발생하였습니다.");
+//			return "thymeleaf/Board/BoardFree/board_free_update";
+//		}
+
+		boardFreeService.boardFreeUpdate(boardFreeWriteDto);
+
+		return "redirect:/"; // 자유 게시판 메인 페이지로 이동
+	}
+
 
 	@GetMapping(value = "/CommunityMain/board_notice_detail")
 	public String noticeDetail(Model model) {

@@ -44,4 +44,12 @@ public class BoardFreeService {
 
 		return boardFreeDto;
 	}
+
+	public Long boardFreeUpdate(BoardFreeWriteDto boardFreeWriteDto) throws Exception{
+		BoardFree boardFree = boardFreeRepository.findById(boardFreeWriteDto.getBoard_no())
+				.orElseThrow(EntityNotFoundException::new);
+		boardFree.updateBoardFree(boardFreeWriteDto);
+
+		return boardFree.getBoard_no();
+	}
 }

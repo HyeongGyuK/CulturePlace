@@ -1,5 +1,6 @@
 package com.culture.entity.boardFree;
 
+import com.culture.dto.BoardFreeDto.BoardFreeWriteDto;
 import groovy.transform.ToString;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,4 +25,10 @@ public class BoardFree extends BoardFreeBaseEntity{
 
 	@Column(nullable = false)
 	private Integer board_readhit; // 조회수
+
+	public void updateBoardFree(BoardFreeWriteDto boardFreeWriteDto) {
+		this.board_title = boardFreeWriteDto.getBoard_title();
+		this.board_content = boardFreeWriteDto.getBoard_content();
+		this.board_readhit = boardFreeWriteDto.getBoard_readhit();
+	}
 }

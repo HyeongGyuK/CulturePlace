@@ -45,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             anyRequest().authenticated() : 상기 위에서 열거한 내용 이외에 모든 항목 인증을 요구합니다.
         */
         http.authorizeRequests()
-                .antMatchers("/board/insert/**").authenticated()
+                .antMatchers("/board/insert/**", "/CommunityMain/board_free-write/**").authenticated()
                 .mvcMatchers("/", "/users/**", "/item/**", "/images/**", "/Culture/images/**", "/CulturePlaceMain/**", "/test/**", "/login/**", "/members/**", "/culturePlace/**", "/move/**", "/board/**", "/accessDeny").permitAll()
                 .mvcMatchers("/", "/users/**", "/item/**", "/images/**", "/Culture/images/**", "/CulturePlaceMain/**", "/test/**", "/CommunityMain/**", "/board/**", "/chat/**", "/accessDeny").permitAll()
                 .mvcMatchers("/admin/**").hasRole("ADMIN")
