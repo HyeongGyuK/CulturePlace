@@ -52,7 +52,7 @@
           <a href="/users/login"><p class="common_navbar_login_p">로그인</p></a>
         </li>
         <li sec:authorize="isAuthenticated()">
-          <a href="/users/logout"><p class="common_navbar_login_p">로그아웃</p></a>
+          <a href="/logout"><p class="common_navbar_login_p">로그아웃</p></a>
         </li>
         <li sec:authorize="isAnonymous()">
           <a href="/users/new"><p class="common_navbar_login_p">회원가입</p></a>
