@@ -1,3 +1,4 @@
+/*
 package com.culture.dto;
 
 import lombok.Getter;
@@ -10,3 +11,4 @@ public class BoardReviewSearchDto {
     private String searchBy;
     private String searchQuery = "";
 }
+*/

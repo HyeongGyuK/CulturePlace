@@ -10,13 +10,11 @@ public class MainBoardReviewDto {
     private Long bno;
     private String b_title;
     private String b_content;
-    private CategoryStatus categoryStatus ;
 
     @QueryProjection
-    public MainBoardReviewDto(Long bno, String b_category, String b_title, String b_content, String b_image){
+    public MainBoardReviewDto(Long bno, String b_title, String b_content){
         this.bno = bno;
         this.b_title = b_title;
         this.b_content = b_content;
-        this.categoryStatus = categoryStatus;
     }
 }

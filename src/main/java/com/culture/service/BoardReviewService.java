@@ -2,7 +2,6 @@ package com.culture.service;
 
 import com.culture.dto.BoardReviewFormDto;
 import com.culture.dto.BoardReviewImgDto;
-import com.culture.dto.BoardReviewSearchDto;
 import com.culture.dto.MainBoardReviewDto;
 import com.culture.entity.BoardReview;
 import com.culture.entity.BoardReviewImg;
@@ -67,13 +66,13 @@ public class BoardReviewService {
     }
 
     @Transactional(readOnly = true)
-    public Page<BoardReview> getAdminBoardReviewPage(BoardReviewSearchDto boardReviewSearchDto, Pageable pageable){
-        return boardReviewRepository.getAdminBoardReviewPage(boardReviewSearchDto, pageable);
+    public Page<BoardReview> getAdminBoardReviewPage(Pageable pageable){
+        return boardReviewRepository.getAdminBoardReviewPage(pageable);
     }
 
     @Transactional(readOnly = true)
-    public Page<MainBoardReviewDto> getMainBoardReviewPage(BoardReviewSearchDto boardReviewSearchDto, Pageable pageable){
-        return boardReviewRepository.getMainBoardReviewPage(boardReviewSearchDto, pageable);
+    public Page<MainBoardReviewDto> getMainBoardReviewPage(Pageable pageable){
+        return boardReviewRepository.getMainBoardReviewPage(pageable);
     }
 }
 

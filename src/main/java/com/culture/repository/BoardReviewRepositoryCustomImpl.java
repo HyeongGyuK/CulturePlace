@@ -1,6 +1,5 @@
 package com.culture.repository;
 
-import com.culture.dto.BoardReviewSearchDto;
 import com.culture.dto.MainBoardReviewDto;
 import com.culture.dto.QMainBoardReviewDto;
 import com.culture.entity.BoardReview;
@@ -26,11 +25,11 @@ public class BoardReviewRepositoryCustomImpl implements BoardReviewRepositoryCus
     }
 
     @Override
-    public Page<BoardReview> getAdminBoardReviewPage(BoardReviewSearchDto boardReviewSearchDto, Pageable pageable) {
+    public Page<BoardReview> getAdminBoardReviewPage(Pageable pageable) {
         QueryResults<BoardReview> results = this.queryFactory
                 .selectFrom(QBoardReview.boardReview)
-                .where(regDtsAfter(boardReviewSearchDto.getSearchDateType()),
-                        searchByLike(boardReviewSearchDto.getSearchBy(), boardReviewSearchDto.getSearchQuery()))
+               /* .where(regDtsAfter(boardReviewSearchDto.getSearchDateType()),
+                        searchByLike(boardReviewSearchDto.getSearchBy(), boardReviewSearchDto.getSearchQuery()))*/
                 .orderBy(QBoardReview.boardReview.bno.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
@@ -43,7 +42,7 @@ public class BoardReviewRepositoryCustomImpl implements BoardReviewRepositoryCus
     }
 
     @Override
-    public Page<MainBoardReviewDto> getMainBoardReviewPage(BoardReviewSearchDto boardReviewSearchDto, Pageable pageable) {
+    public Page<MainBoardReviewDto> getMainBoardReviewPage(Pageable pageable) {
         QBoardReview boardReview = QBoardReview.boardReview;
         QBoardReviewImg boardReviewImg = QBoardReviewImg.boardReviewImg;
 
@@ -51,14 +50,12 @@ public class BoardReviewRepositoryCustomImpl implements BoardReviewRepositoryCus
                 .select(
                         new QMainBoardReviewDto(
                                 boardReview.bno,
-                                boardReview.categoryStatus, //
                                 boardReview.b_title,
-                                boardReview.b_content,
-                                boardReviewImg.imgUrl
+                                boardReview.b_content
                         )
                 ).from(boardReviewImg)
                 .join(boardReviewImg.boardReview, boardReview)
-                .where(boardReviewBNoLike(boardReviewSearchDto.getSearchQuery()))
+                /*.where(boardReviewBNoLike(boardReviewSearchDto.getSearchQuery()))*/
                 .orderBy(boardReview.bno.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
