@@ -316,7 +316,7 @@
         
         
         /* 챗봇 쪽 css  */
-        .chat_container{
+        /*.chat_container{
             position: fixed;
             right: 40px;
             bottom:210px;
@@ -324,7 +324,7 @@
             display: none;
             box-sizing: content-box;
         }
-
+*/
         .chat-bot{
             display: none;
             position: fixed;
