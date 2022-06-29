@@ -148,7 +148,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 
     <!-- chat bot 아이콘 -->
-    <a href="#" class="chatbot_icon"> <span>
+    <a class="chatbot_icon"> <span>
             <img class="chatbot_icon_img" src="/Culture/images/Intro/header/chatbot.png">
         </span>
     </a>
