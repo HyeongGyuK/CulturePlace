@@ -18,16 +18,30 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-    <iframe class="chat-bot" width="500" height="600" allow="microphone;" src="https://console.dialogflow.com/api-client/demo/embedded/c65ff504-e4cb-47e8-9743-18c5d9c4bb2d"></iframe>
-    
+    <!-- <iframe class="chat-bot" width="500" height="600" allow="microphone;" src="https://console.dialogflow.com/api-client/demo/embedded/c65ff504-e4cb-47e8-9743-18c5d9c4bb2d"></iframe> -->
+
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+    <df-messenger
+      intent="WELCOME"
+      chat-title="1조파이팅"
+      agent-id="c65ff504-e4cb-47e8-9743-18c5d9c4bb2d"
+      language-code="ko"
+    ></df-messenger>
+
     <link rel="stylesheet" type="text/css" href="/CulturePlace/Intro/nav.css"> <!-- 스타일시트 -->
     <script src="/CulturePlace/Intro/nav.js"></script> <!-- 자바스크립트 -->
 
    
    
-   <style type="text/css">
-
-
+    <style type="text/css">
+        .btn_gotop{
+            position: fixed;
+            bottom: 24px;
+            right: 83px;
+        }
+        .df-messenger-wrapper{
+            display:none;
+        }
     </style>
     
     <script type="text/javascript">
@@ -147,11 +161,6 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 
 
-    <!-- chat bot 아이콘 -->
-    <a class="chatbot_icon"> <span>
-            <img class="chatbot_icon_img" src="/Culture/images/Intro/header/chatbot.png">
-        </span>
-    </a>
 
     <!-- top 버튼-->
     <a href="#" class="btn_gotop btn-lg"><span class="glyphicon glyphicon-chevron-up"></span></a>
