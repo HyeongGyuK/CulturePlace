@@ -58,7 +58,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/chat/go">
                         <p class="common_navbar_menu_p" id="Chat_hover">Chat</p>
                     </a>
                 </li>
@@ -106,53 +106,53 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
             </ul>
             <ul class="common_navbar_menu_community_hover">
                 <li>
-				    <a href="/CommunityMain"><p class="common_navbar_menu_community_hover_p">자유게시판</p></a>
-				</li>
-				<li>
-				    <a href="/board/main"><p class="common_navbar_menu_community_hover_p">리뷰게시판</p></a>
-				</li>
-				<li>
-				    <a href="#"><p class="common_navbar_menu_community_hover_p">거래게시판</p></a>
-				</li>
+                <a href="/CommunityMain"><p class="common_navbar_menu_community_hover_p">자유게시판</p></a>
+            </li>
+            <li>
+                <a href="/board/main"><p class="common_navbar_menu_community_hover_p">리뷰게시판</p></a>
+            </li>
+            <li>
+                <a href="#"><p class="common_navbar_menu_community_hover_p">거래게시판</p></a>
+            </li>
             </ul>
             <ul class="common_navbar_menu_chat_hover">
                 <li>
-                    <a href="#"><p class="common_navbar_menu_chat_hover_p">뮤지컬</p></a>
+                    <a href="/chat/go"><p class="common_navbar_menu_chat_hover_p">뮤지컬</p></a>
                 </li>
                 <li>
-                    <a href="#"><p class="common_navbar_menu_chat_hover_p">연극</p></a>
+                    <a href="/chat/go"><p class="common_navbar_menu_chat_hover_p">연극</p></a>
                 </li>
                 <li>
-                    <a href="#"><p class="common_navbar_menu_chat_hover_p">콘서트</p></a>
+                    <a href="/chat/go"><p class="common_navbar_menu_chat_hover_p">콘서트</p></a>
                 </li>
                 <li>
-                    <a href="#"><p class="common_navbar_menu_chat_hover_p">무용</p></a>
+                    <a href="/chat/go"><p class="common_navbar_menu_chat_hover_p">무용</p></a>
                 </li>
                 <li>
-                    <a href="#"><p class="common_navbar_menu_chat_hover_p">클래식/오페라</p></a>
+                    <a href="/chat/go"><p class="common_navbar_menu_chat_hover_p">클래식/오페라</p></a>
                 </li>
                 <li>
-                    <a href="#"><p class="common_navbar_menu_chat_hover_p">국악</p></a>
+                    <a href="/chat/go"><p class="common_navbar_menu_chat_hover_p">국악</p></a>
                 </li>
             </ul>
         </div>
     </div>
 
     <!---------------------------------- 컨테이너 영역 ---------------------------------->
-    
+
     <!---------------------------------- 컨테이너 영역 끝-------------------------------->
 
     <div class="common_footer"> <!-- 푸터 영역 -->
         <p class="footer_text">made by <span style="color: red">1조</span> 주병훈 김한나 권순헌 최근혁 김형규 민유성</p>
-    </div> 
-    
-    
+    </div>
+
+
     <!-- chat 아이콘 -->
     <a href="#" class="chat_icon"> <span>
             <img class="chat_icon_img" src="/Culture/images/Intro/header/chat.png">
         </span>
     </a>
-    
+
     <!-- chat bot 아이콘 -->
     <a href="#" class="chatbot_icon"> <span>
             <img class="chatbot_icon_img" src="/Culture/images/Intro/header/chatbot.png">
