@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
-<%@ include file="./chat.jsp" %>
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
@@ -147,14 +146,9 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     </div>
 
 
-    <!-- chat 아이콘 -->
-    <a href="#" class="chat_icon"> <span>
-            <img class="chat_icon_img" src="/Culture/images/Intro/header/chat.png">
-        </span>
-    </a>
 
     <!-- chat bot 아이콘 -->
-    <a href="#" class="chatbot_icon"> <span>
+    <a class="chatbot_icon"> <span>
             <img class="chatbot_icon_img" src="/Culture/images/Intro/header/chatbot.png">
         </span>
     </a>

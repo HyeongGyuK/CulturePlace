@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/Culture/Intro/header/nav.jsp"%>
 <!DOCTYPE html>
 <html>
 
@@ -14,14 +15,17 @@
 	    padding: 0;
 	    box-sizing: content-box;
 	}
-	
+
+	html{
+	    padding-top: 0px;
+	    padding-bottom:0px;
+	}
+
 	.chat_container {
 	    display: flex;
-	    border: 1px solid black;
-	    height: 500px;
-	    width: 700px;  /* 채팅 영역 크기 */ 
-	    flex-direction: row;
-	   
+	    width: 100%;
+        justify-content: center;
+        margin-top: 147px;
 	}
 	
 	.category_box {
@@ -30,15 +34,17 @@
 	    flex-direction: column;
 	    background:white;
 	    float: left;
+	    border: 1px solid black;
 	}
-	
+
 	.chat_category {
-	    height: 83.33px;
+	    height: 117.8px;
 	    width: 100%;
 	    display: flex;
 	    justify-content: center;
-	    border-bottom: 1px solid #eee;
 	    align-items: center;
+	    border-bottom: 1px solid #ddd;
+	    box-sizing: border-box;
 	}
 	
 	.category_box a {
@@ -53,9 +59,12 @@
 	    color:white;
 	}
 
+    #last_category{
+        border:none;
+    }
+
 	.chat_space { /* 채팅공간 */
-/* 		width: 70%; */
-		width: 450px;
+		width: 910px;
 		height: 100%;
 		padding-left: 10px;
 		float: right;
@@ -74,8 +83,8 @@
       
 	.roomContainer{
       	background-color: #F6F6F6;
-      	width: 430px;
-		height: 395px;
+      	width: 900px;
+		height: 600px;
 		overflow: auto;
 	}
       
@@ -132,7 +141,7 @@
 	}
 	
 	.inputTable input{
-		width: 300px;
+		width: 763px;
 		height: 25px;
 	}
 	
@@ -224,57 +233,55 @@
 </head>
 
 <body>
-    <div class="chat_container">
-        <div class="category_box" id="box">
-            <a href="#">
-                <div class="chat_category">
-                    <h3>뮤지컬(0/10)</h3>
+    <div class="chat_wrap">
+        <div class="chat_container">
+            <div class="category_box" id="box">
+                <a href="#">
+                    <div class="chat_category">
+                        <h3>뮤지컬</h3>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="chat_category">
+                        <h3>연극</h3>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="chat_category">
+                        <h3>콘서트</h3>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="chat_category">
+                        <h3>무용</h3>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="chat_category">
+                        <h3>클래식/오페라</h3>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="chat_category" id="last_category">
+                        <h3>국악</h3>
+                    </div>
+                </a>
+            </div>
+            <div class="chat_space">
+               <h1>채팅방</h1>
+                <div id="roomContainer" class="roomContainer">
+                    <table id="roomList" class="roomList"></table>
                 </div>
-            </a>
-            <a href="#">
-                <div class="chat_category">
-                    <h3>연극(0/10)</h3>
+                <div>
+                    <table class="inputTable">
+                        <tr>
+                            <th>방 제목</th>
+                            <th><input type="text" name="roomName" id="roomName"></th>
+                            <th><button id="createRoom">방 만들기</button></th>
+                        </tr>
+                    </table>
                 </div>
-            </a>
-            <a href="#">
-                <div class="chat_category">
-                    <h3>콘서트(0/10)</h3>
-                </div>
-            </a>
-            <a href="#">
-                <div class="chat_category">
-                    <h3>무용(0/10)</h3>
-                </div>
-            </a>
-            <a href="#">
-                <div class="chat_category">
-                    <h3>클래식/오페라(0/10)</h3>
-                </div>
-            </a>
-            <a href="#">
-                <div class="chat_category">
-                    <h3>국악(0/10)</h3>
-                </div>
-            </a>
-        </div>
-        <div class="chat_space">
-           <h1>채팅방</h1>
-			<div id="roomContainer" class="roomContainer">
-				<table id="roomList" class="roomList"></table>
-			</div>
-			<div>
-				<table class="inputTable">
-					<tr>
-						<th>방 제목</th>
-						<th><input type="text" name="roomName" id="roomName"></th>
-						<th><button id="createRoom">방 만들기</button></th>
-					</tr>
-				</table>
-			</div>
-        </div>
-        
-        <div id="chat_area">
-        
+            </div>
         </div>
     </div>
 </body>

@@ -100,6 +100,10 @@ public class indexController {
         return "thymeleaf/Board/BoardFree/boardTest";
     }
 
+    @RequestMapping(value = "/accessDeny", method = RequestMethod.GET)
+    public String accessDeny(){
+        return "Common/accessDenyPage";
+    }
 }
 
 

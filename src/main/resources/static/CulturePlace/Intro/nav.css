@@ -265,6 +265,7 @@
             bottom: 85px;
             right: 30px;
             z-index: 999;
+            cursor:pointer;
         }
 
         .chatbot_icon_img {
@@ -316,7 +317,7 @@
         
         
         /* 챗봇 쪽 css  */
-        .chat_container{
+        /*.chat_container{
             position: fixed;
             right: 40px;
             bottom:210px;
@@ -324,7 +325,7 @@
             display: none;
             box-sizing: content-box;
         }
-
+*/
         .chat-bot{
             display: none;
             position: fixed;
