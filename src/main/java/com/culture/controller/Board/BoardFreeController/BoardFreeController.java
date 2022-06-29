@@ -147,41 +147,45 @@ public class BoardFreeController {
 							  BindingResult bindingResult,
 							  Model model) throws Exception{
 
-//		if(bindingResult.hasErrors()) {
-//			List<FieldError> list = bindingResult.getFieldErrors();
-//			Map<String, String> errorMsg = new HashMap<>();
-//
-//			for (int i = 0; i < list.size(); i++){
-//				String field = list.get(i).getField();
-//				String message = list.get(i).getDefaultMessage();
-//
-//				errorMsg.put(field, message);
-//			}
-//			model.addAttribute("errorMessage", errorMsg);
-//
-//			return "thymeleaf/Board/BoardFree/board_free_update";
-//		}
-//
-//		if(boardFreeWriteDto.getBoard_title() == null) {
-//			model.addAttribute("errorMessage", "제목은 필수 입력 사항입니다.");
-//			return "thymeleaf/Board/BoardFree/board_free_update";
-//		}
-//
-//		if(boardFreeWriteDto.getBoard_content() == null) {
-//			model.addAttribute("errorMessage", "내용은 필수 입력 사항입니다.");
-//			return "thymeleaf/Board/BoardFree/board_free_update";
-//		}
-//
-//		try {
-//			boardFreeService.boardFreeUpdate(boardFreeWriteDto);
-//		}catch (Exception e) {
-//			model.addAttribute("errorMessage", "게시물 등록중 오류가 발생하였습니다.");
-//			return "thymeleaf/Board/BoardFree/board_free_update";
-//		}
+		if(bindingResult.hasErrors()) {
+			List<FieldError> list = bindingResult.getFieldErrors();
+			Map<String, String> errorMsg = new HashMap<>();
 
-		boardFreeService.boardFreeUpdate(boardFreeWriteDto);
+			for (int i = 0; i < list.size(); i++){
+				String field = list.get(i).getField();
+				String message = list.get(i).getDefaultMessage();
+
+				errorMsg.put(field, message);
+			}
+			model.addAttribute("errorMessage", errorMsg);
+
+			return "thymeleaf/Board/BoardFree/board_free_update";
+		}
+
+		if(boardFreeWriteDto.getBoard_title() == null) {
+			model.addAttribute("errorMessage", "제목은 필수 입력 사항입니다.");
+			return "thymeleaf/Board/BoardFree/board_free_update";
+		}
+
+		if(boardFreeWriteDto.getBoard_content() == null) {
+			model.addAttribute("errorMessage", "내용은 필수 입력 사항입니다.");
+			return "thymeleaf/Board/BoardFree/board_free_update";
+		}
+
+		try {
+			boardFreeService.boardFreeUpdate(boardFreeWriteDto);
+		}catch (Exception e) {
+			model.addAttribute("errorMessage", "게시물 등록중 오류가 발생하였습니다.");
+			return "thymeleaf/Board/BoardFree/board_free_update";
+		}
 
 		return "redirect:/"; // 자유 게시판 메인 페이지로 이동
+	}
+
+	@GetMapping(value = "/CommunityMain/board_free_delete/{board_no}")
+	public String doBoardFreeDelete(@PathVariable("board_no") Long board_no) throws Exception{
+		boardFreeService.boardFreeDelete(board_no);
+		return "redirect:/";
 	}
 
 

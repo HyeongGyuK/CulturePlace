@@ -52,4 +52,8 @@ public class BoardFreeService {
 
 		return boardFree.getBoard_no();
 	}
+
+	public void boardFreeDelete(Long board_no) throws Exception{
+		boardFreeRepository.deleteById(board_no);
+	}
 }
