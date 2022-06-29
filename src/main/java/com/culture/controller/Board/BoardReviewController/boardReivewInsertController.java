@@ -64,6 +64,6 @@ public class boardReivewInsertController {
 			return "thymeleaf/boardReview/boardReview_insert";
 		}
 
-		return "redirect:/";
+		return "thymeleaf/boardReview/boardReview_main";
 	}
 }

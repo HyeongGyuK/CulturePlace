@@ -78,7 +78,7 @@
 
 							<div class="form-group">
 								<div class="col-sm-12">
-									<select th:field="*{b_category}" class="custom-select">
+									<select th:field="*{categoryStatus}" class="custom-select form-control">
 										<option value="">----카테고리를 선택해주세요----</option>
 										<option value="PLAY">연극</option>
 										<option value="MUSICAL">뮤지컬</option>
@@ -88,7 +88,9 @@
 										<option value="DANCE">무용</option>
 									</select>
 								</div>
+								<p th:if="${#fields.hasErrors('categoryStatus')}" th:errors="*{categoryStatus}" class="fieldError">Incorrect data</p>
 							</div>
+
 
 							<div class="input-group form-group">
 								<div class="col-sm-12">
@@ -97,6 +99,7 @@
 								<p th:if="${#fields.hasErrors('b_title')}" th:errors="*{b_title}" class="fieldError">Incorrect data</p>
 							</div>
 
+
 							<div class="input-group form-group">
 								<div class="col-sm-12">
 								<textarea th:field="*{b_content}" class="form-control" rows="10" placeholder="내용을 입력해주세요." required/>
@@ -104,14 +107,18 @@
 								<p th:if="${#fields.hasErrors('b_content')}" th:errors="*{b_content}" class="fieldError">Incorrect data</p>
 							</div>
 
+
 							<div th:if="${#lists.isEmpty(boardReviewFormDto.boardReviewImgDtoList)}">
 								<div class="form-group">
 									<div class="custom-file img-div col-sm-12">
 										<input type="file" class="custom-file-input form-control" name="boardReviewImgFile">
-										<label class="custom-file-label" th:text="상품이미지 + ${num}"></label>
+										<label class="custom-file-label"></label>
 									</div>
 								</div>
+								<!--<p th:if="${#fields.hasErrors('b_content')}" th:errors="*{b_content}" class="fieldError">Incorrect data</p>-->
 							</div>
+
+
 
 							<!-- for update -->
 							<div th:if = "${not #lists.isEmpty(boardReviewFormDto.boardReviewImgDtoList)}">
