@@ -118,6 +118,17 @@
             });
         });
 
+        $(function (){
+            $(".chat_icon").click(function(){
+            $(".chat_container").toggle("slow");
+          });
+        });
+
+         $(function (){
+            $(".chatbot_icon").click(function (){
+            $(".chat-bot").toggle("slow");
+          });
+        });
         //chatbot 쿼리
 
 

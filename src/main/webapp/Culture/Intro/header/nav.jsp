@@ -19,42 +19,20 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <iframe class="chat-bot" width="500" height="600" allow="microphone;" src="https://console.dialogflow.com/api-client/demo/embedded/c65ff504-e4cb-47e8-9743-18c5d9c4bb2d"></iframe>
     
     <link rel="stylesheet" type="text/css" href="/CulturePlace/Intro/nav.css"> <!-- 스타일시트 -->
     <script src="/CulturePlace/Intro/nav.js"></script> <!-- 자바스크립트 -->
+
    
    
    <style type="text/css">
-        .chat_container{
-            position: fixed;
-            right: 40px;
-            bottom:210px;
-            z-index:99999;
-            display: none;
-            box-sizing: content-box;
-        }
-        
-        .category_box a {
-            text-decoration: none;
-            width: 100%;
-            color:black;
-        }
-        
-        .category_box h3 {
-            margin:0;
-        }
-        
-        .chat_space{
-        	background:black;
-        }
+
+
     </style>
     
     <script type="text/javascript">
-        $(function (){
-            $(".chat_icon").click(function(){
-            $(".chat_container").toggle("slow");
-          });
-        });
+
     </script>
    
 </head>
