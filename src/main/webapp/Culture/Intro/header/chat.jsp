@@ -38,7 +38,7 @@
 	}
 
 	.chat_category {
-	    height: 117.8px;
+	    height: 101.1px;
 	    width: 100%;
 	    display: flex;
 	    justify-content: center;
@@ -84,7 +84,7 @@
 	.roomContainer{
       	background-color: #F6F6F6;
       	width: 900px;
-		height: 600px;
+		height: 500px;
 		overflow: auto;
 	}
       
