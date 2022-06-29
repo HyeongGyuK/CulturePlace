@@ -315,3 +315,34 @@
         }
         
         
+        /* 챗봇 쪽 css  */
+        .chat_container{
+            position: fixed;
+            right: 40px;
+            bottom:210px;
+            z-index:99999;
+            display: none;
+            box-sizing: content-box;
+        }
+
+        .chat-bot{
+            display: none;
+            position: fixed;
+            right: 25px;
+            bottom: 140px;
+            z-index: 99999;
+        }
+
+        .category_box a {
+            text-decoration: none;
+            width: 100%;
+            color:black;
+        }
+
+        .category_box h3 {
+            margin:0;
+        }
+
+        .chat_space{
+            background:black;
+        }
