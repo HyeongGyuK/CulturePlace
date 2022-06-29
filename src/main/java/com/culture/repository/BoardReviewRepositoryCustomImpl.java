@@ -51,7 +51,7 @@ public class BoardReviewRepositoryCustomImpl implements BoardReviewRepositoryCus
                 .select(
                         new QMainBoardReviewDto(
                                 boardReview.bno,
-                                boardReview.b_category,
+                                boardReview.categoryStatus, //
                                 boardReview.b_title,
                                 boardReview.b_content,
                                 boardReviewImg.imgUrl

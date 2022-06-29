@@ -2,13 +2,9 @@ package com.culture.entity;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
+import com.culture.constant.CategoryStatus;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,8 +21,8 @@ public class BoardReview extends BaseEntity{
 	@Column(nullable = true)
 	private String b_writer; // 작성자
 
-	@Column(nullable = true)
-	private String b_category; // 카테고리
+	@Enumerated(EnumType.STRING)
+	private CategoryStatus categoryStatus ; //카테고리
 
 	@Column(nullable = true, length = 50)
 	private String b_title; // 제목
