@@ -20,6 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 //    	http.csrf().disable();
+
         //차후 구성할 예정
         http.formLogin()
                 .loginPage("/users/login") //로그인 페이지 이동
