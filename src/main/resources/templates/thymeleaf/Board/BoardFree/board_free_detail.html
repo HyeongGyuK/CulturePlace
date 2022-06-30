@@ -58,12 +58,17 @@
 			}
 		}
 
-		function updateFunction(){
+		function updateFunction(board_no){
 			var text = "게시글을 수정하시겠습니까?";
-
+            var uri = [[@{/CommunityMain/board_free_update}]]
+            var html = "";
 			if(confirm(text) == true){
+                html += '<form name="updateForm" action="'+uri+'" method="get">';
+                html += '<input type="hidden" name="board_no" value="'+board_no+'" />';
+                html += '</form>';
 
-				return true;
+				$("body").append(html);
+				document.updateForm.submit();
 			}else{
 				return false;
 			}
@@ -213,8 +218,9 @@
                    style="background-color:#FFFFFF; color: #6667AB; border: 1px solid #6667AB; box-sizing:border-box; margin-top: 10px;" th:onclick="deleteFunction([[${boardFree.board_no}]])"><b>삭제</b>
                 </button>
 
-                <a th:if="${boardFree.board_writer} == ${userId}" th:href="'/CommunityMain/board_free_update/' + ${boardFree.board_no}" class="btn btn-primary pull-right" id="boardUpdateBtn"
-                   style="background-color:#FFFFFF; color: #6667AB; border: 1px solid #6667AB; box-sizing:border-box; margin-top: 10px;"><b>수정</b></a>
+                <button th:if="${boardFree.board_writer} == ${userId}" class="btn btn-primary pull-right" id="boardUpdateBtn"
+                   style="background-color:#FFFFFF; color: #6667AB; border: 1px solid #6667AB; box-sizing:border-box; margin-top: 10px;" th:onclick="updateFunction([[${boardFree.board_no}]])"><b>수정</b>
+                </button>
 
                 <!--                <a th:href="${/CommunityMain/}" class="btn btn-primary pull-right" id="goToBoardPage"-->
                 <!--                   style="background-color:#FFFFFF; color: #6667AB; border: 1px solid #6667AB; box-sizing:border-box; margin-top: 10px;"><b>뒤로가기</b></a>-->

@@ -127,8 +127,8 @@ public class BoardFreeController {
 	}
 
 	// 게시판 수정 폼으로 가기
-	@GetMapping(value = "/CommunityMain/board_free_update/{board_no}")
-	public String boardUpdateForm(@PathVariable("board_no") Long board_no, Model model) {
+	@GetMapping(value = "/CommunityMain/board_free_update")
+	public String boardUpdateForm(@RequestParam(value = "board_no", required = false) Long board_no, Model model) {
 		try{
 			BoardFreeDto boardFreeDto = boardFreeService.getBoardDetail(board_no);
 			model.addAttribute("boardFree", boardFreeDto);
