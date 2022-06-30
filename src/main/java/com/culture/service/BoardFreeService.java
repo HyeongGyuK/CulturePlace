@@ -56,4 +56,9 @@ public class BoardFreeService {
 	public void boardFreeDelete(Long board_no) throws Exception{
 		boardFreeRepository.deleteById(board_no);
 	}
+
+	@Transactional
+	public int updateBoardFreeReadHit(Long board_no){
+		return boardFreeRepository.updateBoardFreeReadHit(board_no);
+	}
 }
