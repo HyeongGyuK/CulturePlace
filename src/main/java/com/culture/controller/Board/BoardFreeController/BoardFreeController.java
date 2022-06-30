@@ -58,16 +58,6 @@ public class BoardFreeController {
 			return "thymeleaf/Board/BoardFree/board_free_write";
 		}
 
-		if(boardFreeWriteDto.getBoard_title() == null) {
-			model.addAttribute("errorMessage", "제목은 필수 입력 사항입니다.");
-			return "thymeleaf/Board/BoardFree/board_free_write";
-		}
-
-		if(boardFreeWriteDto.getBoard_content() == null) {
-			model.addAttribute("errorMessage", "내용은 필수 입력 사항입니다.");
-			return "thymeleaf/Board/BoardFree/board_free_write";
-		}
-
 		try {
 			boardFreeService.savedBoardFreeWrite(boardFreeWriteDto);
 		}catch (Exception e) {
@@ -95,7 +85,6 @@ public class BoardFreeController {
 		return "thymeleaf/Board/BoardFree/board_free_main";
 	}
 
-//	06-29목표 상단의 주석을 해결하고 게시판 수정과 삭제 기능을 수행하여야 합니다.
 //	나머지 디테일한 정리 는 수요일까지 목표 (게시물을 클릭할 시 조횟수가 올라감, 댓글, 댓글 수정,삭제)
 //	@SessionAttribute
 //	private String userId;
@@ -118,9 +107,6 @@ public class BoardFreeController {
 			String userId = principal.getName();
 			model.addAttribute("userId", userId);
 			model.addAttribute("boardFree", boardFreeDto);
-
-			// 사용자 아이디 확인 완료
-			System.out.println("사용자 아이디 : " + userId);
 		}
 
 		return "thymeleaf/Board/BoardFree/board_free_detail";
@@ -158,16 +144,6 @@ public class BoardFreeController {
 			}
 			model.addAttribute("errorMessage", errorMsg);
 
-			return "thymeleaf/Board/BoardFree/board_free_update";
-		}
-
-		if(boardFreeWriteDto.getBoard_title() == null) {
-			model.addAttribute("errorMessage", "제목은 필수 입력 사항입니다.");
-			return "thymeleaf/Board/BoardFree/board_free_update";
-		}
-
-		if(boardFreeWriteDto.getBoard_content() == null) {
-			model.addAttribute("errorMessage", "내용은 필수 입력 사항입니다.");
 			return "thymeleaf/Board/BoardFree/board_free_update";
 		}
 
