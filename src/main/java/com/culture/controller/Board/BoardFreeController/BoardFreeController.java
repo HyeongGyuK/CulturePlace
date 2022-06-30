@@ -6,6 +6,7 @@ import com.culture.dto.BoardFreeDto.BoardFreeWriteDto;
 import com.culture.entity.boardFree.BoardFree;
 import com.culture.service.BoardFreeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -13,9 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
@@ -76,7 +75,7 @@ public class BoardFreeController {
 			return "thymeleaf/Board/BoardFree/board_free_write";
 		}
 
-		return "redirect:/"; // 자유 게시판 메인 페이지로 이동
+		return "redirect:/CommunityMain"; // 자유 게시판 메인 페이지로 이동
 	}
 
 	// CommunityMain의 전체  글 목록 출력
@@ -179,13 +178,17 @@ public class BoardFreeController {
 			return "thymeleaf/Board/BoardFree/board_free_update";
 		}
 
-		return "redirect:/"; // 자유 게시판 메인 페이지로 이동
+		return "redirect:/CommunityMain"; // 자유 게시판 메인 페이지로 이동
 	}
 
-	@GetMapping(value = "/CommunityMain/board_free_delete/{board_no}")
-	public String doBoardFreeDelete(@PathVariable("board_no") Long board_no) throws Exception{
+	// 게시글 삭제 기능
+	@GetMapping(value = "/CommunityMain/board_free_delete")
+	public String doBoardFreeDelete(@RequestParam(value = "board_no", required = false) Long board_no) throws Exception{
+		if(board_no == null){
+			return "redirect:/CommunityMain";
+		}
 		boardFreeService.boardFreeDelete(board_no);
-		return "redirect:/";
+		return "redirect:/CommunityMain";
 	}
 
 

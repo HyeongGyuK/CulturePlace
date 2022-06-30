@@ -42,12 +42,17 @@
 			});
 		});
 
-		function deleteFunction(){
+		function deleteFunction(board_no){
 			var text = "게시글을 삭제하시겠습니까?";
-
+			var uri = [[@{/CommunityMain/board_free_delete}]]
+            var html = "";
 			if(confirm(text) == true){
-				location.href = "boardDelete&num=${bean.boardNum }";
-				return true;
+			    html += '<form name="deleteForm" action="'+uri+'" method="get">';
+                html += '<input type="hidden" name="board_no" value="'+board_no+'" />';
+                html += '</form>';
+
+                $("body").append(html);
+				document.deleteForm.submit();
 			}else{
 				return false;
 			}
@@ -57,7 +62,7 @@
 			var text = "게시글을 수정하시겠습니까?";
 
 			if(confirm(text) == true){
-				location.href = "boardUpdate&num=${bean.boardNum }";
+
 				return true;
 			}else{
 				return false;
@@ -68,7 +73,7 @@
 			var text = "댓글을 삭제하시겠습니까?";
 
 			if(confirm(text) == true){
-				location.href = "boardFreeCommentDelete&commentNum=" + commentNum + "&boardNum=${bean.boardNum}";
+
 				return true;
 			}else{
 				return false;
@@ -155,7 +160,6 @@
 
                     <td colspan="6"><p id="text" th:text="${boardFree.board_content}"></p></td>
                 </tr>
-
                 </tbody>
             </table>
 
@@ -205,8 +209,9 @@
                     </div>
                 </form>
                 <br/>
-                <a th:if="${boardFree.board_writer} == ${userId}" th:href="'/CommunityMain/board_free_delete/' + ${boardFree.board_no}" class="btn btn-primary pull-right" id="boardDeleteBtn"
-                   style="background-color:#FFFFFF; color: #6667AB; border: 1px solid #6667AB; box-sizing:border-box; margin-top: 10px;"><b>삭제</b></a>
+                <button th:if="${boardFree.board_writer} == ${userId}" class="btn btn-primary pull-right" id="boardDeleteBtn"
+                   style="background-color:#FFFFFF; color: #6667AB; border: 1px solid #6667AB; box-sizing:border-box; margin-top: 10px;" th:onclick="deleteFunction([[${boardFree.board_no}]])"><b>삭제</b>
+                </button>
 
                 <a th:if="${boardFree.board_writer} == ${userId}" th:href="'/CommunityMain/board_free_update/' + ${boardFree.board_no}" class="btn btn-primary pull-right" id="boardUpdateBtn"
                    style="background-color:#FFFFFF; color: #6667AB; border: 1px solid #6667AB; box-sizing:border-box; margin-top: 10px;"><b>수정</b></a>
@@ -214,7 +219,6 @@
                 <!--                <a th:href="${/CommunityMain/}" class="btn btn-primary pull-right" id="goToBoardPage"-->
                 <!--                   style="background-color:#FFFFFF; color: #6667AB; border: 1px solid #6667AB; box-sizing:border-box; margin-top: 10px;"><b>뒤로가기</b></a>-->
             </td>
-
         </div>
     </div>
 </div>
