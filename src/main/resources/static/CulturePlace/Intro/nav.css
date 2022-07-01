@@ -240,8 +240,8 @@
         .btn_gotop {
             /*	display: none;*/
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 24px;
+            right: 83px;
             z-index: 999;
             border: 1px solid #ccc;
             outline: none;
@@ -251,6 +251,9 @@
             border-radius: 100%;
         }
 
+        .df-messenger-wrapper{
+            display:none;
+        }
         .btn_gotop:hover .glyphicon {
             color: white;
         }

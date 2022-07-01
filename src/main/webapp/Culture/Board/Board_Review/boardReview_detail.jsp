@@ -191,6 +191,7 @@
 			</c:choose>
 		</table>
 
+<%--
 		<form action="<%=noForm %>boardReviewComment" method="post"
 			id="commentForm" onsubmit="return false">
 			<p>댓글작성</p>
@@ -205,7 +206,7 @@
 					id="comment_submit"
 					style="background-color: #FFFFFF; color: #6255f6; border: 1px solid #6255f6; font-weight:bold" >댓글달기</button>
 			</div>
-		</form>
+		</form> --%>
 
 		<div id="boardDetailBtn" align="right">
 			<a href="board/main"

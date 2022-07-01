@@ -1,5 +1,6 @@
 package com.culture.service;
 
+import com.culture.dto.BoardReviewDto;
 import com.culture.dto.BoardReviewFormDto;
 import com.culture.dto.BoardReviewImgDto;
 import com.culture.dto.MainBoardReviewDto;
@@ -73,6 +74,14 @@ public class BoardReviewService {
     @Transactional(readOnly = true)
     public Page<MainBoardReviewDto> getMainBoardReviewPage(Pageable pageable){
         return boardReviewRepository.getMainBoardReviewPage(pageable);
+    }
+
+    public BoardReviewDto getBoardReviewDetail(Long bno){
+        BoardReview boardReview = boardReviewRepository.findById(bno).orElseThrow(EntityNotFoundException::new);
+
+        BoardReviewDto boardReviewDto = BoardReviewDto.of(boardReview);
+
+        return boardReviewDto;
     }
 }
 
