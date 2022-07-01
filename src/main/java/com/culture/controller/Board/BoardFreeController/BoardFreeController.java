@@ -3,10 +3,8 @@ package com.culture.controller.Board.BoardFreeController;
 import com.culture.dto.BoardFreeDto.BoardFreeDto;
 import com.culture.dto.BoardFreeDto.BoardFreeSearchDto;
 import com.culture.dto.BoardFreeDto.BoardFreeWriteDto;
-import com.culture.dto.BoardFreeDto.NoticeDto;
 import com.culture.entity.boardFree.BoardFree;
 import com.culture.service.BoardFreeService;
-import com.culture.service.NoticeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -33,7 +31,7 @@ import java.util.Optional;
 public class BoardFreeController {
 
 	private final BoardFreeService boardFreeService;
-	private final NoticeService noticeService;
+//	private final NoticeService noticeService;
 
 	// 글 작성 페이지로 이동
 	@GetMapping(value = "/CommunityMain/board_free_write")
@@ -90,10 +88,10 @@ public class BoardFreeController {
 		model.addAttribute("maxPage", 5);
 
 
-		Page<NoticeDto> noticeDto = noticeService.getNoticePage(pageable);
-
-		model.addAttribute("noticeDto", noticeDto);
-		model.addAttribute("maxPage", 5);
+//		Page<Notice> noticeDto = noticeService.getNoticePage(pageable);
+//
+//		model.addAttribute("noticeDto", noticeDto);
+//		model.addAttribute("maxPage", 5);
 
 		return "thymeleaf/Board/BoardFree/board_free_main";
 	}
