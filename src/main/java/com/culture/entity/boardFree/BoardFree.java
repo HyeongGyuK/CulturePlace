@@ -24,7 +24,8 @@ public class BoardFree extends BoardFreeBaseEntity{
 	@Column(nullable = false)
 	private String board_content; // 내용
 
-	@Column(nullable = false)
+	// Long Type은 게시글 생성시에 null값을 피하기 위해 지정하였다.
+	@Column(columnDefinition = "integer default 0", nullable = false)
 	private Long board_readhit; // 조회수
 
 	public void updateBoardFree(BoardFreeWriteDto boardFreeWriteDto) {
