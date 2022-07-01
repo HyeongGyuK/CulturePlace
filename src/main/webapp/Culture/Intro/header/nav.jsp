@@ -23,7 +23,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
     <df-messenger
       intent="WELCOME"
-      chat-title="1조파이팅"
+      chat-title="Culture Place"
       agent-id="c65ff504-e4cb-47e8-9743-18c5d9c4bb2d"
       language-code="ko"
     ></df-messenger>
