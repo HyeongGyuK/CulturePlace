@@ -1,103 +1,105 @@
 package com.culture.repository;
 
-import com.culture.dto.MainBoardReviewDto;
-import com.culture.dto.QMainBoardReviewDto;
+import com.culture.dto.BoardReviewMainDto;
+//import com.culture.dto.MainBoardReviewDto;
+//import com.culture.dto.QMainBoardReviewDto;
+import com.culture.dto.QBoardReviewMainDto;
 import com.culture.entity.BoardReview;
 import com.culture.entity.QBoardReview;
 import com.culture.entity.QBoardReviewImg;
 import com.querydsl.core.QueryResults;
-import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.thymeleaf.util.StringUtils;
 
 import javax.persistence.EntityManager;
-import java.time.LocalDateTime;
+import javax.persistence.Query;
 import java.util.List;
 
 public class BoardReviewRepositoryCustomImpl implements BoardReviewRepositoryCustom{
+    //쿼리를 생성하는 클래스로 엔터티관리자(EntityManager)를 매개변수로 넣어준다
     private JPAQueryFactory queryFactory;
 
-    public BoardReviewRepositoryCustomImpl(EntityManager em){
+    public BoardReviewRepositoryCustomImpl(EntityManager em){ //생성자
         this.queryFactory = new JPAQueryFactory(em);
     }
 
-    @Override
-    public Page<BoardReview> getAdminBoardReviewPage(Pageable pageable) {
+    @Override  // Page는 인터페이스. 이거를 구현하는 클래스가 PageImpl
+    public Page<BoardReview> getAdminBoardReviewPage(Pageable pageable){
         QueryResults<BoardReview> results = this.queryFactory
-                .selectFrom(QBoardReview.boardReview)
-               /* .where(regDtsAfter(boardReviewSearchDto.getSearchDateType()),
-                        searchByLike(boardReviewSearchDto.getSearchBy(), boardReviewSearchDto.getSearchQuery()))*/
+                .selectFrom(QBoardReview.boardReview) //from 테이블명
                 .orderBy(QBoardReview.boardReview.bno.desc())
-                .offset(pageable.getOffset())
-                .limit(pageable.getPageSize())
+                .offset(pageable.getOffset()) //시작하고자하고자하는 줄(글)(차감). no offset이면 첫줄부터 나옴
+                .limit(pageable.getPageSize()) // 제한하고자 하는 줄(글) 갯수
                 .fetchResults();
 
         List<BoardReview> content = results.getResults();
         long total = results.getTotal();
 
-        return new PageImpl<>(content, pageable, total);
+        return new PageImpl<>(content,pageable,total);
     }
 
+    //조건식을 판단하여 결과가 true인 데이터만 반환하는 클래스
+    //BooleanExpression 추상클래스는 Predicate인터페이스를 상속받고 있음
+/*    private BooleanExpression categoryStatusEq(BoardReviewSearchDto searchSellStatus) {
+        // 3가지{판매상태(전체), 판매, 품절} 중에서 택1
+        return searchSellStatus == null ? null : QBoardReview.boardReview.categoryStatus.eq(categoryStatusEq);
+    }*/
+
     @Override
-    public Page<MainBoardReviewDto> getMainBoardReviewPage(Pageable pageable) {
+    public Page<BoardReviewMainDto> getMainBoardReviewPage(Pageable pageable) {
         QBoardReview boardReview = QBoardReview.boardReview;
         QBoardReviewImg boardReviewImg = QBoardReviewImg.boardReviewImg;
 
-        QueryResults<MainBoardReviewDto> results = queryFactory
+        QueryResults<BoardReviewMainDto> results = queryFactory
                 .select(
-                        new QMainBoardReviewDto(
+                        new QBoardReviewMainDto(
                                 boardReview.bno,
-                                boardReview.b_title,
-                                boardReview.b_content
-                        )
-                ).from(boardReviewImg)
+                                boardReviewImg.imgUrl,
+                                boardReview.b_title)
+                )
+                .from(boardReviewImg)
                 .join(boardReviewImg.boardReview, boardReview)
-                /*.where(boardReviewBNoLike(boardReviewSearchDto.getSearchQuery()))*/
                 .orderBy(boardReview.bno.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetchResults();
 
-        List<MainBoardReviewDto> content = results.getResults();
+        List<BoardReviewMainDto> content = results.getResults();
         long total = results.getTotal();
-
         return new PageImpl<>(content, pageable, total);
     }
 
-    private BooleanExpression searchByLike(String searchBy, String searchQuery){
-        if(StringUtils.equals("bno", searchBy)){
-            return QBoardReview.boardReview.bno.like("%" + searchQuery + "%");
-        }else if(StringUtils.equals("createBy", searchBy)){
-            return QBoardReview.boardReview.createBy.like("%" + searchQuery + "%");
-        }
 
-        return null;
-    }
-
-    private BooleanExpression boardReviewBNoLike(String searchQuery){
-        return StringUtils.isEmpty(searchQuery) ? null : QBoardReview.boardReview.bno.like("%" + searchQuery + "%");
-    }
-
-    private BooleanExpression regDtsAfter(String searchDateType){
-        LocalDateTime dateTime = LocalDateTime.now();
-
-        if(StringUtils.equals("all", searchDateType) || searchDateType == null){
-            return null;
-        }else if(StringUtils.equals("1d", searchDateType)){
-            dateTime = dateTime.minusDays(1);
-        }else if(StringUtils.equals("1w", searchDateType)){
-            dateTime = dateTime.minusWeeks(1);
-        }else if(StringUtils.equals("1m", searchDateType)){
-            dateTime = dateTime.minusMonths(1);
-        }else if(StringUtils.equals("6m", searchDateType)){
-            dateTime = dateTime.minusMonths(6);
-        }
-
-        return QBoardReview.boardReview.b_regdate.after(dateTime);
-    }
+    //    @Override
+//    public Page<BoardReviewMainDto> getMainBoardReviewPage(Pageable pageable) {
+//        QBoardReview boardReview = QBoardReview.boardReview ;
+//        QBoardReviewImg boardReviewImg = QBoardReviewImg.boardReviewImg ;
+//
+//        QueryResults<BoardReviewMainDto> results = queryFactory
+//                .select(
+//                        new QMainBoardReviewDto(
+//                                boardReview.bno,
+//                                boardReview.categoryStatus,
+//                                boardReview.b_title,
+//                                boardReview.b_content,
+//                                boardReview.b_regdate,
+//                                boardReview.b_readhit,
+//                                boardReviewImg.imgUrl)
+//                )
+//                .from(boardReviewImg)
+//                .join(boardReviewImg.boardReview, boardReview)
+//                .orderBy(boardReview.bno.desc())
+//                .offset(pageable.getOffset())
+//                .limit(pageable.getPageSize())
+//                .fetchResults();
+//
+//        List<MainBoardReviewDto> content = results.getResults() ;
+//        long total = results.getTotal() ;
+//
+//        return new PageImpl<>(content, pageable, total);
+//    }
 }
 
 

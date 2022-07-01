@@ -18,7 +18,7 @@ import java.util.Map;
 @Controller
 @RequiredArgsConstructor
 @RequestMapping(value = "/board")
-public class boardReivewInsertController {
+public class boardReviewInsertController {
 
 	@GetMapping(value = "/insert/new")
 	public String reviewInsertForm(Model model){
@@ -52,7 +52,7 @@ public class boardReivewInsertController {
 
 		if(boardReviewImgFileList.get(0).isEmpty() && boardReviewFormDto.getBno() == null){
 			System.out.println("에러2");
-			model.addAttribute("errorMessage", "첫 번째 이미지는 필수 입력 값입니다.");
+			model.addAttribute("errorMessage", "이미지를 첨부해주세요.");
 			return "thymeleaf/boardReview/boardReview_insert";
 		}
 
@@ -64,6 +64,6 @@ public class boardReivewInsertController {
 			return "thymeleaf/boardReview/boardReview_insert";
 		}
 
-		return "thymeleaf/boardReview/boardReview_main";
+		return "redirect:/board/main";
 	}
 }
