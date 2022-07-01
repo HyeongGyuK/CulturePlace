@@ -4,7 +4,9 @@ import com.culture.dto.BoardFreeDto.BoardFreeDto;
 import com.culture.dto.BoardFreeDto.BoardFreeSearchDto;
 import com.culture.dto.BoardFreeDto.BoardFreeWriteDto;
 import com.culture.entity.boardFree.BoardFree;
+import com.culture.entity.boardFree.Notice;
 import com.culture.service.BoardFreeService;
+import com.culture.service.NoticeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -31,7 +33,7 @@ import java.util.Optional;
 public class BoardFreeController {
 
 	private final BoardFreeService boardFreeService;
-//	private final NoticeService noticeService;
+	private final NoticeService noticeService;
 
 	// 글 작성 페이지로 이동
 	@GetMapping(value = "/CommunityMain/board_free_write")
@@ -80,6 +82,7 @@ public class BoardFreeController {
 							@PathVariable("pageOfNotice")Optional<Integer> pageOfNotice,
 							Model model) {
 
+		// 자유게시판 페이징 및 리스트 출력
 		Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 10);
 
 		Page<BoardFree> boardFreeLists = boardFreeService.getBoardFreePage(boardFreeSearchDto, pageable);
@@ -88,12 +91,13 @@ public class BoardFreeController {
 		model.addAttribute("boardFreeSearchDto", boardFreeSearchDto);
 		model.addAttribute("maxPage", 5);
 
+		// 공지사항 페이징 및 리스트 출력
 		Pageable NoticePageable = PageRequest.of(pageOfNotice.isPresent() ? page.get() : 0, 3);
 
-//		Page<Notice> noticeDto = noticeService.getNoticePage(NoticePageable);
+		Page<Notice> noticeDto = noticeService.getNoticePage(NoticePageable);
 
-//		model.addAttribute("noticeDto", noticeDto);
-//		model.addAttribute("maxPage", 5);
+		model.addAttribute("noticeDto", noticeDto);
+		model.addAttribute("maxPage", 5);
 
 		return "thymeleaf/Board/BoardFree/board_free_main";
 	}
