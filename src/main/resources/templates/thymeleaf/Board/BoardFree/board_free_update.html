@@ -114,7 +114,7 @@
                             <span>작성자&nbsp;:</span>&nbsp;&nbsp;<span th:text="*{boardFree.board_writer}"></span>
                         </li>
                         <li>
-                            <span>제목&nbsp;&nbsp;&nbsp;&nbsp;:</span>
+                            <span>제목&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;</span>
                             <input style="margin-top: 8px;" type="text" class="form-control" th:field="${boardFree.board_title}"/>
                             <p th:if="${#fields.hasErrors('boardFree.board_title')}" th:errors="*{boardFree.board_title}" class="fieldError">Incorrect data</p>
                         </li>

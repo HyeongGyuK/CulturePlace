@@ -3,10 +3,11 @@ package com.culture.controller.Board.BoardFreeController;
 import com.culture.dto.BoardFreeDto.BoardFreeDto;
 import com.culture.dto.BoardFreeDto.BoardFreeSearchDto;
 import com.culture.dto.BoardFreeDto.BoardFreeWriteDto;
+import com.culture.dto.BoardFreeDto.NoticeDto;
 import com.culture.entity.boardFree.BoardFree;
 import com.culture.service.BoardFreeService;
+import com.culture.service.NoticeService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -14,7 +15,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
@@ -24,11 +28,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@Controller("CommunityMain")
+@Controller
 @RequiredArgsConstructor
 public class BoardFreeController {
 
 	private final BoardFreeService boardFreeService;
+	private final NoticeService noticeService;
 
 	// 글 작성 페이지로 이동
 	@GetMapping(value = "/CommunityMain/board_free_write")
@@ -84,25 +89,20 @@ public class BoardFreeController {
 		model.addAttribute("boardFreeSearchDto", boardFreeSearchDto);
 		model.addAttribute("maxPage", 5);
 
+
+		Page<NoticeDto> noticeDto = noticeService.getNoticePage(pageable);
+
+		model.addAttribute("noticeDto", noticeDto);
+		model.addAttribute("maxPage", 5);
+
 		return "thymeleaf/Board/BoardFree/board_free_main";
 	}
-
-//	나머지 디테일한 정리 는 수요일까지 목표 (게시물을 클릭할 시 조횟수가 올라감, 댓글, 댓글 수정,삭제)
-//	@SessionAttribute
-//	private String userId;
-
-//	private final AuditConfig auditConfig;
-//
-//	private AuditConfig getAuditConfig() {
-//		String userId = Authentication.class.getU
-//		return auditConfig;
-//	}
 
 	// 게시판 상세 정보
 	@GetMapping(value = "/CommunityMain/board_free_detail/{board_no}")
 	public String boardFreeDetail(@PathVariable("board_no") Long board_no, Model model, Principal principal) {
 		BoardFreeDto boardFreeDto = boardFreeService.getBoardDetail(board_no);
-		
+
 		String userId = principal.getName();
 
 		// 조회수 증가
@@ -180,16 +180,4 @@ public class BoardFreeController {
 		boardFreeService.boardFreeDelete(board_no);
 		return "redirect:/CommunityMain";
 	}
-
-
-	@GetMapping(value = "/CommunityMain/board_notice_detail")
-	public String noticeDetail(Model model) {
-		return "thymeleaf/Board/BoardFree/board_notice_detail";
-	}
-
-	@GetMapping(value = "/CommunityMain/board_notice_update")
-	public String noticeUpdate(Model model) {
-		return "thymeleaf/Board/BoardFree/board_notice_update";
-	}
-
 }

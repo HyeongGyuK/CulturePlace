@@ -34,8 +34,6 @@ public class BoardFreeRepositoryImpl implements BoardFreeRepositoryCustom{
 				.limit(pageable.getPageSize())
 				.fetchResults();
 
-		System.out.println("");
-
 		List<BoardFree> content = results.getResults();
         Long total = results.getTotal();
 

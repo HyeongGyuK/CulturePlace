@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{thymeleaf/layouts/cultureLayout}">
+      layout:decorate="~{thymeleaf/layouts/cultureLayout}"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -28,6 +29,13 @@
                 }, function(){
                     $(this).css({"background-color":"#FFFFFF"});
                 });
+
+                $('#noticeWriteBtn').hover(function(){
+                    $(this).css({"background-color":"rgb(104, 105, 172, 0.3)"});
+                }, function(){
+                    $(this).css({"background-color":"#FFFFFF"});
+                });
+
 
                 // 검색 버튼
                 $("#searchBtn").on("click",function(e) {
@@ -124,6 +132,11 @@
             .boardList :nth-child(2), .noticeList :nth-child(2){text-align: left;}
             .boardList a, .noticeList a{color:black;}
 
+            #noticeWriteBtn{
+                float:right; font-size:15px;
+                padding:1px; border-radius:5px;
+            }
+
         </style>
     </th:block>
 
@@ -138,27 +151,28 @@
                 </h2>
             </div>
 
-            <div id="notice">
-                <div id="noticeTitle">공지사항</div>
+            <div id="notice" th:object="${noticeDto}">
+                <div id="noticeTitle">공지사항
+                    <button id="noticeWriteBtn" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"
+                            href="/admin/CommunityMain/notice_write">공지사항 글쓰기</button>
+                </div>
+
                 <table style="width:100%;">
                     <tr id="noticeColumn">
                         <td width="10%;">No</td>
                         <td width="40%;" >제목</td>
                         <td width="20%;">작성자</td>
                         <td width="20%;">작성 일자</td>
-                        <td width="10%;">조회수</td>
                     </tr>
 
                     <tr class="noticeList">
-                        <td>
-
-                        </td>
+                        <td></td>
                         <td><a href="">공지사항</a></td>
                         <td>관리자</td>
                         <td>2022-05-21</td>
-                        <td>100</td>
                     </tr>
                 </table>
+
             </div>
             <form class="form-inline" th:action="@{'/CommunityMain/' + ${boardFreeLists.number}}"
                   role="form" method="get" th:object="${boardFreeLists}">
