@@ -20,7 +20,7 @@
             });*/
 
             function page(page){
-	            location.href="/board/main"
+	            location.href="/board/main/"
 	            + page;
 	        }
     </script>
@@ -88,7 +88,7 @@
                     <div class="lidiv">
                         <div class="image-div"> <!--이미지-->
                             <a th:href="'/review/' +${review.bno}" class="text-dark aforimg">
-                                <img th:src="${review.imgUrl}" class="card-img-top" th:alt="${review.imgUrl}"></a>
+                                <img th:src="${review.imgUrl}" class="image" th:alt="${review.imgUrl}"></a>
                         </div>
                     </div>
 

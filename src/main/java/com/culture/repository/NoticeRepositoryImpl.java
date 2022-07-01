@@ -1,7 +1,6 @@
 package com.culture.repository;
 
 import com.culture.dto.BoardFreeDto.NoticeDto;
-import com.culture.dto.BoardFreeDto.QNoticeDto;
 import com.culture.entity.boardFree.Notice;
 import com.culture.entity.boardFree.QNotice;
 import com.querydsl.core.QueryResults;
