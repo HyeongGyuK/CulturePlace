@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
-import static com.culture.entity.QBoardReview.boardReview;
-
 @Controller
 @RequiredArgsConstructor
 public class boardReviewMainController {
@@ -51,10 +49,12 @@ public class boardReviewMainController {
 //      return "board/reviewMng";
 //   }
 
-	//메인구현하기
-	// http://localhost:8989/?searchQuery=null&page=1
+	//리뷰게시판 메인 및 페이징 구현
 	@GetMapping(value = {"/board/main", "/board/main/{page}"})
-	public String main(Optional<Integer> page, Model model){
+	public String main(
+			@PathVariable("page") Optional<Integer> page,
+			Model model){
+
 		Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 6) ;
 
 		Page<BoardReviewMainDto> boardReviewDto = boardReviewService.getMainBoardReviewPage(pageable) ;
