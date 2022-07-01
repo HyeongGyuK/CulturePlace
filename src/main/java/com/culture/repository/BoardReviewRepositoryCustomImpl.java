@@ -71,7 +71,7 @@ public class BoardReviewRepositoryCustomImpl implements BoardReviewRepositoryCus
         if(StringUtils.equals("bno", searchBy)){
             return QBoardReview.boardReview.bno.like("%" + searchQuery + "%");
         }else if(StringUtils.equals("createBy", searchBy)){
-            return QBoardReview.boardReview.createBy.like("%" + searchQuery + "%");
+            return QBoardReview.boardReview.b_writer.like("%" + searchQuery + "%");
         }
 
         return null;

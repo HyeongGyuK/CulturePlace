@@ -15,9 +15,9 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 @Getter @Setter
 public abstract class BaseTimeEntity {
-    @CreatedDate
-    @Column(updatable = false)
-    private LocalDateTime regTime;
+//    @CreatedDate
+//    @Column(updatable = false)
+//    private LocalDateTime regTime;
 
     @LastModifiedDate
     private LocalDateTime updateTime;

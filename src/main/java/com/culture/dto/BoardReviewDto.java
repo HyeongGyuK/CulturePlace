@@ -9,6 +9,8 @@ import lombok.Setter;
 import org.modelmapper.ModelMapper;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter @Setter
 public class BoardReviewDto {
@@ -26,6 +28,7 @@ public class BoardReviewDto {
 	private LocalDateTime b_regdate;
 
 	private Integer b_readhit;
+
 
 	private static ModelMapper modelMapper = new ModelMapper();
 

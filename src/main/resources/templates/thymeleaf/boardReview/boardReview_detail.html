@@ -101,6 +101,7 @@
 </head>
 <body>
     <div layout:fragment="content">
+        <input type="hidden" id="boardReviewId" th:value="${boardReview.bno}">
         <div>
             <h2 id=title>리뷰 게시판</h2>
         </div>
@@ -112,15 +113,15 @@
                     <th width="10%" class="btitle">제목</th>
                     <th width="60%" colspan="3" class="btitle" th:text="${boardReview.b_title}"></th>
                     <td width="10%">카테고리</td>
-                    <td width="45%">연극 bean.category</td>
+                    <td width="45%" th:text="${boardReview.categoryStatus}"></td>
                 </tr>
                 <tr>
                     <td width="10%">작성자</td>
-                    <td width="45%">홍길동 bean.writer</td>
+                    <td width="45%" th:text="${boardReview.b_writer}"></td>
                     <td width="10%">작성일자</td>
-                    <td width="15%">2022-01-01 bean.regDate</td>
+                    <td width="15%" th:text="${boardReview.b_regdate}"></td>
                     <td width="10%">조회수</td>
-                    <td width="10%">100 bean.viewCnt</td>
+                    <td width="10%" th:text="${boardReview.b_readhit}">100 bean.viewCnt</td>
                 </tr>
                 </thead>
             </table>
@@ -128,13 +129,13 @@
             <table class="table table-striped" id="content_table">
                 <tbody>
                 <tr>
-                    <td colspan="6"><p id="text"></p>재밌어요~
+                    <td colspan="6"><p id="text"></p>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="6">
                         <img alt=""
-                             src="/Culture/images/Board/BoardReviewImg/ticket1.jpg"
+                             th:src="${boardReviewForm.boardReviewImgDtoList[0].imgUrl}"
                              style="width: 500px; height: 500px;">
                     </td>
                 </tr>

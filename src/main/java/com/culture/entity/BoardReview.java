@@ -7,6 +7,8 @@ import javax.persistence.*;
 import com.culture.constant.CategoryStatus;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
 
 @Entity
 @Table(name = "boardReview")
@@ -18,7 +20,8 @@ public class BoardReview extends BaseEntity{
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long bno; // PK
 
-	@Column(nullable = true)
+	@CreatedBy
+	@Column(updatable = false, nullable = false)
 	private String b_writer; // 작성자
 
 	@Enumerated(EnumType.STRING)
@@ -29,8 +32,9 @@ public class BoardReview extends BaseEntity{
 	
 	@Column(nullable = true, length = 50)
 	private String b_content; // 내용
-	
-	@Column(nullable = true)
+
+	@CreatedDate
+	@Column(nullable = false, updatable = false)
 	private LocalDateTime b_regdate; // 작성일자
 	
 	@Column(nullable = true)

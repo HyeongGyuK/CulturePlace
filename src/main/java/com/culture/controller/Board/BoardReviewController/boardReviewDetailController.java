@@ -24,13 +24,14 @@ public class boardReviewDetailController {
     public String boardReviewDetailForm(@PathVariable("bno") Long bno, Model model){
 
         BoardReviewDto boardReviewDto = boardReviewService.getBoardReviewDetail(bno);
+        BoardReviewFormDto boardReviewFormDto = boardReviewService.getBoardReviewDtl(bno);
         try{
-            BoardReviewFormDto boardReviewFormDto = boardReviewService.getBoardReviewDtl(bno);
-
             model.addAttribute("boardReview", boardReviewDto);
+            model.addAttribute("boardReviewForm", boardReviewFormDto);
         }catch (EntityNotFoundException e){
             model.addAttribute("errorMessage", "존재하지 않는 게시글입니다.");
             model.addAttribute("boardReview", boardReviewDto);
+            model.addAttribute("boardReviewForm", boardReviewFormDto);
         }
 
         return "thymeleaf/boardReview/boardReview_detail";

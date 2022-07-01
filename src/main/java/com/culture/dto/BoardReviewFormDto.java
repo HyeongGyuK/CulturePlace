@@ -25,6 +25,7 @@ public class BoardReviewFormDto {
     @NotNull(message = "내용을 입력해주세요.")
     private String b_content ;
 
+    private String b_writer;
 
     // 리뷰게시판 작성시 첨부할 이미지정보 저장
 //    private BoardReviewImgDto boardReviewImgDto = new BoardReviewImgDto() ;
