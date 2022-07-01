@@ -93,8 +93,10 @@ a{
 
 
 .list_wrap .item a{
-   display:block;
+   display:flex;
    width:100%;
+   justify-content: center;
+   align-items: center;
 }
 
 .list_wrap .item a:hover .image{
@@ -109,13 +111,26 @@ a{
 
 
 
-.list_wrap p{
+/*.list_wrap p{
 	position: absolute;
 	top: 33%;
 	right: 14%;
 	margin: 0 0 0px;
 	opacity: 0;
 	font-size:13px;
+	font-weight: 600;
+	color: white;
+	border: 1px solid white;
+	background: #fb4357;
+	padding: 7px 30px 7px 30px;
+	border-radius: 30px;
+}*/
+
+.list_wrap .item_p{
+	position: absolute;
+	margin: 0 0 0px;
+	opacity: 0;
+	font-size:15px;
 	font-weight: 600;
 	color: white;
 	border: 1px solid white;
