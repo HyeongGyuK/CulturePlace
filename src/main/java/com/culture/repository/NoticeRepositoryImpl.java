@@ -1,5 +1,7 @@
 //package com.culture.repository;
 //
+//import com.culture.dto.BoardFreeDto.NoticeDto;
+//import com.culture.dto.BoardFreeDto.QNoticeDto;
 //import com.culture.entity.boardFree.Notice;
 //import com.culture.entity.boardFree.QNotice;
 //import com.querydsl.core.QueryResults;
@@ -20,13 +22,13 @@
 //    }
 //
 //    @Override
-//    public Page<Notice> getNoticePage(Pageable pageable) {
-//        QueryResults<Notice> results = this.queryFactory
+//    public Page<NoticeDto> getNoticePage(Pageable pageable) {
+//        QNotice notice = QNotice.notice;
+//
+//        QueryResults<NoticeDto> results = queryFactory
 //                .selectFrom(QNotice.notice)
-//                .orderBy(QNotice.notice.notice_no.desc())
-//                .offset(pageable.getOffset())
-//                .limit(pageable.getPageSize())
-//                .fetchResults();
+//                .where
+//
 //
 //        List<Notice> content = results.getResults();
 //        Long total = results.getTotal();
