@@ -40,21 +40,22 @@
 
                 });
 
-                function deleteFunction(board_no){
-                    var text = "게시글을 삭제하시겠습니까?";
-                    var uri = [[@{/CommunityMain/board_free_delete}]]
-                    var html = "";
-                    if(confirm(text) == true){
-                        html += '<form name="deleteForm" action="'+uri+'" method="get">';
-                        html += '<input type="hidden" name="board_no" value="'+board_no+'" />';
-                        html += '</form>';
+<!-- 클릭 이벤트 구현 예정 -->
+<!--                function deleteFunction(board_no){-->
+<!--                    var text = "게시글을 삭제하시겠습니까?";-->
+<!--                    var uri = [[@{/CommunityMain/board_free_delete}]]-->
+<!--                    var html = "";-->
+<!--                    if(confirm(text) == true){-->
+<!--                        html += '<form name="deleteForm" action="'+uri+'" method="get">';-->
+<!--                        html += '<input type="hidden" name="board_no" value="'+board_no+'" />';-->
+<!--                        html += '</form>';-->
 
-                        $("body").append(html);
-                        document.deleteForm.submit();
-                    }else{
-                        return false;
-                    }
-                }
+<!--                        $("body").append(html);-->
+<!--                        document.deleteForm.submit();-->
+<!--                    }else{-->
+<!--                        return false;-->
+<!--                    }-->
+<!--                }-->
 
 
 

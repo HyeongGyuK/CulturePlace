@@ -1,5 +1,6 @@
 package com.culture.service;
 
+import com.culture.dto.BoardFreeDto.NoticeWriteDto;
 import com.culture.entity.boardFree.Notice;
 import com.culture.repository.NoticeRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,5 +17,13 @@ public class NoticeService {
 
     public Page<Notice> getNoticePage(Pageable pageable) {
         return noticeRepository.getNoticePage(pageable);
+    }
+
+    @Transactional
+    public Long savedNoticeWrite(NoticeWriteDto noticeWriteDto) throws Exception{
+        Notice noticeWrite = noticeWriteDto.noticeWrite();
+        noticeRepository.save(noticeWrite);
+
+        return noticeWrite.getNotice_no();
     }
 }
