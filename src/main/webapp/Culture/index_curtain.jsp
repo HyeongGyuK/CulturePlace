@@ -44,7 +44,7 @@
             
             <div class="figure_p">
 	            <figure class="snip1504" id="figure-left">
-				  <img src="/Culture/images/Intro/intro/first-2.png"/>
+				  <img src="/Culture/images/Intro/intro/first.png"/>
 				  <figcaption>
 				    <h3>Culture Place</h3>
 				    <h5>바로가기</h5>
@@ -53,7 +53,7 @@
 				</figure>
 				
 				<figure class="snip1504" id="figure-right">
-				  <img src="/Culture/images/Intro/intro/second-2.png"/>
+				  <img src="/Culture/images/Intro/intro/second.png"/>
 				  <figcaption>
 				    <h3>Community</h3>
 				    <h5>바로가기</h5>
