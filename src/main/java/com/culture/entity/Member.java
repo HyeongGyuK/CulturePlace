@@ -28,18 +28,18 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idSn;
 
+    @Column(unique = true)
     private String MId;
 
     private String name;
 
-    @Column(unique = true)
     private String email;
 
     private String password;
 
     private String address;
 
-    private String address2;
+//    private String address2;
 
     @Enumerated(EnumType.STRING)
     private Role role; //일반인, 관리자 구분

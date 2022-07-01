@@ -52,6 +52,7 @@ public class allListTheaterCrawController {
 
 //		String url = "http://www.playdb.co.kr/playdb/playdblist.asp?sReqMainCategory=000002";
 		String url = theaterUrl;
+//		System.out.println("aaaaaaaaaa : " + theaterUrl);
 		result = "";
 		theaterCodeNImg  = new LinkedHashMap<String, String>();
 		theaterCodeNTitle = new LinkedHashMap<String, String>();

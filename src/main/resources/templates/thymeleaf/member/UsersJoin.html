@@ -2,102 +2,128 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{thymeleaf/layouts/cultureLayout}">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-    <!-- 사용자 CSS 추가 -->
-<th:block layout:fragment="css">
-    <style>
-        .page_sub{
-          height:27px;
-          width:640px;
-          line-height: 17px;
-          color: #666;
-          font-size: 12px;
-          padding-rignt:10px;
-          text-align: right;
-          }
-        .ico{
-          color: #ee6a7b;
-          float:right;
-        }
-        .ico1{
-          color: #ee6a7b;
-        }
-        .fieldError {
-            color: #bd2130;
-        }
-        .hcode{
-            display: inherit;
-            width : 200px;
-        }
-        #searchbox{
-            display : flex;
-        }
-        #addressbox{
-            display : inline;
-        }
-
-
-        #userjoinbox{
-            width : 800px;
-            margin : 0 auto;
-            padding : 40px;
-        }
-
-        .form-control{
-            padding-left:6px;
-        }
-    </style>
-</th:block>
-
-<!-- 사용자 스크립트 추가 -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
     <th:block layout:fragment="script">
         <script th:inline="javascript">
-        $(document).ready(function(){
-            var errorMessage = [[${errorMessage}]];
-            if(errorMessage != null){
-                alert(errorMessage);
-            }
-            //이름
-            $('#name1').hide().addClass('notForm');
-            $('#name').focus(function(){
-              $('#name1').show();
+
+
+            var result = 0;
+            function checkId(){
+                var MId = $('#MId').val(); //id값이 "id"인 입력란의 값을 저장
+
+                $.ajax({
+                    url:"/users/idCheck", //Controller에서 인식할 주소
+                    type:"post", //POST 방식으로 전달
+                    data:{MId:MId},
+                    beforeSend : function(xhr){
+                        /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
+                        var token = $("meta[name='_csrf']").attr("content");
+            var header = $("meta[name='_csrf_header']").attr("content");
+                        xhr.setRequestHeader(header, token);
+                    },
+                    success:function(cnt){
+                        result = cnt;
+                      if(cnt != 1){ //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디
+                            $('.id_ok').css("display","inline-block");
+                            $('.id_already').css("display", "none");
+                        } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
+                            $('.id_already').css("display","inline-block");
+                            $('.id_ok').css("display", "none");
+                        }
+                    },
+                    error: function(request,status,error){
+                        console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                    }
+                });
+            };
+
+            $(document).ready(function(){
+                var errorMessage = [[${errorMessage}]];
+                if(errorMessage != null){
+                    alert(errorMessage);
+                }
             });
-            $('#name').focusout(function(){
-              if($('#name').val()){
-                $('#name1').addClass('yesForm');
-                $('#name1').removeClass('notForm');
-              }else{
-                $('#name1').removeClass('yesForm');
-                $('#name1').addClass('notForm');
+        </script>
+    </th:block>
+
+    <!-- 사용자 CSS 추가 -->
+    <th:block layout:fragment="css">
+        <style>
+            .page_sub{
+              height:27px;
+              width:640px;
+              line-height: 17px;
+              color: #666;
+              font-size: 12px;
+              padding-rignt:10px;
+              text-align: right;
               }
-            });
-          });
+            .ico{
+              color: #ee6a7b;
+              float:right;
+            }
+            .ico1{
+              color: #ee6a7b;
+            }
+            .fieldError {
+                color: #bd2130;
+            }
+            .hcode{
+                display: inherit;
+                width : 200px;
+            }
+            #searchbox{
+                display : flex;
+            }
+            #addressbox{
+                display : inline;
+            }
 
-        //우편번호찾기
-      function kakaopost() {
-        new daum.Postcode({
-          oncomplete: function(data) {
-            document.getElementById("zipcode").value = data.zonecode;
-            document.getElementById("address1").value = data.address;
-            document.getElementById("address2").value = data.sido;
-          }
-        }).open();
-      }
 
+            #userjoinbox{
+                width : 800px;
+                margin : 0 auto;
+                padding : 40px;
+            }
 
-    </script>
-</th:block>
+            .form-control{
+                padding-left:6px;
+            }
 
-</head>
+            .notForm {
+                  color: red;
+                }
+
+            .yesForm {
+                  color: green;
+                }
+            .ok{
+                  color:white;
+                }
+
+            .id_ok{color:green; display: none;}
+
+            .id_already{color:red; display: none;}
+        </style>
+    </th:block>
+
 <div layout:fragment="content" id="userjoinbox">
+    <section>
 
     <form action="/users/new" role="form" method="post"  th:object="${memberFormDto}">
         <p class="page_sub" ><span class="ico">*</span>필수입력사항</p>
         <div class="form-group">
             <label th:for="MId">아이디<span class="ico">*</span></label>
-            <input type="text" th:field="*{MId}" class="form-control col-11" placeholder="아이디 입력">
+            <input type="text" th:field="*{MId}" id = "MId" name="MId"
+                   class="form-control col-11" placeholder="아이디 입력"
+                   autocomplete="username" oninput="checkId()" />
+            <span class="id_ok">사용 가능한 아이디입니다.</span>
+            <span class="id_already">다른 회원이 사용중인 아이디 입니다.</span>
             <p th:if="${#fields.hasErrors('MId')}" th:errors="*{MId}" class="fieldError">Incorrect data</p>
         </div>
 
@@ -109,7 +135,7 @@
         <div class="form-group">
             <label th:for="name">이름<span class="ico">*</span></label>
             <input type="text" th:field="*{name}" class="form-control col-11" placeholder="이름을 입력해주세요">
-        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="fieldError">Incorrect data</p>
+        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" id="name1" class="fieldError">Incorrect data</p>
         </div>
         <div class="form-group">
             <label th:for="email">이메일주소<span class="ico">*</span></label>
@@ -122,26 +148,26 @@
             <label th:for="address" style="display:block">주소<span class="ico1">*</span></label>
 
             <div id="searchbox">
-            <input type="text" id="zipcode"
+            <input type="text" id="sample6_postcode"
                    th:field="*{address}" class="form-control col-7"
                    style="display:inherit" placeholder="우편번호"  size="10" readonly>
 
             <input type="button" value="우편번호찾기"
-                   onclick="kakaopost()" class="form-control col-4 "
+                   onclick="sample6_execDaumPostcode()" class="form-control col-4 "
                    style="display:inline; margin-left:-6px; margin-bottom:3px;">
             </div>
 
 
-            <input type="text" th:field="*{address}" id="address"
+            <input type="text" th:field="*{address}" id="sample6_address"
                    class="form-control col-11" placeholder="주소" readonly>
             <p th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="fieldError">Incorrect data</p>
 
             <div id="addressbox">
-            <input  id="addr"
+            <input  id="sample6_detailAddress"
                     type="text" class="form-control col-7" placeholder="상세주소를 입력해주세요"  style="display:inherit">
 
 
-            <input type="text" id="address2" class="form-control col-4" placeholder="세부주소"
+            <input type="text" id="sample6_extraAddress" class="form-control col-4" placeholder="세부주소"
                    style="display:inline; margin-left:-6px; margin-bottom:3px;" readonly>
             </div>
             <p th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="fieldError">Incorrect data</p>
@@ -156,83 +182,59 @@
         </div>
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
     </form>
+    </section>
 </div>
 
-<th:block layout:fragment="script">
+
+<th:block layout:fragment="script2">
     <script th:inline="javascript">
-<!--        var element_wrap = document.getElementById('wrap');-->
+    function sample6_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-<!--        function foldDaumPostcode() {-->
-<!--            element_wrap.style.display = 'none';-->
-<!--        }-->
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ''; // 주소 변수
+                var extraAddr = ''; // 참고항목 변수
 
-<!--        function execDaumPostcode() {-->
-<!--            var currentScroll = Math.max(document.body.scrollTop, document.documentElement.scrollTop);-->
-<!--            new daum.Postcode({-->
-<!--                oncomplete: function(data) {-->
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
 
-<!--                    var addr = '';-->
-<!--                    var extraAddr = '';-->
+                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                if(data.userSelectedType === 'R'){
+                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있고, 공동주택일 경우 추가한다.
+                    if(data.buildingName !== '' && data.apartment === 'Y'){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                    if(extraAddr !== ''){
+                        extraAddr = ' (' + extraAddr + ')';
+                    }
+                    // 조합된 참고항목을 해당 필드에 넣는다.
+                    document.getElementById("sample6_extraAddress").value = extraAddr;
 
-<!--                    if (data.userSelectedType === 'R') {-->
-<!--                        addr = data.roadAddress;-->
-<!--                    } else {-->
-<!--                        addr = data.jibunAddress;-->
-<!--                    }-->
+                } else {
+                    document.getElementById("sample6_extraAddress").value = '';
+                }
 
-<!--                    if(data.userSelectedType === 'R'){-->
-<!--                        if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){-->
-<!--                            extraAddr += data.bname;-->
-<!--                        }-->
-<!--                        if(data.buildingName !== '' && data.apartment === 'Y'){-->
-<!--                            extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);-->
-<!--                        }-->
-<!--                        if(extraAddr !== ''){-->
-<!--                            extraAddr = ' (' + extraAddr + ')';-->
-<!--                        }-->
-<!--                        document.getElementById("sample3_extraAddress").value = extraAddr;-->
-
-<!--                    } else {-->
-<!--                        document.getElementById("sample3_extraAddress").value = '';-->
-<!--                    }-->
-
-<!--                    document.getElementById('postcode').value = data.zonecode;-->
-<!--                    document.getElementById("address1").value = addr;-->
-<!--                    document.getElementById("detailAddress").focus();-->
-
-<!--                    element_wrap.style.display = 'none';-->
-
-<!--                    document.body.scrollTop = currentScroll;-->
-<!--                },-->
-<!--                onresize : function(size) {-->
-<!--                    element_wrap.style.height = size.height+'px';-->
-<!--                },-->
-<!--                width : '100%',-->
-<!--                height : '100%'-->
-<!--            }).embed(element_wrap);-->
-<!--            element_wrap.style.display = 'block';-->
-<!--        }-->
-
-
-<!--        api구동방식 원본-->
-<!--    document.getElementById('sample3_postcode').value = data.zonecode;-->
-<!--                document.getElementById("sample3_address").value = addr;-->
-<!--                // 커서를 상세주소 필드로 이동한다.-->
-<!--                document.getElementById("sample3_detailAddress").focus();-->
-
-
-
-      //우편번호찾기
-         function kakaopost() {
-            new daum.Postcode({
-              oncomplete: function(data) {
-                document.getElementById("zipcode").value = data.zonecode;
-                document.getElementById("address").value = data.address;
-                document.getElementById("address2").value = data.sido;
-              }
-            }).open();
-          }
-
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('sample6_postcode').value = data.zonecode;
+                document.getElementById("sample6_address").value = addr;
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("sample6_detailAddress").focus();
+            }
+        }).open();
+    }
 
     </script>
 </th:block>

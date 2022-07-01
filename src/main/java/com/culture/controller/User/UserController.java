@@ -8,32 +8,46 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import com.culture.entity.Member;
+import com.culture.repository.MemberRepository;
+import com.culture.repository.UserCheckRepository;
 import com.culture.service.MemberService;
+import com.culture.service.UserCheckService;
+import com.culture.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import com.culture.dto.MemberFormDto;
 import com.culture.dto.UserFormDto;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller(value = "UserController")
 @RequiredArgsConstructor
 @RequestMapping(value = "/users")
 public class UserController {
-	
+
+
+	@Autowired
+	private UserCheckService userCheckService;
+
+	// 아이디 체크
+	@PostMapping("/idCheck")
+	@ResponseBody
+	public int idCheck(@RequestParam("MId") String MId){
+//		System.out.println("MId = " + MId);
+		int cnt = userCheckService.idCheck(MId);
+		return cnt;
+	}
+
 	@GetMapping(value = "/login")
 	public String login() {
 		System.out.println("login controller");
 		return "thymeleaf/member/UsersLogin";
 	}
-	
 
 	@GetMapping(value = "/login/error")
 	public String login(@Valid MemberFormDto memberFormDto, BindingResult bindingResult, Model model) {

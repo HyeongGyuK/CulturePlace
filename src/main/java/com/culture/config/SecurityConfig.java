@@ -54,13 +54,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         /* 인증받지 못한 사용자가 접근 시도시 http 응답 코드 401울 보여 줍니다. */
         http.exceptionHandling().authenticationEntryPoint((AuthenticationEntryPoint) new CustomAuthenticationEntryPoint());
 
-        http.exceptionHandling()
-            .authenticationEntryPoint(new AuthenticationEntryPoint() {
-                @Override
-                public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
-                    httpServletResponse.sendRedirect("/accessDeny");
-                }
-            });
+//        http.exceptionHandling()
+//            .authenticationEntryPoint(new AuthenticationEntryPoint() {
+//                @Override
+//                public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
+//                    httpServletResponse.sendRedirect("/accessDeny");
+//                }
+//            });
     }
 
     @Override

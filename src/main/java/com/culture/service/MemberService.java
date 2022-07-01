@@ -31,7 +31,6 @@ public class MemberService implements UserDetailsService {
         Member findMember = memberRepository.findByMId(member.getMId());
         if(findMember != null){
             throw new IllegalStateException("이미 가입된 회원입니다.");
-            
         }
     }
 
@@ -49,9 +48,8 @@ public class MemberService implements UserDetailsService {
                 .build()
                 ;
     }
-
-
 }
+
 
 
 
