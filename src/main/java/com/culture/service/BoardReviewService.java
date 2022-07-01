@@ -72,7 +72,7 @@ public class BoardReviewService {
         return boardReviewRepository.getAdminBoardReviewPage(pageable);
     }
 
-    @Transactional(readOnly = true)
+   @Transactional(readOnly = true)
     public Page<BoardReviewMainDto> getMainBoardReviewPage(Pageable pageable){
         return boardReviewRepository.getMainBoardReviewPage(pageable);
     }

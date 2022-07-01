@@ -18,6 +18,11 @@
                     $(this).css({"background-color": "black", "color":"black", "border":"1px solid black});
                 });
             });*/
+
+            function page(page){
+	            location.href="/board/main"
+	            + page;
+	        }
     </script>
     </th:block>
 
@@ -78,20 +83,20 @@
     <div class="list-data" id="photobox">
         <ul class="ul02">
 
-            <th:block th:each="review, status: ${boardReview.getContent()}">
-            <li>
-                <div class="lidiv">
-                    <div class="image-div"> <!--이미지-->
-                        <a th:href="'/review/' +${review.bno}" class="text-dark aforimg">
-                            <img th:src="${review.imgUrl}" class="card-img-top" th:alt="${review.imgUrl}"></a>
+            <th:block th:each="review, status: ${boardReviewDto.getContent()}">
+                <li>
+                    <div class="lidiv">
+                        <div class="image-div"> <!--이미지-->
+                            <a th:href="'/review/' +${review.bno}" class="text-dark aforimg">
+                                <img th:src="${review.imgUrl}" class="card-img-top" th:alt="${review.imgUrl}"></a>
+                        </div>
                     </div>
-                </div>
 
-                <div style="float: left;"> <!--제목-->
-                    <h6><a href="'/review/' +${review.bno}">[[${review.b_title}]]</a></h6>
-                </div>
+                    <div style="float: left;"> <!--제목-->
+                        <h6><a href="'/review/' +${review.bno}">[[${review.b_title}]]</a></h6>
+                    </div>
 
-            </li>
+                </li>
             </th:block>
 
         </ul>
@@ -100,10 +105,39 @@
 
     <div id="btnBox">
         <sec:authorize access="hasAnyRole('USER', 'ADMIN')">
-        <a href="/board/insert/new"
-           class="btn btn-primary pull-right"
-           style="background-color: #FFFFFF; color: black; border: 1px solid black; box-sizing: border-box; font-size:18px; margin-top:-50px;"><b>글쓰기</b></a>
+            <a href="/board/insert/new"
+               class="btn btn-primary pull-right"
+               style="background-color: #FFFFFF; color: black; border: 1px solid black; box-sizing: border-box; font-size:18px; margin-top:-50px;"><b>글쓰기</b></a>
         </sec:authorize>
+    </div>
+
+    <div th:with="start=${(reviewLists.number/maxPage)*maxPage + 1}, end=(${(reviewLists.totalPages == 0) ? 1 : (start + (maxPage - 1) < reviewLists.totalPages ? start + (maxPage - 1) : reviewLists.totalPages)})">
+        <div colspan="10" align="center">
+            <div>
+                <ul class="pagination justify-content-center" style="cursor:pointer; ">
+                    <li class="page-item" th:classappend="${reviewLists.first}?'disabled'">
+                        <a th:onclick="'javascript:page(' + ${reviewLists.number - 1} + ')'"
+                           aria-label='Previous' class="page-link">
+                            <span aria-hidden='true'>Previous</span>
+                        </a>
+                    </li>
+
+                    <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}"
+                        th:classappend="${reviewLists.number eq page-1}?'active':''">
+                        <a th:onclick="'javascript:page(' + ${page - 1} + ')'" th:inline="text"
+                           class="page-link">[[${page}]]</a>
+                    </li>
+
+                    <li class="page-item" th:classappend="${reviewLists.last}?'disabled'">
+                        <a th:onclick="'javascript:page(' + ${reviewLists.number + 1} + ')'"
+                           aria-label='Next' class="page-link">
+                            <span aria-hidden='true'>Next</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
 </body>
