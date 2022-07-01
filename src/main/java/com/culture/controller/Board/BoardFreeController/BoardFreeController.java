@@ -71,7 +71,7 @@ public class BoardFreeController {
 	// CommunityMain의 전체  글 목록 출력
 	@GetMapping(value = {"/CommunityMain", "/CommunityMain/{page}"})
 	public String boardMain(BoardFreeSearchDto boardFreeSearchDto,
-							@PathVariable("page") Optional<Integer> page,
+							@PathVariable("page")Optional<Integer> page,
 							Model model) {
 
 		Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 10);
