@@ -251,9 +251,6 @@
             border-radius: 100%;
         }
 
-        .df-messenger-wrapper{
-            display:none;
-        }
         .btn_gotop:hover .glyphicon {
             color: white;
         }

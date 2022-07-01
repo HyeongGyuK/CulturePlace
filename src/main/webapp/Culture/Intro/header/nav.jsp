@@ -32,18 +32,12 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <script src="/CulturePlace/Intro/nav.js"></script> <!-- 자바스크립트 -->
 
    
-   
+
     <style type="text/css">
-        .btn_gotop{
-            position: fixed;
-            bottom: 24px;
-            right: 83px;
-        }
-        .df-messenger-wrapper{
-            display:none;
-        }
+
+
     </style>
-    
+
     <script type="text/javascript">
 
     </script>
