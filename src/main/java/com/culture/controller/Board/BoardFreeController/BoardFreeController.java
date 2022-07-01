@@ -43,6 +43,7 @@ public class BoardFreeController {
 							 BindingResult bindingResult,
 							 Model model) {
 
+
 		if(bindingResult.hasErrors()) {
 			List<FieldError> list = bindingResult.getFieldErrors();
 			Map<String, String> errorMsg = new HashMap<>();
@@ -59,6 +60,7 @@ public class BoardFreeController {
 		}
 
 		try {
+
 			boardFreeService.savedBoardFreeWrite(boardFreeWriteDto);
 		}catch (Exception e) {
 			model.addAttribute("errorMessage", "게시물 등록중 오류가 발생하였습니다.");
@@ -100,11 +102,18 @@ public class BoardFreeController {
 	@GetMapping(value = "/CommunityMain/board_free_detail/{board_no}")
 	public String boardFreeDetail(@PathVariable("board_no") Long board_no, Model model, Principal principal) {
 		BoardFreeDto boardFreeDto = boardFreeService.getBoardDetail(board_no);
+		
+		String userId = principal.getName();
 
+		// 조회수 증가
+		if(!userId.equals(boardFreeDto.getBoard_writer())){
+			model.addAttribute("reahitPlus", boardFreeService.updateBoardFreeReadHit(board_no));
+		}
+
+		// Principal = 로그인한 사용자의 정보
 		if(principal == null){
 			model.addAttribute("boardFree", boardFreeDto);
 		}else{
-			String userId = principal.getName();
 			model.addAttribute("userId", userId);
 			model.addAttribute("boardFree", boardFreeDto);
 		}

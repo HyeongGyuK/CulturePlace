@@ -57,8 +57,10 @@ public class BoardFreeService {
 		boardFreeRepository.deleteById(board_no);
 	}
 
+	// 조회수 증가
 	@Transactional
 	public int updateBoardFreeReadHit(Long board_no){
 		return boardFreeRepository.updateBoardFreeReadHit(board_no);
 	}
+
 }

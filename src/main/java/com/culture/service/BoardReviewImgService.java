@@ -19,7 +19,7 @@ public class BoardReviewImgService {
     private final BoardReviewImgRepository boardReviewImgRepository;
     private final FileService fileService;
 
-    private String savedImagePath = "/images/boardReview/";
+    private String savedImagePath = "/images/review/";
 
     public void saveBoardReviewImg(BoardReviewImg boardReviewImg, MultipartFile boardReviewImgFile) throws Exception{
         String oriImgName = boardReviewImgFile.getOriginalFilename();

@@ -17,7 +17,7 @@ public class BoardReviewDto {
 	
 	private Long bno;
 	
-	private String b_writer;
+	private String create_by;
 
 	private CategoryStatus categoryStatus ;
 	
