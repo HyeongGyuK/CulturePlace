@@ -240,8 +240,8 @@
         .btn_gotop {
             /*	display: none;*/
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 24px;
+            right: 83px;
             z-index: 999;
             border: 1px solid #ccc;
             outline: none;
@@ -290,24 +290,4 @@
             box-sizing: content-box;
         }
 */
-        .chat-bot{
-            display: none;
-            position: fixed;
-            right: 25px;
-            bottom: 140px;
-            z-index: 99999;
-        }
-
-        .category_box a {
-            text-decoration: none;
-            width: 100%;
-            color:black;
-        }
-
-        .category_box h3 {
-            margin:0;
-        }
-
-        .chat_space{
-            background:black;
-        }
+       

@@ -40,8 +40,9 @@
 	            var searchBy = $("#searchBy").val();
 	            var searchQuery = $("#searchQuery").val();
 
-	            location.href="/BoardFree/board_free_main/boardFree/" + page +
-	            + "&searchBy=" + searchBy
+	            location.href="/CommunityMain/"
+	            + page
+	            + "?searchBy=" + searchBy
 	            + "&searchQuery=" + searchQuery;
 	        }
         </script>
@@ -184,10 +185,13 @@
                     </tr>
                     </tbody>
 
+
                     <tfoot th:with="start=${(boardFreeLists.number/maxPage)*maxPage + 1}, end=(${(boardFreeLists.totalPages == 0) ? 1 : (start + (maxPage - 1) < boardFreeLists.totalPages ? start + (maxPage - 1) : boardFreeLists.totalPages)})">
                     <td colspan="10" align="center">
+
+                        <a href="/CommunityMain/board_free_write" class="btn btn-primary pull-right" id="board_write"><b>글쓰기</b></a>
+
                         <div>
-                            <a href="/CommunityMain/board_free_write" class="btn btn-primary pull-right" id="board_write"><b>글쓰기</b></a>
 
                             <ul class="pagination justify-content-center" style="cursor:pointer; ">
                                 <li class="page-item" th:classappend="${boardFreeLists.first}?'disabled'">
@@ -215,15 +219,14 @@
                         <div class="form-inline justify-content-center" th:object="${boardFreeSearchDto}">
                             <div class="form-group">
                                 <select class="form-control btn-xs" th:field="*{searchBy}">
-                                    <option value="all">전체 검색
+                                    <option value="">전체 검색
                                     <option value="board_title">제목
                                     <option value="board_writer">작성자
                                 </select>
                             </div>
 
                             <div class="form-group">
-                                <input th:field="*{searchQuery}" type="text"
-                                       class="form-control btn-xs" placeholder="검색 키워드 입력">
+                                <input th:field="*{searchQuery}" type="text" class="form-control btn-xs" placeholder="검색 키워드 입력">
                             </div>
                             <button id="searchBtn" class="btn btn-default" type="submit">검색</button>
                             <button class="btn btn-default" type="button" onclick="searchAll();">전체 검색</button>

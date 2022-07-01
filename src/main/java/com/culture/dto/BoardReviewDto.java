@@ -3,8 +3,10 @@ package com.culture.dto;
 import javax.validation.constraints.NotBlank;
 
 import com.culture.constant.CategoryStatus;
+import com.culture.entity.BoardReview;
 import lombok.Getter;
 import lombok.Setter;
+import org.modelmapper.ModelMapper;
 
 import java.time.LocalDateTime;
 
@@ -25,4 +27,9 @@ public class BoardReviewDto {
 
 	private Integer b_readhit;
 
+	private static ModelMapper modelMapper = new ModelMapper();
+
+	public static BoardReviewDto of(BoardReview boardReview){
+		return modelMapper.map(boardReview, BoardReviewDto.class);
+	}
 }

@@ -19,6 +19,13 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <link th:href="@{/CulturePlace/Intro/nav.css}" rel="stylesheet">
+  <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+  <df-messenger
+          intent="WELCOME"
+          chat-title="1조파이팅"
+          agent-id="c65ff504-e4cb-47e8-9743-18c5d9c4bb2d"
+          language-code="ko"
+  ></df-messenger>
   <script type="text/javascript" th:src="@{/CulturePlace/Intro/nav.js}" defer></script>
   <th:block layout:fragment="script"></th:block>
   <th:block layout:fragment="css"></th:block>
