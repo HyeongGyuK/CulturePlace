@@ -38,8 +38,21 @@ public class NoticeService {
         return noticeDto;
     }
 
+    public Long noticeUpdate(NoticeWriteDto noticeWriteDto) throws Exception{
+        Notice notice = noticeRepository.findById(noticeWriteDto.getNotice_no())
+                .orElseThrow(EntityNotFoundException::new);
+        notice.updateNotice(noticeWriteDto);
+
+        return notice.getNotice_no();
+    }
+
+    public void noticeDelete(Long notice_no) {
+        noticeRepository.deleteById(notice_no);
+    }
+
     // 조회수 증가
-    public int updatenoticeReadHit(Long notice_no) {
+    @Transactional
+    public int updateNoticeReadHit(Long notice_no) {
         return noticeRepository.updateNoticeReadHit(notice_no);
     }
 }

@@ -125,21 +125,17 @@ public class BoardFreeController {
 		return "thymeleaf/Board/BoardFree/board_free_detail";
 	}
 
-	// 게시판 수정 폼으로 가기
+	// 게시판 수정 폼
 	@GetMapping(value = "/CommunityMain/board_free_update")
 	public String boardUpdateForm(@RequestParam(value = "board_no", required = false) Long board_no, Model model) {
-
-
-		boardFreeService.updateBoardFreeReadHit(board_no); // board_readhit ++
 
 		try{
 			BoardFreeDto boardFreeDto = boardFreeService.getBoardDetail(board_no);
 			model.addAttribute("boardFree", boardFreeDto);
 		}catch (EntityNotFoundException e){
 			model.addAttribute("errorMessage", "존재하지 않는 게시물입니다.");
-			model.addAttribute("boardFreeDto", new BoardFreeDto());
+			model.addAttribute("boardFree", new BoardFreeDto());
 		}
-
 
 		return "thymeleaf/Board/BoardFree/board_free_update";
 	}

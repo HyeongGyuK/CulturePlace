@@ -49,7 +49,7 @@
 
 		function deleteFunction(notice_no){
 			var text = "게시글을 삭제하시겠습니까?";
-			var uri = [[@{/CommunityMain/notice_detail}]]
+			var uri = [[@{/admin/CommunityMain/notice_delete}]]
             var html = "";
 			if(confirm(text) == true){
 			    html += '<form name="deleteForm" action="'+uri+'" method="get">';
@@ -65,7 +65,7 @@
 
 		function updateFunction(notice_no){
 			var text = "게시글을 수정하시겠습니까?";
-            var uri = [[@{/CommunityMain/notice_free_update}]]
+            var uri = [[@{/admin/CommunityMain/notice_update}]]
             var html = "";
 			if(confirm(text) == true){
                 html += '<form name="updateForm" action="'+uri+'" method="get">';
@@ -140,7 +140,7 @@
 <body>
 <div layout:fragment="content">
 
-    <input type="hidden" id="notice" th:value="${noticeDto.notice_no}">
+    <input type="hidden" id="noticeDto" th:value="${noticeDto.notice_no}">
     <input type="hidden" id="userId" th:value="${userId}">
 
     <div id="template">
