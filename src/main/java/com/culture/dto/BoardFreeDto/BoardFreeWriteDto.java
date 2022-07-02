@@ -8,7 +8,6 @@ import org.modelmapper.ModelMapper;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Getter @Setter
@@ -26,7 +25,6 @@ public class BoardFreeWriteDto {
     private String board_content;
 
     private LocalDateTime board_regdate;
-    private Integer board_readhit;
 
     private static ModelMapper modelMapper = new ModelMapper();
 

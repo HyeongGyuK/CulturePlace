@@ -20,7 +20,7 @@ import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
-public class BoardFreeNoticeController {
+public class NoticeController {
 
     private final NoticeService noticeService;
 

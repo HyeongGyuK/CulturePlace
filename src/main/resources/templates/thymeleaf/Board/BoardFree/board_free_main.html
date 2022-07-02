@@ -55,7 +55,7 @@
 	        }
 
 	        function pageOfNotice(pageOfNotice){
-	            location.href="/board/main"
+	            location.href="/CommunityMain/notice/"
 	            + pageOfNotice;
 	        }
 
@@ -178,8 +178,8 @@
 
                         <tr class="noticeList" id="notice" th:each="noticeDto, status: ${noticeDto.getContent()}">
                             <td th:text="${noticeDto.notice_no}"></td>
-                            <td th:href="'/CommunityMain/notice_detail/' + ${noticeDto.notice_no}"
-                                th:text="${noticeDto.notice_title}"></td>
+                            <td><a th:href="'/CommunityMain/notice_detail/' + ${noticeDto.notice_no}"
+                                th:text="${noticeDto.notice_title}"></a></td>
                             <td th:text="${noticeDto.notice_writer}">관리자</td>
                             <td th:text="${noticeDto.notice_regdate}">2022-05-21</td>
                         </tr>

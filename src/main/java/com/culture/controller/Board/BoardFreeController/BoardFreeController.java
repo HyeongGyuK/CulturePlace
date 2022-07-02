@@ -76,7 +76,7 @@ public class BoardFreeController {
 	}
 
 	// CommunityMain의 전체  글 목록 출력
-	@GetMapping(value = {"/CommunityMain", "/CommunityMain/{page}", "/CommunityMain/{pageOfNotice}"})
+	@GetMapping(value = {"/CommunityMain", "/CommunityMain/{page}", "/CommunityMain/notice/{pageOfNotice}"})
 	public String boardMain(BoardFreeSearchDto boardFreeSearchDto,
 							@PathVariable("page")Optional<Integer> page,
 							@PathVariable("pageOfNotice")Optional<Integer> pageOfNotice,
@@ -92,7 +92,7 @@ public class BoardFreeController {
 		model.addAttribute("maxPage", 5);
 
 		// 공지사항 페이징 및 리스트 출력
-		Pageable NoticePageable = PageRequest.of(pageOfNotice.isPresent() ? page.get() : 0, 3);
+		Pageable NoticePageable = PageRequest.of(pageOfNotice.isPresent() ? pageOfNotice.get() : 0, 3);
 
 		Page<Notice> noticeDto = noticeService.getNoticePage(NoticePageable);
 

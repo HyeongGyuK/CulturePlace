@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{thymeleaf/layouts/cultureLayout}" xmlns="http://www.w3.org/1999/html">
+      layout:decorate="~{thymeleaf/layouts/cultureLayout}">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Insert title here</title>
@@ -110,7 +110,7 @@
             width:100%;
         }
 
-        #board{
+        #boardColumn{
             border-collapse: collapse; width:100%;
         }
 
@@ -149,13 +149,13 @@
                     자유 게시판
                 </h2>
             </div>
-            <table id="board">
+            <table id="boardColumn">
                 <tr id="boardDateReadHit">
                     <td style="width: 60%"></td>
                     <td style="width: 10%; text-align: center;">작성일자</td>
                     <td style="width: 10%; text-align: center;" th:text="${boardFree.board_regdate}"></td>
                     <td style="width: 10%; text-align: center;">조회수</td>
-                    <td style="width: 10%; text-align: center;" th:text="${boardFree.board_readhit}">100000</td>
+                    <td style="width: 10%; text-align: center;" th:text="${boardFree.board_readhit}"></td>
                 </tr>
             </table>
             <ul id="boardDetailInfo">
