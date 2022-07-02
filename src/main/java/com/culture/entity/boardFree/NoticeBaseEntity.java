@@ -3,20 +3,20 @@ package com.culture.entity.boardFree;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Column;
-import javax.persistence.EntityListeners;
-import javax.persistence.JoinColumn;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Getter @Setter @ToString
 @EntityListeners(value = {AuditingEntityListener.class})
 @MappedSuperclass
-public class NoticeBaseEntity {
+public abstract class NoticeBaseEntity {
+
+    @CreatedBy
     @JoinColumn(name = "MId")
     private String notice_writer;
 

@@ -10,11 +10,6 @@
     <th:block layout:fragment="script">
         <script type="text/javascript">
             $(document).ready(function(){
-                $('#board_submit').click(function(){
-                    if($('#board_title').val() == '' || $('#board_content').val() == ''){
-                        alert('입력이 안된 사항이 있습니다.');
-                    }
-                });
 
                 $('#board_submit').hover(function(){
                     $(this).css({"background-color":"rgb(104, 105, 172, 0.3)"});

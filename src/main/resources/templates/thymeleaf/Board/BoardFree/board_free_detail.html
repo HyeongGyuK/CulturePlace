@@ -9,13 +9,6 @@
     <th:block layout:fragment="script">
         <script th:inline="javascript">
 		$(document).ready(function(){
-			// 로그인 구현 해야함.
-			/*$('#board_write').click(function(){
-				if(${whologin == 0}){
-					alert('로그인 하셔야 게시글 작성이 가능합니다.');
-					$("#board_write").attr("href", "meLogin");
-				}
-			});*/
 
 			$('#boardDeleteBtn').hover(function(){
 				$(this).css({"background-color":"rgb(104, 105, 172, 0.3)"});
@@ -180,7 +173,7 @@
                 </tr>
 
                 <th:choose>
-                    <th:if test="${empty requestScope.commentLists }">
+                    <th:if test="${empty requestScope.commentLists}">
                         <tr>
                             <td colspan="3"><p>댓글이 없습니다.</p></td>
                         </tr>

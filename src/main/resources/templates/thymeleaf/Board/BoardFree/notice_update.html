@@ -10,11 +10,6 @@
     <th:block layout:fragment="script">
         <script type="text/javascript">
             $(document).ready(function(){
-                $('#notice_submit').click(function(){
-                    if($('#notice_title').val() == '' || $('#notice_content').val() == ''){
-                        alert('입력이 안된 사항이 있습니다.');
-                    }
-                });
 
                 $('#notice_submit').hover(function(){
                     $(this).css({"background-color":"rgb(104, 105, 172, 0.3)"});

@@ -12,8 +12,8 @@ import javax.persistence.*;
 @Getter @Setter
 @ToString
 public class Notice extends NoticeBaseEntity{
+
     @Id
-    @Column(name = "notice_no")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long notice_no;
 
