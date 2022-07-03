@@ -41,12 +41,12 @@ public class BoardFreeRepositoryImpl implements BoardFreeRepositoryCustom{
 	}
 
 	private BooleanExpression board_writerLike(String searchQuery) {
-			return StringUtils.isEmpty(searchQuery) ? null : QBoardFree.boardFree.board_writer.like("%" + searchQuery + "%");
+			return StringUtils.isEmpty(searchQuery) ? null : QBoardFree.boardFree.board_writer.MId.like("%" + searchQuery + "%");
 	}
 
 	private BooleanExpression searchByLike(String searchBy, String searchQuery) {
 		if(StringUtils.equals("board_writer", searchBy)) {
-			return QBoardFree.boardFree.board_writer.like("%" + searchQuery + "%");
+			return QBoardFree.boardFree.board_writer.MId.like("%" + searchQuery + "%");
 		}else if(StringUtils.equals("board_title", searchBy)){
 			return QBoardFree.boardFree.board_title.like("%" + searchQuery + "%");
 		}
