@@ -44,7 +44,7 @@ public class BoardFreeRepositoryImpl implements BoardFreeRepositoryCustom{
 			return StringUtils.isEmpty(searchQuery) ? null : QBoardFree.boardFree.board_writer.MId.like("%" + searchQuery + "%");
 	}
 
-	// 권순헌 테스트
+	// 권순헌 테스트 권순헌 테스트 답장
 
 	private BooleanExpression searchByLike(String searchBy, String searchQuery) {
 		if(StringUtils.equals("board_writer", searchBy)) {
