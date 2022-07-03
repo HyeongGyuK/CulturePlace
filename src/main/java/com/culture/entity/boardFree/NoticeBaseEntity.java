@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 public abstract class NoticeBaseEntity {
 
     @CreatedBy
-    @JoinColumn(name = "MId")
+    @JoinColumn(name = "notice_writer", referencedColumnName = "MId")
     private String notice_writer;
 
     @CreatedDate

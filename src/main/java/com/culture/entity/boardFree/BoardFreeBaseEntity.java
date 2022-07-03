@@ -1,24 +1,22 @@
 package com.culture.entity.boardFree;
 
-import com.culture.entity.Member;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Getter @Setter @ToString
 @EntityListeners(value = {AuditingEntityListener.class})
 @MappedSuperclass
-public abstract class BoardFreeBaseEntity extends BoardFreeBaseTimeEntity{
+public abstract class BoardFreeBaseEntity extends BoardFreeBaseTimeEntity implements Serializable {
 
     // 생성한 사람
+//    @ManyToOne(fetch = FetchType.LAZY)
     @CreatedBy
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Member.class) // fk
-    @JoinColumn(name = "MId")
+    @JoinColumn(name = "member_id", referencedColumnName = "MId")
     private String board_writer; // 작성자
 
     // 수정자

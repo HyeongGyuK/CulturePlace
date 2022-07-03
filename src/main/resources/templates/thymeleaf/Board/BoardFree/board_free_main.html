@@ -130,6 +130,12 @@
                 border: 1px solid #6667AB;
             }
 
+            #noticeWriteBtn{
+                background-color:#FFFFFF; color: #6667AB;
+                box-sizing:border-box; margin-top: 10px; float:right;
+                border: 1px solid #6667AB;
+            }
+
             .boardList :nth-child(2), .noticeList :nth-child(2){text-align: left;}
             .boardList a, .noticeList a{color:black;}
 
@@ -159,8 +165,8 @@
                   role="form" method="get">
 
                 <div id="noticeTitle">공지사항
-                        <button id="noticeWriteBtn" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"
-                                href="/admin/CommunityMain/notice_write">공지사항 글쓰기</button>
+                        <a id="noticeWriteBtn" class="btn btn-primary pull-right" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"
+                                href="/admin/CommunityMain/notice_write">공지사항 글쓰기</a>
                 </div>
                 <table style="width:100%;" th:object="${noticeDto}">
                         <tr id="noticeColumn">

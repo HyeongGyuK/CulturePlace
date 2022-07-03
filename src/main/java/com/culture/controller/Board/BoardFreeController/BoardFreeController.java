@@ -1,8 +1,6 @@
 package com.culture.controller.Board.BoardFreeController;
 
-import com.culture.dto.BoardFreeDto.BoardFreeDto;
-import com.culture.dto.BoardFreeDto.BoardFreeSearchDto;
-import com.culture.dto.BoardFreeDto.BoardFreeWriteDto;
+import com.culture.dto.BoardFreeDto.*;
 import com.culture.entity.boardFree.BoardFree;
 import com.culture.entity.boardFree.Notice;
 import com.culture.service.BoardFreeService;
@@ -104,7 +102,10 @@ public class BoardFreeController {
 
 	// 게시판 상세 정보 a th:href="'/CommunityMain/board_free_detail/' + ${boardFree.board_no}"
 	@GetMapping(value = "/CommunityMain/board_free_detail/{board_no}")
-	public String boardFreeDetail(@PathVariable("board_no") Long board_no, Model model, Principal principal) {
+	public String boardFreeDetail(@PathVariable("board_no") Long board_no,
+								  Model model, Principal principal,
+								  BoardFreeReplyWriteDto boardFreeReplyWriteDto) {
+
 		BoardFreeDto boardFreeDto = boardFreeService.getBoardDetail(board_no);
 
 		String userId = principal.getName();
@@ -121,6 +122,9 @@ public class BoardFreeController {
 			model.addAttribute("userId", userId);
 			model.addAttribute("boardFree", boardFreeDto);
 		}
+
+		// 댓글 작성을 위한 구문
+		model.addAttribute("noticeWriteDto", new BoardFreeReplyDto());
 
 		return "thymeleaf/Board/BoardFree/board_free_detail";
 	}

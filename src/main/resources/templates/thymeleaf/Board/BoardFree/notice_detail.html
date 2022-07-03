@@ -166,52 +166,8 @@
                 </tbody>
             </table>
 
-            <table class="table table-striped" id="comment_table">
-                <tr>
-                    <td rowspan="1" colspan="4">
-                        댓글
-                    </td>
-                </tr>
-
-                <th:choose>
-                    <th:if test="${empty requestScope.commentLists }">
-                        <tr>
-                            <td colspan="3"><p>댓글이 없습니다.</p></td>
-                        </tr>
-                    </th:if>
-                    <th:otherwise>
-                        <th:each var="comment_bean" items="${requestScope.commentLists }">
-                            <tr>
-                                <td width="10%">${comment_bean.nickname }</td>
-                                <td width="70%"><p id="comment_p">${comment_bean.fComment }</p></td>
-                                <td width="15%">${comment_bean.regDate }</td>
-                                <th:if test="${sessionScope.loginfo.nickname == comment_bean.nickname }">
-                                    <td width="5%" ><a href="#" class="deleteComment" style="display: block" onclick="deleteCommentFunction(${comment_bean.commentNum})">삭제</a></td>
-                                </th:if>
-                                <th:unless test="${sessionScope.loginfo.nickname != comment_bean.nickname }">
-                                    <td width="5%" ><a href="#" class="deleteComment" style="display: none">삭제</a></td>
-                                </th:unless>
-                            </tr>
-                        </th:each>
-                    </th:otherwise>
-
-                </th:choose>
-            </table>
-
             <td colspan="10" align="center">
-                <form action="" method="post" id="commentForm" onsubmit="return false">
-                    <p>댓글작성</p>
-                    <div class="form-group">
-                        <textarea style="width:93%" rows="2" id="comment_area" name="member_comment"
-                                  placeholder="댓글을 작성해주세요"></textarea>
-                        <input type="hidden" id="notice_nickname" name="nickname" value=${sessionScope.loginfo.nickname }>
-                        <input type="hidden" id="notice_num" name="noticeNum" value=${bean.noticeNum }>
-                        <button type="submit" class="btn btn-primary pull-right" id="comment_submit"
-                                style="background-color:#FFFFFF; color: #6667AB; border: 1px solid #6667AB">댓글달기
-                        </button>
-                    </div>
-                </form>
-                <br/>
+
                 <button sec:authorize="hasAnyAuthority('ROLE_ADMIN')" class="btn btn-primary pull-right" id="noticeDeleteBtn"
                         style="background-color:#FFFFFF; color: #6667AB; border: 1px solid #6667AB; box-sizing:border-box; margin-top: 10px;" th:onclick="deleteFunction([[${noticeDto.notice_no}]])"><b>삭제</b>
                 </button>

@@ -37,6 +37,11 @@
             $("#boardBackBtn").click(function(){
                 history.go(-1)();
             });
+
+            var errorMessage = [[${errorMessage}]];
+            if(errorMessage != null){
+                alert(errorMessage);
+            }
 		});
 
 		function deleteFunction(board_no){
@@ -172,29 +177,29 @@
                     </td>
                 </tr>
 
-                <th:choose>
-                    <th:if test="${empty requestScope.commentLists}">
-                        <tr>
-                            <td colspan="3"><p>댓글이 없습니다.</p></td>
-                        </tr>
-                    </th:if>
-                    <th:otherwise>
-                        <th:each var="comment_bean" items="${requestScope.commentLists }">
-                            <tr>
-                                <td width="10%">${comment_bean.nickname }</td>
-                                <td width="70%"><p id="comment_p">${comment_bean.fComment }</p></td>
-                                <td width="15%">${comment_bean.regDate }</td>
-                                <th:if test="${sessionScope.loginfo.nickname == comment_bean.nickname }">
-                                    <td width="5%" ><a href="#" class="deleteComment" style="display: block" onclick="deleteCommentFunction(${comment_bean.commentNum})">삭제</a></td>
-                                </th:if>
-                                <th:unless test="${sessionScope.loginfo.nickname != comment_bean.nickname }">
-                                    <td width="5%" ><a href="#" class="deleteComment" style="display: none">삭제</a></td>
-                                </th:unless>
-                            </tr>
-                        </th:each>
-                    </th:otherwise>
+<!--                <th:choose>-->
+<!--                    <th:if test="${empty requestScope.commentLists}">-->
+<!--                        <tr>-->
+<!--                            <td colspan="3"><p>댓글이 없습니다.</p></td>-->
+<!--                        </tr>-->
+<!--                    </th:if>-->
+<!--                    <th:otherwise>-->
+<!--                        <th:each var="comment_bean" items="${requestScope.commentLists }">-->
+<!--                            <tr>-->
+<!--                                <td width="10%">${comment_bean.nickname }</td>-->
+<!--                                <td width="70%"><p id="comment_p">${comment_bean.fComment }</p></td>-->
+<!--                                <td width="15%">${comment_bean.regDate }</td>-->
+<!--                                <th:if test="${sessionScope.loginfo.nickname == comment_bean.nickname }">-->
+<!--                                    <td width="5%" ><a href="#" class="deleteComment" style="display: block" onclick="deleteCommentFunction(${comment_bean.commentNum})">삭제</a></td>-->
+<!--                                </th:if>-->
+<!--                                <th:unless test="${sessionScope.loginfo.nickname != comment_bean.nickname }">-->
+<!--                                    <td width="5%" ><a href="#" class="deleteComment" style="display: none">삭제</a></td>-->
+<!--                                </th:unless>-->
+<!--                            </tr>-->
+<!--                        </th:each>-->
+<!--                    </th:otherwise>-->
 
-                </th:choose>
+<!--                </th:choose>-->
             </table>
 
             <td colspan="10" align="center">

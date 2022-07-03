@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Entity
 public class BoardFreeReply extends BoardFreeReplyBaseEntity{
 
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = BoardFree.class) // fk
+//    @ManyToOne(fetch = FetchType.LAZY, targetEntity = BoardFree.class) // fk
     @JoinColumn(name = "board_no")
     private Long bNo;
 

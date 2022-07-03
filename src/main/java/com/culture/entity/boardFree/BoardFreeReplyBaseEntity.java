@@ -1,6 +1,5 @@
 package com.culture.entity.boardFree;
 
-import com.culture.entity.Member;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -8,7 +7,10 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.EntityListeners;
+import javax.persistence.JoinColumn;
+import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
 @Getter @Setter @ToString
@@ -16,9 +18,9 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 public abstract class BoardFreeReplyBaseEntity {
 
+//    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Member.class) // fk
     @CreatedBy
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Member.class) // fk
-    @JoinColumn(name = "MId")
+    @JoinColumn(name = "reply_writer", referencedColumnName = "MId")
     private String reply_writer;
 
     @CreatedDate
