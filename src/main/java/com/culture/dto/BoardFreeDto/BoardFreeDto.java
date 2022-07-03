@@ -11,6 +11,7 @@ public class BoardFreeDto {
 	private String board_writer;
 	private String board_title;
 	private String board_content;
+	private int board_readhit;
 	private LocalDateTime board_regdate;
-	private Integer board_readhit;
+	private LocalDateTime board_updateTime;
 }

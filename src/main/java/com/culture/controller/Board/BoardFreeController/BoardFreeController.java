@@ -76,7 +76,7 @@ public class BoardFreeController {
 	}
 
 	// CommunityMain의 전체  글 목록 출력
-	@GetMapping(value = {"/CommunityMain", "/CommunityMain/{page}", "/CommunityMain/{pageOfNotice}"})
+	@GetMapping(value = {"/CommunityMain", "/CommunityMain/{page}", "/CommunityMain/notice/{pageOfNotice}"})
 	public String boardMain(BoardFreeSearchDto boardFreeSearchDto,
 							@PathVariable("page")Optional<Integer> page,
 							@PathVariable("pageOfNotice")Optional<Integer> pageOfNotice,
@@ -92,7 +92,7 @@ public class BoardFreeController {
 		model.addAttribute("maxPage", 5);
 
 		// 공지사항 페이징 및 리스트 출력
-		Pageable NoticePageable = PageRequest.of(pageOfNotice.isPresent() ? page.get() : 0, 3);
+		Pageable NoticePageable = PageRequest.of(pageOfNotice.isPresent() ? pageOfNotice.get() : 0, 3);
 
 		Page<Notice> noticeDto = noticeService.getNoticePage(NoticePageable);
 
@@ -125,21 +125,17 @@ public class BoardFreeController {
 		return "thymeleaf/Board/BoardFree/board_free_detail";
 	}
 
-	// 게시판 수정 폼으로 가기
+	// 게시판 수정 폼
 	@GetMapping(value = "/CommunityMain/board_free_update")
 	public String boardUpdateForm(@RequestParam(value = "board_no", required = false) Long board_no, Model model) {
-
-
-		boardFreeService.updateBoardFreeReadHit(board_no); // board_readhit ++
 
 		try{
 			BoardFreeDto boardFreeDto = boardFreeService.getBoardDetail(board_no);
 			model.addAttribute("boardFree", boardFreeDto);
 		}catch (EntityNotFoundException e){
 			model.addAttribute("errorMessage", "존재하지 않는 게시물입니다.");
-			model.addAttribute("boardFreeDto", new BoardFreeDto());
+			model.addAttribute("boardFree", new BoardFreeDto());
 		}
-
 
 		return "thymeleaf/Board/BoardFree/board_free_update";
 	}

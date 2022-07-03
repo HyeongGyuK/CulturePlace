@@ -2,7 +2,6 @@ package com.culture.dto;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
@@ -29,5 +28,7 @@ public class MemberFormDto {
 	@NotEmpty(message = "주소는 필수 입력 값입니다.")
 	private String address;
 	private String address2;
+	private String zonecode;
+	private String detailAddress;
 
 }

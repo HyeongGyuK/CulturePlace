@@ -62,5 +62,4 @@ public class BoardFreeService {
 	public int updateBoardFreeReadHit(Long board_no){
 		return boardFreeRepository.updateBoardFreeReadHit(board_no);
 	}
-
 }

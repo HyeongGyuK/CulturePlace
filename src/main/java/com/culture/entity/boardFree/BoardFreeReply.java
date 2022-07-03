@@ -1,18 +1,26 @@
-package com.culture.entity.boardFree;//package com.culture.entity;
-//
-//import lombok.Getter;
-//import lombok.Setter;
-//import lombok.ToString;
-//
-//import javax.persistence.Entity;
-//import javax.persistence.Table;
-//
-//// 테이블 만들어야합니다.
-//@Entity
-//@Getter @Setter
-//@ToString
-//public class BoardFreeReply {
-//    private String reply_writer;
-//    private String reply_content;
-//
-//}
+package com.culture.entity.boardFree;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+import javax.persistence.*;
+
+@Getter @Setter
+@ToString
+@Table(name = "boardFreeReply")
+@Entity
+public class BoardFreeReply extends BoardFreeReplyBaseEntity{
+
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = BoardFree.class) // fk
+    @JoinColumn(name = "board_no")
+    private Long bNo;
+
+    @Id
+    @Column(nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private int reply_no; // pk
+
+    @Column(nullable = false)
+    private String reply_content;
+}

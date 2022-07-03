@@ -1,10 +1,9 @@
 package com.culture.entity.boardFree;
 
 import com.culture.dto.BoardFreeDto.BoardFreeWriteDto;
-import groovy.transform.ToString;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.ColumnDefault;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -26,7 +25,7 @@ public class BoardFree extends BoardFreeBaseEntity{
 
 	// Long Type은 게시글 생성시에 null값을 피하기 위해 지정하였다.
 	@Column(columnDefinition = "integer default 0", nullable = false)
-	private Long board_readhit; // 조회수
+	private int board_readhit; // 조회수
 
 	public void updateBoardFree(BoardFreeWriteDto boardFreeWriteDto) {
 		this.board_title = boardFreeWriteDto.getBoard_title();

@@ -1,4 +1,15 @@
 package com.culture.dto.BoardFreeDto;//package com.culture.dto;
-//
-//public class BoardFreeReplyDto {
-//}
+
+import lombok.Getter;
+import lombok.Setter;
+
+import java.time.LocalDateTime;
+
+@Getter @Setter
+public class BoardFreeReplyDto {
+    private Long bNo;
+    private int reply_no;
+    private String reply_content;
+    private String reply_writer;
+    private LocalDateTime reply_regdate;
+}

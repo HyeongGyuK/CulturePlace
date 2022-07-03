@@ -11,12 +11,6 @@
     <th:block layout:fragment="script">
         <script th:inline="javascript">
             $(document).ready(function(){
-			    // 로그인 구현 해야함.
-			    /*$('#board_write').click(function(){
-                if(${whologin == 0}){
-                    alert('로그인 하셔야 게시글 작성이 가능합니다.');
-                    $("#board_write").attr("href", "meLogin");
-                });*/
 
                 $('.boardList').hover(function(){
                     $(this).css({"background-color":"rgb(104, 105, 172, 0.3)"});
@@ -55,7 +49,7 @@
 	        }
 
 	        function pageOfNotice(pageOfNotice){
-	            location.href="/CommunityMain/"
+	            location.href="/CommunityMain/notice/"
 	            + pageOfNotice;
 	        }
 
@@ -178,7 +172,8 @@
 
                         <tr class="noticeList" id="notice" th:each="noticeDto, status: ${noticeDto.getContent()}">
                             <td th:text="${noticeDto.notice_no}"></td>
-                            <td th:text="${noticeDto.notice_title}"></td>
+                            <td><a th:href="'/CommunityMain/notice_detail/' + ${noticeDto.notice_no}"
+                                th:text="${noticeDto.notice_title}"></a></td>
                             <td th:text="${noticeDto.notice_writer}">관리자</td>
                             <td th:text="${noticeDto.notice_regdate}">2022-05-21</td>
                         </tr>

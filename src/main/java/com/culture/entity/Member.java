@@ -1,23 +1,13 @@
 package com.culture.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
-import org.springframework.security.crypto.password.PasswordEncoder;
-
 import com.culture.constant.Role;
 import com.culture.dto.MemberFormDto;
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "member")
@@ -39,7 +29,11 @@ public class Member {
 
     private String address;
 
-//    private String address2;
+    private String zonecode;
+
+    private String address2;
+
+    private String detailAddress;
 
     @Enumerated(EnumType.STRING)
     private Role role; //일반인, 관리자 구분
@@ -51,6 +45,10 @@ public class Member {
         member.setName(memberFormDto.getName());
         member.setEmail(memberFormDto.getEmail());
         member.setAddress(memberFormDto.getAddress());
+        member.setAddress2(memberFormDto.getAddress2());
+        member.setAddress2(memberFormDto.getAddress2());
+        member.setZonecode(memberFormDto.getZonecode());
+        member.setDetailAddress(memberFormDto.getDetailAddress());
         //비밀번호 암호화 하는 방법
         String password = passwordEncoder.encode(memberFormDto.getPassword());
         member.setPassword(password);
