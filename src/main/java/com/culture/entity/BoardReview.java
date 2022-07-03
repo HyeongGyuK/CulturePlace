@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 import javax.persistence.*;
 
 import com.culture.constant.CategoryStatus;
+import com.culture.dto.BoardReviewFormDto;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedBy;
@@ -50,6 +51,16 @@ public class BoardReview extends BaseEntity{
 
 	@Column(columnDefinition = "integer default 0", nullable = false)
 	private int b_readhit; // 조회수
-	
-	
+
+	public void updateBoardReview(BoardReviewFormDto boardReviewFormDto) {
+		this.categoryStatus = boardReviewFormDto.getCategoryStatus();
+		this.b_title = boardReviewFormDto.getB_title();
+		this.b_content = boardReviewFormDto.getB_content();
+	}
+
+//	public void updateBoardReview(BoardReviewFormDto boardReviewFormDto){
+//		this.b_title = boardReviewFormDto.getB_title();
+//		this.b_content = boardReviewFormDto.getB_content();
+//		this.categoryStatus = boardReviewFormDto.getCategoryStatus();
+//	}
 }

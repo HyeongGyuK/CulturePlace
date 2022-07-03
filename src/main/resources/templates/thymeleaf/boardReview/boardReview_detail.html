@@ -194,7 +194,7 @@
                 <a href="board/main" th:if="${boardReview.b_writer} == ${userId}"
                    class="btn btn-primary pull-right" id="boardDeleteBtn"
                    style="background-color: #FFFFFF; color: #6255f6; border: 1px solid #6255f6; box-sizing: border-box; margin-top: 10px;"><b>삭제</b></a>
-                <a href="/Culture/Board/Board_Review/boardReview_update.jsp" th:if="${boardReview.b_writer} == ${userId}"
+                <a th:href="'/review/update/' +${boardReview.bno}" th:if="${boardReview.b_writer} == ${userId}"
                    class="btn btn-primary pull-right" id="boardUpdateBtn"
                    style="background-color: #FFFFFF; color: #6255f6; border: 1px solid #6255f6; box-sizing: border-box; margin-top: 10px;"><b>수정</b></a>
                 <a href="/board/main"

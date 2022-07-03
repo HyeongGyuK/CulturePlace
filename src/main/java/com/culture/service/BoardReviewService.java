@@ -89,6 +89,25 @@ public class BoardReviewService {
     public int updateBoardReviewReadHit(Long bno){
         return boardReviewRepository.updateBoardReviewReadHit(bno);
     }
+
+    public Long boardReviewUpdate(BoardReviewFormDto boardReviewFormDto, List<MultipartFile> boardReviewImgFileList) throws Exception{
+//        BoardReview boardReview = boardReviewRepository.findById(boardReviewFormDto.getBno())
+//                .orElseThrow(EntityNotFoundException::new);
+//        boardReview.
+        BoardReview boardReview = boardReviewRepository.findById(boardReviewFormDto.getBno())
+                .orElseThrow(EntityNotFoundException::new);
+        boardReview.updateBoardReview(boardReviewFormDto);
+
+        List<Long> boardReviewImgIds = boardReviewFormDto.getBoardReviewImgIds();
+
+        for(int i=0; i < boardReviewImgFileList.size(); i++){
+            System.out.println(boardReviewImgFileList.get(i));
+            System.out.println(boardReviewImgIds.get(i));
+            boardReviewImgService.updateBoardReviewImg(boardReviewImgIds.get(i), boardReviewImgFileList.get(i));
+        }
+
+        return boardReview.getBno();
+    }
 }
 
 
