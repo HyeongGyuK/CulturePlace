@@ -102,7 +102,7 @@ public class BoardFreeController {
 		return "thymeleaf/Board/BoardFree/board_free_main";
 	}
 
-	// 게시판 상세 정보
+	// 게시판 상세 정보 a th:href="'/CommunityMain/board_free_detail/' + ${boardFree.board_no}"
 	@GetMapping(value = "/CommunityMain/board_free_detail/{board_no}")
 	public String boardFreeDetail(@PathVariable("board_no") Long board_no, Model model, Principal principal) {
 		BoardFreeDto boardFreeDto = boardFreeService.getBoardDetail(board_no);

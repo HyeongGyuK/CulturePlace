@@ -84,6 +84,11 @@ public class BoardReviewService {
 
         return boardReviewDto;
     }
+    // 조회수 증가
+    @Transactional
+    public int updateBoardReviewReadHit(Long bno){
+        return boardReviewRepository.updateBoardReviewReadHit(bno);
+    }
 }
 
 
