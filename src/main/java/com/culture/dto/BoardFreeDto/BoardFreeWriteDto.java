@@ -5,15 +5,11 @@ import lombok.Getter;
 import lombok.Setter;
 import org.modelmapper.ModelMapper;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 @Getter @Setter
 public class BoardFreeWriteDto {
-    @Id
-    @GeneratedValue
     private Long board_no;
 
     private String board_writer;

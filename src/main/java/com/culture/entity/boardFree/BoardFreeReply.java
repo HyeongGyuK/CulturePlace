@@ -12,13 +12,14 @@ import javax.persistence.*;
 @Entity
 public class BoardFreeReply extends BoardFreeReplyBaseEntity{
 
-    @Id
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = BoardFree.class) // fk
     @JoinColumn(name = "board_no")
-    private Long bNo; // forgin key : 글 번호
+    private Long bNo;
 
+    @Id
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int reply_no;
+    private int reply_no; // pk
 
     @Column(nullable = false)
     private String reply_content;

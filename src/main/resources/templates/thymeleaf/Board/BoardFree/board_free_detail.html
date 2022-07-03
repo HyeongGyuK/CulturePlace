@@ -28,7 +28,7 @@
 				$(this).css({"background-color":"#FFFFFF"});
 			})
 
-			$('#comment_submit').hover(function(){
+			$('#reply_submit').hover(function(){
 				$(this).css({"background-color":"rgb(104, 105, 172, 0.3)"});
 			}, function(){
 				$(this).css({"background-color":"#FFFFFF"});
@@ -198,14 +198,12 @@
             </table>
 
             <td colspan="10" align="center">
-                <form action="" method="post" id="commentForm" onsubmit="return false">
+                <form role="form" method="post" id="commentForm" onsubmit="return false" th:object="${boardFreeReplyWriteDto}">
+                    <div class="form-group" th:for="reply_content">
                     <p>댓글작성</p>
-                    <div class="form-group">
-                        <textarea style="width:93%" rows="2" id="comment_area" name="member_comment"
+                        <textarea style="width:93%" rows="2" id="comment_area" th:field="*{reply_content}"
                                   placeholder="댓글을 작성해주세요"></textarea>
-                        <input type="hidden" id="board_nickname" name="nickname" value=${sessionScope.loginfo.nickname }>
-                        <input type="hidden" id="board_num" name="boardNum" value=${bean.boardNum }>
-                        <button type="submit" class="btn btn-primary pull-right" id="comment_submit"
+                        <button th:formaction="@{'/CommunityMain/board_free_reply'}" type="submit" class="btn btn-primary pull-right" id="reply_submit"
                                 style="background-color:#FFFFFF; color: #6667AB; border: 1px solid #6667AB">댓글달기
                         </button>
                     </div>
