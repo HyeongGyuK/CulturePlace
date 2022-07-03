@@ -41,21 +41,38 @@ public class boardReviewDetailController {
     @GetMapping(value = "/review/{bno}")
     public String boardReviewDetail(@PathVariable("bno") Long bno, Model model, Principal principal) {
         BoardReviewDto boardReviewDto = boardReviewService.getBoardReviewDetail(bno);
+        BoardReviewFormDto boardReviewFormDto = boardReviewService.getBoardReviewDtl(bno);
 
-        String userId = principal.getName();
+        String userId = null;
+        try {
+            userId = principal.getName();
+        }catch (NullPointerException e){
+            model.addAttribute("boardReview", boardReviewDto);
+            model.addAttribute("boardReviewForm", boardReviewFormDto);
+            return "thymeleaf/BoardReview/boardReview_detail";
+        }
+
+//        String userId = principal.getName();
+
+        boardReviewService.updateBoardReviewReadHit(bno);
+
 
         // 조회수 증가
-        if(!userId.equals(boardReviewDto.getCreate_by())){
-            model.addAttribute("reahitPlus", boardReviewService.updateBoardReviewReadHit(bno));
-        }
+//        if(!userId.equals(boardReviewDto.getCreate_by())){
+//            model.addAttribute("reahitPlus", boardReviewService.updateBoardReviewReadHit(bno));
+//        }
 
         // Principal = 로그인한 사용자의 정보
         if(principal == null){
             model.addAttribute("boardReview", boardReviewDto);
+            model.addAttribute("boardReviewForm", boardReviewFormDto);
         }else{
             model.addAttribute("userId", userId);
             model.addAttribute("boardReview", boardReviewDto);
+            model.addAttribute("boardReviewForm", boardReviewFormDto);
         }
+//        model.addAttribute("boardReview", boardReviewDto);
+//        model.addAttribute("boardReviewForm", boardReviewFormDto);
 
         return "thymeleaf/BoardReview/boardReview_detail";
     }

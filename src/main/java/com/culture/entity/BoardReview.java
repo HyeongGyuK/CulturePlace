@@ -1,6 +1,7 @@
 package com.culture.entity;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.persistence.*;
 
@@ -33,12 +34,22 @@ public class BoardReview extends BaseEntity{
 	@Column(nullable = true, length = 50)
 	private String b_content; // 내용
 
+//	@CreatedDate
+//	@Column(nullable = false, updatable = false)
+//	private LocalDateTime b_regdate; // 작성일자
+
 	@CreatedDate
 	@Column(nullable = false, updatable = false)
-	private LocalDateTime b_regdate; // 작성일자
-	
-	@Column(nullable = true)
-	private Integer b_readhit; // 조회수
+	private String b_regdate; // 작성일자
+
+	@PrePersist
+	public void onPrePersist(){
+		this.b_regdate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
+	}
+
+
+	@Column(columnDefinition = "integer default 0", nullable = false)
+	private int b_readhit; // 조회수
 	
 	
 }

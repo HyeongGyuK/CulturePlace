@@ -17,7 +17,7 @@ public class BoardReviewDto {
 	
 	private Long bno;
 	
-	private String create_by;
+	private String b_writer;
 
 	private CategoryStatus categoryStatus ;
 	
@@ -25,9 +25,11 @@ public class BoardReviewDto {
 	
 	private String b_content;
 
-	private LocalDateTime b_regdate;
+//	private LocalDateTime b_regdate;
 
-	private Integer b_readhit;
+	private String b_regdate;
+
+	private int b_readhit;
 
 
 	private static ModelMapper modelMapper = new ModelMapper();

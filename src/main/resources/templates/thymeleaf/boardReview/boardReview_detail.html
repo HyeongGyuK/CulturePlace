@@ -129,7 +129,7 @@
             <table class="table table-striped" id="content_table">
                 <tbody>
                 <tr>
-                    <td colspan="6"><p id="text"></p>
+                    <td colspan="6"><p id="text" th:text="${boardReview.b_content}"></p>
                     </td>
                 </tr>
                 <tr>
@@ -191,13 +191,13 @@
 <!--            </form>-->
 
             <div id="boardDetailBtn" align="right">
-                <a href="board/main"
+                <a href="board/main" th:if="${boardReview.b_writer} == ${userId}"
                    class="btn btn-primary pull-right" id="boardDeleteBtn"
                    style="background-color: #FFFFFF; color: #6255f6; border: 1px solid #6255f6; box-sizing: border-box; margin-top: 10px;"><b>삭제</b></a>
-                <a href="/Culture/Board/Board_Review/boardReview_update.jsp"
+                <a href="/Culture/Board/Board_Review/boardReview_update.jsp" th:if="${boardReview.b_writer} == ${userId}"
                    class="btn btn-primary pull-right" id="boardUpdateBtn"
                    style="background-color: #FFFFFF; color: #6255f6; border: 1px solid #6255f6; box-sizing: border-box; margin-top: 10px;"><b>수정</b></a>
-                <a href="board/main"
+                <a href="/board/main"
                    class="btn btn-primary pull-right" id="goToBoardPage"
                    style="background-color: #FFFFFF; color: #6255f6; border: 1px solid #6255f6; box-sizing: border-box; margin-top: 10px;"><b>돌아가기</b></a>
             </div>

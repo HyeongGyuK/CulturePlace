@@ -3,12 +3,9 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{thymeleaf/layouts/cultureLayout}"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      >
 
 <meta charset="UTF-8">
-<meta sec:authorize="isFullyAuthenticated()" th:if="${_csrf}" name="_csrf" th:content="${_csrf.token}"/>
-<meta sec:authorize="isFullyAuthenticated()" th:if="${_csrf}" name="_csrf_header" th:content="${_csrf.headerName}"/>
-<meta sec:authorize="isFullyAuthenticated()" th:if="${_csrf}" name="_csrf_parameter" th:content="${_csrf.parameterName}"/>
 
 
 <th:block layout:fragment="css">

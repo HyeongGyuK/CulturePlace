@@ -44,7 +44,7 @@
 <body>
 	<div class="header_text">
 		<div class="top">
-			<h2>뮤지컬 예매 Top 5</h2>
+			<h2>연극 예매 Top 5</h2>
             <a href="#" class="more_detail"> 더보기</a>
 		</div>
 	</div>
