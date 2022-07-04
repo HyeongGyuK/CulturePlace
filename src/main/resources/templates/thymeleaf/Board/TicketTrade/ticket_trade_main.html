@@ -1,190 +1,276 @@
+<!--<!DOCTYPE html>-->
 <!--<html xmlns:th="http://www.thymeleaf.org"-->
 <!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
 <!--      layout:decorate="~{thymeleaf/layouts/cultureLayout}"-->
 <!--      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">-->
 
 <!--<head>-->
-<!--    <meta charset="UTF-8">-->
+<!--    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">-->
 <!--    <title>Insert title here</title>-->
 
-<!--    <style type="text/css">-->
+<!--    <th:block layout:fragment="script">-->
+<!--        <script th:inline="javascript">-->
+<!--            $(document).ready(function(){-->
+
+<!--                $('.boardList').hover(function(){-->
+<!--                    $(this).css({"background-color":"rgb(104, 105, 172, 0.3)"});-->
+<!--                }, function(){-->
+<!--                    $(this).css({"background-color":"#FFFFFF"});-->
+<!--                });-->
+
+<!--                $('#board_write').hover(function(){-->
+<!--                    $(this).css({"background-color":"rgb(104, 105, 172, 0.3)"});-->
+<!--                }, function(){-->
+<!--                    $(this).css({"background-color":"#FFFFFF"});-->
+<!--                });-->
+
+<!--                $('#noticeWriteBtn').hover(function(){-->
+<!--                    $(this).css({"background-color":"rgb(104, 105, 172, 0.3)"});-->
+<!--                }, function(){-->
+<!--                    $(this).css({"background-color":"#FFFFFF"});-->
+<!--                });-->
+
+
+<!--                // 검색 버튼-->
+<!--                $("#searchBtn").on("click",function(e) {-->
+<!--                    e.preventDefault();-->
+<!--                    page(0);-->
+<!--                });-->
+<!--			});-->
+
+<!--			function page(page){-->
+<!--	            var searchBy = $("#searchBy").val();-->
+<!--	            var searchQuery = $("#searchQuery").val();-->
+
+<!--	            location.href="/CommunityMain/"-->
+<!--	            + page-->
+<!--	            + "?searchBy=" + searchBy-->
+<!--	            + "&searchQuery=" + searchQuery;-->
+<!--	        }-->
+
+<!--	        function pageOfNotice(pageOfNotice){-->
+<!--	            location.href="/CommunityMain/notice/"-->
+<!--	            + pageOfNotice;-->
+<!--	        }-->
+
+
+
+
+
+
+
+<!--        </script>-->
+<!--    </th:block>-->
+
+<!--    <th:block layout:fragment="css">-->
+
+<!--        <style>-->
+
+<!--        #template{-->
+<!--            display: flex; width: 100%;-->
+<!--            justify-content: center; margin: 150px 0px 150px 0px;-->
+<!--        }-->
+<!--        #container{-->
+<!--            width: 60%;-->
+<!--        }-->
+<!--        #title{-->
+<!--            border-bottom: 4px solid gray;-->
+<!--            width:100%;-->
+<!--        }-->
+
+<!--        #board{-->
+<!--            border-collapse: collapse; width:100%;-->
+<!--        }-->
+
 <!--			a{text-decoration: none; color: black;}-->
 
 <!--			.pagination .active a{background-color:#551527; border:1px solid #500020;}-->
 <!--			.pagination .active a:hover{background-color:#773849; border:1px solid #500020;}-->
 
-<!--			.background-colors{background-color: yellow;}-->
-<!--		</style>-->
+<!--            #tradeColumn{-->
+<!--                text-align: center; height: 70px;-->
+<!--                border-bottom: 1px solid gray;-->
+<!--                border-top: 3px solid gray;-->
+<!--                background-color: lightyellow;-->
+<!--                font-weight: bold; font-size: 15px;-->
+<!--            }-->
+<!--            .boardList{-->
+<!--                height: 50px;-->
+<!--                text-align: center;-->
+<!--                border-bottom: 1px solid gray;-->
+<!--                background-color: #FFFFFF;-->
+<!--            }-->
 
-<!--    <script th:inline="javascript">-->
-<!--		$(document).ready(function(){-->
-<!--			// 로그인 구현 해야함.-->
-<!--			/*$('#trade_write').click(function(){-->
-<!--				if(${whologin == 0}){-->
-<!--					alert('로그인 하셔야 게시글 작성이 가능합니다.');-->
-<!--					$("#trade_write").attr("href", "meLogin");-->
-<!--				}-->
-<!--			});*/-->
+<!--            .tradeNo{width: 10%;}-->
+<!--            .tradeStatus{width: 10%;}-->
+<!--            .tradeTitle{width: 30%;}-->
+<!--            .tradeWriter{width: 20%;}-->
+<!--            .tradeDate{width: 20%;}-->
+<!--            .tradeReadHit{width: 10%;}-->
 
-<!--			$('[value="판매중"]').css({'background-color':'LightBlue','cursor':'default'});-->
-<!--			$('[value="판매완료"]').css({'background-color':'lightgray','color':'black','cursor':'default'});-->
-<!--			$('[value="구매중"]').css({'background-color':'LightCoral','cursor':'default'});-->
-<!--			$('[value="구매완료"]').css({'background-color':'lightgray','color':'black','cursor':'default'});-->
+<!--            #notice{-->
+<!--                width: 98%; border-radius: 7px;-->
+<!--                margin: 1px; margin: 5px auto;-->
+<!--            }-->
 
-<!--			$('.tradeList').hover(function(){-->
-<!--				$(this).css({"background-color":"rgb(104, 105, 172, 0.3)"});-->
-<!--			}, function(){-->
-<!--				$(this).css({"background-color":"#FFFFFF"});-->
-<!--			});-->
+<!--            #noticeTitle{-->
+<!--                text-align: center; font-weight: bold;-->
+<!--                margin: 0; inline-height: 28px; padding: 2px;-->
+<!--                border-bottom: 2px solid gray; font-size: 20px;-->
+<!--                width: 100%;-->
+<!--            }-->
 
-<!--			$('#trade_write').hover(function(){-->
-<!--				$(this).css({"background-color":"rgb(104, 105, 172, 0.3)"});-->
-<!--			}, function(){-->
-<!--				$(this).css({"background-color":"#FFFFFF"});-->
-<!--			});-->
-<!--		});-->
-<!--	</script>-->
-<!--    &lt;!&ndash; flex-direction: column; 나중에 div 내부에 추가 할 수 있으니 남겨둠 &ndash;&gt;-->
-<!--    <style type="text/css">-->
-<!--		#template{-->
-<!--			display: flex; width: 100%;-->
-<!--			justify-content: center; margin: 150px 0px 150px 0px;-->
-<!--		}-->
-<!--		#container{-->
-<!--			 width: 60%;-->
-<!--		}-->
-<!--		#title{-->
-<!--			border-bottom: 4px solid gray;-->
-<!--			width:100%;-->
-<!--		}-->
-<!--		#trade{border-collapse: collapse; width:100%;}-->
-<!--		#tradeColumn{-->
-<!--			text-align: center; height: 70px;-->
-<!--			border-bottom: 1px solid gray;-->
-<!--			border-top: 3px solid gray;-->
-<!--		    background-color: lightyellow;-->
-<!--		    font-weight: bold; font-size: 15px;-->
-<!--		}-->
-<!--		.tradeList{-->
-<!-- 			height: 50px;-->
-<!--			text-align: center;-->
-<!--			border-bottom: 1px solid gray;-->
-<!--			background-color: #FFFFFF;-->
-<!--		}-->
+<!--            #noticeColumn{-->
+<!--                font-size: 15px; font-weight: bold;-->
+<!--                border-bottom: 2px solid gray; text-align: center;-->
+<!--            }-->
 
-<!--		.tradeNo{width: 10%;}-->
-<!--		.tradeStatus{width: 10%;}-->
-<!--		.tradeTitle{width: 30%;}-->
-<!--		.tradeWriter{width: 20%;}-->
-<!--		.tradeDate{width: 20%;}-->
-<!--		.tradeReadHit{width: 10%;}-->
+<!--            .noticeList{-->
+<!--                width:50%; height: 20px;-->
+<!--                text-align: center; margin-top: 2px;-->
+<!--                border-bottom: 1px solid gray; font-size: 14px;-->
+<!--            }-->
 
-<!--		.tradeList :nth-child(3){text-align: left;}-->
-<!--		.tradeList a{color:black;}-->
+<!--            #board_write{-->
+<!--                background-color:#FFFFFF; color: #6667AB;-->
+<!--                box-sizing:border-box; margin-top: 10px; float:right;-->
+<!--                border: 1px solid #6667AB;-->
+<!--            }-->
 
-<!--	</style>-->
+<!--            #noticeWriteBtn{-->
+<!--                background-color:#FFFFFF; color: #6667AB;-->
+<!--                box-sizing:border-box; margin-top: 10px; float:right;-->
+<!--                border: 1px solid #6667AB;-->
+<!--            }-->
+
+<!--            .boardList :nth-child(2), .noticeList :nth-child(2){text-align: left;}-->
+<!--            .boardList a, .noticeList a{color:black;}-->
+
+<!--            #noticeWriteBtn{-->
+<!--                float:right; font-size:15px;-->
+<!--                padding:1px; border-radius:5px;-->
+<!--            }-->
+
+<!--            #noticePagingSpace{-->
+<!--                width: 100%; text-align: center;-->
+<!--            }-->
+
+
+
+
+
+
+
+<!--        </style>-->
+<!--    </th:block>-->
+
 <!--</head>-->
 <!--<body>-->
-<!--<div id="template">-->
-<!--    <div id="container">-->
-<!--        <div id="title">-->
-<!--            <h2 style="font-weight: bold;">-->
-<!--                티켓 거래 게시판-->
-<!--            </h2>-->
+<!--<div layout:fragment="content">-->
+<!--    <div id="template">-->
+<!--        <div id="container">-->
+<!--            <div id="title">-->
+<!--                <h2 style="font-weight: bold;">-->
+<!--                    자유 게시판-->
+<!--                </h2>-->
+<!--                <table id="board">-->
+<!--                    <thead>-->
+<!--                    <tr>-->
+<!--                        <td class="tradeNo">No</td>-->
+<!--                        <td class="tradeStatus">상태</td>-->
+<!--                        <td class="tradeTitle">제목</td>-->
+<!--                        <td class="tradeWriter">작성자</td>-->
+<!--                        <td class="tradeDate">작성일자</td>-->
+<!--                        <td class="tradeReadHit">조회수</td>-->
+<!--                    </tr>-->
+<!--                    </thead>-->
+
+<!--                    <form class="form-inline" th:action="@{'/TicketTrade/' + ${TicketTrades.number}}"-->
+<!--                          role="form" method="get">-->
+<!--                        <tbody th:object="${TicketTrades}">-->
+<!--                        <td>-->
+<!--                            <th:out value="${i}"/>${requestScope.totalCount - ((requestScope.pageInfo.pageNumber - 1) * requestScope.pageInfo.pageSize + status.index) }</td>-->
+<!--                        <th:if test="${i == 1}">-->
+<!--                            <td>-->
+<!--                                <input class="ticketStatus" type="button" style="border: 1px solid black; border-radius: 5px; padding: 2px; vertical-align: middle; width: 60%;" value="판매중"></input>-->
+<!--                            </td>-->
+<!--                        </th:if>-->
+<!--                        <th:if test="${i == 2}">-->
+<!--                            <td>-->
+<!--                                <input class="ticketStatus" type="button" style="border: 1px solid black; border-radius: 5px; padding: 2px; vertical-align: middle; width: 60%;" value="판매완료"></input>-->
+<!--                            </td>-->
+<!--                        </th:if>-->
+<!--                        <th:if test="${i == 3}">-->
+<!--                            <td>-->
+<!--                                <input class="ticketStatus" type="button" style="border: 1px solid black; border-radius: 5px; padding: 2px; vertical-align: middle; width: 60%;" value="구매중"></input>-->
+<!--                            </td>-->
+<!--                        </th:if>-->
+<!--                        <th:if test="${i > 3}">-->
+<!--                            <td>-->
+<!--                                <input class="ticketStatus" type="button" style="border: 1px solid black; border-radius: 5px; padding: 2px; vertical-align: middle; width: 60%;" value="구매완료"></input>-->
+<!--                            </td>-->
+<!--                        </th:if>-->
+<!--                        </tbody>-->
+<!--                        <td>${bean.writer }김두환</td>-->
+<!--                        <td>${bean.regDate }2022-05-21</td>-->
+<!--                        <td>${bean.viewCnt }100</td>-->
+
+
+<!--                        <tfoot th:with="start=${(TicketTrades.number/maxPage)*maxPage + 1}, end=(${(TicketTrades.totalPages == 0) ? 1 : (start + (maxPage - 1) < TicketTrades.totalPages ? start + (maxPage - 1) : TicketTrades.totalPages)})">-->
+<!--                        <td colspan="10" align="center">-->
+
+<!--                            <a href="/TicketTrade/ticket_trade_write" class="btn btn-primary pull-right"-->
+<!--                               id="board_write"><b>글쓰기</b></a>-->
+
+<!--                            <div>-->
+
+<!--                                <ul class="pagination justify-content-center" style="cursor:pointer; ">-->
+<!--                                    <li class="page-item" th:classappend="${TicketTrades.first}?'disabled'">-->
+<!--                                        <a th:onclick="'javascript:page(' + ${TicketTrades.number - 1} + ')'"-->
+<!--                                           aria-label='Previous' class="page-link">-->
+<!--                                            <span aria-hidden='true'>Previous</span>-->
+<!--                                        </a>-->
+<!--                                    </li>-->
+
+<!--                                    <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}"-->
+<!--                                        th:classappend="${TicketTrades.number eq page-1}?'active':''">-->
+<!--                                        <a th:onclick="'javascript:page(' + ${page - 1} + ')'" th:inline="text"-->
+<!--                                           class="page-link">[[${page}]]</a>-->
+<!--                                    </li>-->
+
+<!--                                    <li class="page-item" th:classappend="${TicketTrades.last}?'disabled'">-->
+<!--                                        <a th:onclick="'javascript:page(' + ${TicketTrades.number + 1} + ')'"-->
+<!--                                           aria-label='Next' class="page-link">-->
+<!--                                            <span aria-hidden='true'>Next</span>-->
+<!--                                        </a>-->
+<!--                                    </li>-->
+<!--                                </ul>-->
+
+<!--                            </div>-->
+<!--                            <div class="form-inline justify-content-center" th:object="${ticketTradesSearchDto}">-->
+<!--                                <div class="form-group">-->
+<!--                                    <select class="form-control btn-xs" th:field="*{searchBy}">-->
+<!--                                        <option value="">전체 검색-->
+<!--                                        <option value="board_title">제목-->
+<!--                                        <option value="board_writer">작성자-->
+<!--                                    </select>-->
+<!--                                </div>-->
+
+<!--                                <div class="form-group">-->
+<!--                                    <input th:field="*{searchQuery}" type="text" class="form-control btn-xs"-->
+<!--                                           placeholder="검색 키워드 입력">-->
+<!--                                </div>-->
+<!--                                <button id="searchBtn" class="btn btn-default" type="submit">검색</button>-->
+<!--                                <button class="btn btn-default" type="button" onclick="searchAll();">전체 검색</button>-->
+<!--                                &nbsp;&nbsp;&nbsp;&nbsp;-->
+<!--                                <p class="form-control-static"></p>-->
+<!--                            </div>-->
+<!--                        </td>-->
+<!--                    </tfoot>-->
+<!--                </form>-->
+<!--                </table>-->
+<!--            </div>-->
 <!--        </div>-->
-
-<!--        <table id="trade">-->
-<!--            <tr id="tradeColumn">-->
-<!--                <td class="tradeNo">No</td>-->
-<!--                <td class="tradeStatus">상태</td>-->
-<!--                <td class="tradeTitle">제목</td>-->
-<!--                <td class="tradeWriter">작성자</td>-->
-<!--                <td class="tradeDate">작성일자</td>-->
-<!--                <td class="tradeReadHit">조회수</td>-->
-<!--            </tr>-->
-<!--            <c:forEach var="i" begin="1" end="10">-->
-<!--                <tr class="tradeList">-->
-<!--                    <td><c:out value="${i}"/>${requestScope.totalCount - ((requestScope.pageInfo.pageNumber - 1) * requestScope.pageInfo.pageSize + status.index) }</td>-->
-<!--                    <c:if test="${i == 1}">-->
-<!--                        <td>-->
-<!--                            <input class="ticketStatus" type="button" style="border: 1px solid black; border-radius: 5px; padding: 2px; vertical-align: middle; width: 60%;" value="판매중"></input>-->
-<!--                        </td>-->
-<!--                    </c:if>-->
-<!--                    <c:if test="${i == 2}">-->
-<!--                        <td>-->
-<!--                            <input class="ticketStatus" type="button" style="border: 1px solid black; border-radius: 5px; padding: 2px; vertical-align: middle; width: 60%;" value="판매완료"></input>-->
-<!--                        </td>-->
-<!--                    </c:if>-->
-<!--                    <c:if test="${i == 3}">-->
-<!--                        <td>-->
-<!--                            <input class="ticketStatus" type="button" style="border: 1px solid black; border-radius: 5px; padding: 2px; vertical-align: middle; width: 60%;" value="구매중"></input>-->
-<!--                        </td>-->
-<!--                    </c:if>-->
-<!--                    <c:if test="${i > 3}">-->
-<!--                        <td>-->
-<!--                            <input class="ticketStatus" type="button" style="border: 1px solid black; border-radius: 5px; padding: 2px; vertical-align: middle; width: 60%;" value="구매완료"></input>-->
-<!--                        </td>-->
-<!--                    </c:if>-->
-<!--                    <td><a href="/TicketTrade/ticket_trade_detail">안녕하세요 재미있네요 하하하</a></td>-->
-<!--                    <td>${bean.writer }김두환</td>-->
-<!--                    <td>${bean.regDate }2022-05-21</td>-->
-<!--                    <td>${bean.viewCnt }100</td>-->
-<!--                </tr>-->
-<!--            </c:forEach>-->
-<!--            <tr>-->
-<!--                <td colspan="10" align="center">-->
-<!--                    <form class="form-inline" action="" method="get">-->
-<!--                        <div class="form-group">-->
-<!--                            <select class="form-control btn-xs" name="mode" id="mode">-->
-<!--                                <option value="all">&#45;&#45; 거래전체-->
-<!--                                <option value="writer">판매중-->
-<!--                                <option value="title">판매완료-->
-<!--                                <option value="writer">구매중-->
-<!--                                <option value="title">구매완료-->
-<!--                            </select>-->
-<!--                        </div>-->
-<!--                        <input type="hidden" name="command" value="expatationMain">-->
-<!--                        <input type="hidden" name="pageNumber1" value="${requestScope.pageInfo.pageNumber }">-->
-<!--                        <input type="hidden" name="pageSize1" value="${requestScope.pageInfo.pageSize }">-->
-<!--                        <div class="form-group">-->
-<!--                            <select class="form-control btn-xs" name="mode" id="mode">-->
-<!--                                <option value="all">&#45;&#45; 검색할 항목을 선택하세요.-->
-<!--                                <option value="writer">작성자-->
-<!--                                <option value="title">제목-->
-<!--                            </select>-->
-<!--                        </div>-->
-
-<!--                        <div class="form-group">-->
-<!--                            <input type="text" class="form-control btn-xs" id="keyword"-->
-<!--                                   name="keyword" placeholder="검색 키워드 입력">-->
-<!--                        </div>-->
-<!--                        <button class="btn btn-default" type="submit" onclick="return search();">검색</button>-->
-
-<!--                        <button class="btn btn-default" type="button" onclick="searchAll();">전체 검색</button>-->
-<!--                        &nbsp;&nbsp;&nbsp;&nbsp;-->
-<!--                        <p class="form-control-static"></p>-->
-
-<!--                        <a href="/TicketTrade/ticket_trade_write" class="btn btn-primary pull-right" id="trade_write" style="background-color:#FFFFFF; color: #6667AB; border: 1px solid #6667AB; box-sizing:border-box; margin-top: 10px;"><b>글쓰기</b></a>-->
-<!--                    </form>-->
-<!--                </td>-->
-<!--            <tr>-->
-<!--            <tr>-->
-<!--                <td colspan="10" align="center">-->
-<!--                    <div align="center">-->
-<!--                        ${requestScope.pageInfo.pagingHtml }-->
-<!--                    </div>-->
-<!--                </td>-->
-<!--            </tr>-->
-<!--        </table>-->
-<!--        <script type="text/javascript">-->
-<!--			$('#mode option').each(function(){-->
-<!--				if($(this).val() == '${requestScope.pageInfo.mode}'){-->
-<!--					$(this).attr('selected', 'selected');-->
-<!--				}-->
-<!--			});-->
-
-<!--			$('#keyword').val('${requestScope.pageInfo.keyword}');-->
-<!--		</script>-->
 <!--    </div>-->
 <!--</div>-->
 <!--</body>-->

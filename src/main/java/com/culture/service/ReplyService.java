@@ -13,8 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 public class ReplyService {
     private final BoardFreeReplyRepository boardFreeReplyRepository;
 
-    public int savedBoardFreeReplyWrite(BoardFreeReplyWriteDto boardFreeReplyWriteDto) throws Exception{
+    public int savedBoardFreeReplyWrite(BoardFreeReplyWriteDto boardFreeReplyWriteDto, Long board_no) throws Exception{
         BoardFreeReply boardFreeReply = boardFreeReplyWriteDto.replyWrite();
+        boardFreeReply.setBoard_no(board_no);
         boardFreeReplyRepository.save(boardFreeReply);
         return boardFreeReply.getReply_no();
     }
