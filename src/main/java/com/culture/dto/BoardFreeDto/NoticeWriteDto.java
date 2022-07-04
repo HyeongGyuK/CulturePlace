@@ -3,6 +3,7 @@ package com.culture.dto.BoardFreeDto;
 import com.culture.entity.boardFree.Notice;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Length;
 import org.modelmapper.ModelMapper;
 
 import javax.validation.constraints.NotBlank;
@@ -15,6 +16,7 @@ public class NoticeWriteDto {
     private String notice_write;
 
     @NotBlank(message = "제목은 필수 입력 사항입니다.")
+    @Length(max = 30, message = "제목은 30자리 이하로 입력하여주세요.")
     private String notice_title;
 
     @NotBlank(message = "내용은 필수 입력 사항입니다.")

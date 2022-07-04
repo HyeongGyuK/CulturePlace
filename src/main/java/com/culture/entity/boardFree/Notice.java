@@ -14,10 +14,10 @@ import javax.persistence.*;
 public class Notice extends NoticeBaseEntity{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "notice_seq")
     private Long notice_no;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 30)
     private String notice_title;
 
     @Column(nullable = false)

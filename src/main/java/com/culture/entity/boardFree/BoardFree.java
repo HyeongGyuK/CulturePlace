@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class BoardFree extends BoardFreeBaseEntity{
 	@Id
 	@Column(name = "board_no")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "board_free_seq")
 	private Long board_no; // PK
 
 	@Column(nullable = false, length = 30)
