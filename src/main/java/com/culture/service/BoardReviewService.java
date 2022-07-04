@@ -108,6 +108,11 @@ public class BoardReviewService {
 
         return boardReview.getBno();
     }
+
+    public void boardReviewDelete(Long bno) throws Exception{
+//        boardReviewImgRepository.deleteImgQuery(bno);
+        boardReviewRepository.deleteById(bno);
+    }
 }
 
 

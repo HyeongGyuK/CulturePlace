@@ -26,6 +26,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
       chat-title="Culture Place"
       agent-id="c65ff504-e4cb-47e8-9743-18c5d9c4bb2d"
       language-code="ko"
+      wait-open=""
     ></df-messenger>
 
     <link rel="stylesheet" type="text/css" href="/CulturePlace/Intro/nav.css"> <!-- 스타일시트 -->

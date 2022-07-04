@@ -19,7 +19,7 @@ public class BoardReview extends BaseEntity{
 	
 	@Id
 	@Column(name = "bno")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "review_sec")
 	private Long bno; // PK
 
 	@CreatedBy
