@@ -27,7 +27,7 @@ public class Notice extends NoticeBaseEntity{
     private int notice_readhit;
 
     public void updateNotice(NoticeWriteDto noticeWriteDto) {
-        this.notice_title = notice_title;
-        this.notice_content = notice_content;
+        this.notice_title = noticeWriteDto.getNotice_title();
+        this.notice_content = noticeWriteDto.getNotice_content();
     }
 }

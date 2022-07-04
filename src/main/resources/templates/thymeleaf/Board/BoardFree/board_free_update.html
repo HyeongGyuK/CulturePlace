@@ -110,7 +110,7 @@
                         </li>
                         <li>
                             <span>제목&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;</span>
-                            <input style="margin-top: 8px;" type="text" class="form-control" th:field="${boardFree.board_title}"/>
+                            <input style="margin-top: 8px; width:90%;" type="text" class="form-control" th:field="${boardFree.board_title}"/>
                             <p th:if="${#fields.hasErrors('boardFree.board_title')}" th:errors="*{boardFree.board_title}" class="fieldError">Incorrect data</p>
                         </li>
                     </ul>
@@ -120,9 +120,9 @@
                     <tbody>
 
                     <tr>
-                        <td colspan="6">
-                            <div class="form-group">
-                                <textarea class="form-control" rows="10" id="board_content"
+                        <td colspan="12">
+                            <div class="form-group" style="width:100%;">
+                                <textarea class="form-control" rows="10" id="board_content" style="width:100%;"
                                           name="board_content" placeholder="내용을 입력해주세요" required th:field="${boardFree.board_content}"></textarea>
                                 <p th:if="${#fields.hasErrors('boardFree.board_content')}" th:errors="*{boardFree.board_content}" class="fieldError">Incorrect data</p>
                             </div>

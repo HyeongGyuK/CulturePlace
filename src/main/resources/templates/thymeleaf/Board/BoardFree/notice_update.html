@@ -110,7 +110,7 @@
                         </li>
                         <li>
                             <span>제목&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;</span>
-                            <input style="margin-top: 8px;" type="text" class="form-control" th:field="${noticeDto.notice_title}"/>
+                            <input style="margin-top: 8px; width:90%;" type="text" class="form-control" th:field="${noticeDto.notice_title}"/>
                             <p th:if="${#fields.hasErrors('noticeDto.notice_title')}" th:errors="*{noticeDto.notice_title}" class="fieldError">Incorrect data</p>
                         </li>
                     </ul>
@@ -120,9 +120,9 @@
                     <tbody>
 
                     <tr>
-                        <td colspan="6">
-                            <div class="form-group">
-                                <textarea class="form-control" rows="10" id="notice_content"
+                        <td colspan="12">
+                            <div class="form-group" style="width:100%;">
+                                <textarea class="form-control" rows="10" id="notice_content" style="width:100%;"
                                           name="notice_content" placeholder="내용을 입력해주세요" required th:field="${noticeDto.notice_content}"></textarea>
                                 <p th:if="${#fields.hasErrors('noticeDto.notice_content')}" th:errors="*{noticeDto.notice_content}" class="fieldError">Incorrect data</p>
                             </div>

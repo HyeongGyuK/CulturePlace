@@ -17,7 +17,7 @@ public class BoardFree extends BoardFreeBaseEntity{
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long board_no; // PK
 
-	@Column(nullable = false, length = 50)
+	@Column(nullable = false, length = 30)
 	private String board_title; // 제목
 
 	@Column(nullable = false)

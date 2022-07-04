@@ -124,8 +124,6 @@ public class NoticeController {
         }
 
         try {
-            System.out.println("수정 사항 : " + noticeWriteDto);
-
             noticeService.noticeUpdate(noticeWriteDto);
         }catch (Exception e) {
             model.addAttribute("errorMessage", "게시물 등록중 오류가 발생하였습니다.");
