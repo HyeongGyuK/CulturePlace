@@ -100,11 +100,10 @@ public class BoardFreeController {
 		return "thymeleaf/Board/BoardFree/board_free_main";
 	}
 
-	// 게시판 상세 정보 a th:href="'/CommunityMain/board_free_detail/' + ${boardFree.board_no}"
+	// 게시판 상세 정보
 	@GetMapping(value = "/CommunityMain/board_free_detail/{board_no}")
 	public String boardFreeDetail(@PathVariable("board_no") Long board_no,
-								  Model model, Principal principal,
-								  BoardFreeReplyWriteDto boardFreeReplyWriteDto) {
+								  Model model, Principal principal) {
 
 		BoardFreeDto boardFreeDto = boardFreeService.getBoardDetail(board_no);
 
@@ -121,10 +120,11 @@ public class BoardFreeController {
 		}else{
 			model.addAttribute("userId", userId);
 			model.addAttribute("boardFree", boardFreeDto);
+			model.addAttribute("replyWriteDto", new BoardFreeReplyWriteDto());
 		}
 
 		// 댓글 작성을 위한 구문
-		model.addAttribute("noticeWriteDto", new BoardFreeReplyDto());
+
 
 		return "thymeleaf/Board/BoardFree/board_free_detail";
 	}

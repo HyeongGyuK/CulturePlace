@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 @RequiredArgsConstructor
@@ -18,14 +19,14 @@ public class ReplyController {
     // 댓글은 디테일 페이지에서 작성을하고 디테일 페이지에서 bNo값으로 조회를 하여 보여준다
 
     // 댓글 작성
-    @PostMapping(value = "/CommunityMain/board_free_reply")
+    @PostMapping(value = "/CommunityMain/board_free_detail/reply/{board_no}")
     public String replyWrite(@Valid BoardFreeReplyWriteDto boardFreeReplyWriteDto,
                              BindingResult bindingResult,
-                             Model model) throws Exception {
+                             Model model, Principal principal) throws Exception {
 
         replyService.savedBoardFreeReplyWrite(boardFreeReplyWriteDto);
 
-        return "thymeleaf/Board/BoardFree/board_free_detail";
+        return "redirect:/CommunityMain/board_free_detail/{board_no}";
     }
 
 }

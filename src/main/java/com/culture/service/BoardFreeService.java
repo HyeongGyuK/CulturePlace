@@ -26,7 +26,6 @@ public class BoardFreeService {
 	public Long savedBoardFreeWrite(BoardFreeWriteDto boardFreeWriteDto) throws Exception {
 		BoardFree boardWrite = boardFreeWriteDto.boardFreeWrite();
 		boardFreeRepository.save(boardWrite);
-
 		return boardWrite.getBoard_no();
 	}
 
