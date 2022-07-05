@@ -23,4 +23,8 @@ public class BoardFreeReplyWriteDto {
     public BoardFreeReply replyWrite() {
         return modelMapper.map(this,BoardFreeReply.class);
     }
+
+    public static BoardFreeReplyDto of(BoardFreeReply boardFreeReply) {
+        return modelMapper.map(boardFreeReply, BoardFreeReplyDto.class);
+    }
 }

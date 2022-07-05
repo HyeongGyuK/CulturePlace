@@ -23,4 +23,5 @@ public class BoardFreeReply extends BoardFreeReplyBaseEntity{
 
     @Column(nullable = false)
     private String reply_content;
+
 }

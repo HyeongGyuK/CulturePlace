@@ -1,7 +1,6 @@
 package com.culture.controller.Board.BoardFreeController;
 
 import com.culture.dto.BoardFreeDto.BoardFreeDto;
-import com.culture.dto.BoardFreeDto.BoardFreeReplyWriteDto;
 import com.culture.dto.BoardFreeDto.BoardFreeSearchDto;
 import com.culture.dto.BoardFreeDto.BoardFreeWriteDto;
 import com.culture.entity.boardFree.BoardFree;
@@ -12,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
-import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +33,8 @@ public class BoardFreeController {
 
 	private final BoardFreeService boardFreeService;
 	private final NoticeService noticeService;
+
+//	private final ReplyService replyService;
 
 	// 글 작성 페이지로 이동
 	@GetMapping(value = "/CommunityMain/board_free_write")
@@ -105,39 +104,54 @@ public class BoardFreeController {
 	}
 
 	// 게시판 상세 정보
-	@GetMapping(value = "/CommunityMain/board_free_detail/{board_no}")
-	public String boardFreeDetail(@PathVariable("board_no") Long board_no,
-								  Model model, Principal principal) {
-		BoardFreeDto boardFreeDto = boardFreeService.getBoardDetail(board_no);
-
-		// userId를 담을 변수
-		String userId = "";
-
-		// 로그인을 하지 않을 시에 anonymousUser로 값을 반환한다.
-		Object who = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-		String unknown = who.toString();
-
-		// 사용자가 로그인을 하지 않았을 시에는 조회수가 오르지 않는다 또한 게시글의 작성자와 로그인한 사용자의 정보가 불일치 할 시 수정이 불가능하다.
-		if(unknown == "anonymousUser"){
-			userId = unknown;
-
-			model.addAttribute("userId", userId);
-			model.addAttribute("boardFree", boardFreeDto);
-		}else{
-			userId = principal.getName();
-			// 조회수 증가
-			if(!userId.equals(boardFreeDto.getBoard_writer())){
-				model.addAttribute("readhitPlus", boardFreeService.updateBoardFreeReadHit(board_no));
-			}
-
-			model.addAttribute("userId", userId);
-			model.addAttribute("boardFree", boardFreeDto);
-			model.addAttribute("replyWriteDto", new BoardFreeReplyWriteDto());
-		}
-
-		return "thymeleaf/Board/BoardFree/board_free_detail";
-	}
+//	@GetMapping(value = {"/CommunityMain/board_free_detail/{board_no}"})
+//	public String boardFreeDetail(BoardFreeSearchDto boardFreeSearchDto,
+//								  @PathVariable("board_no") Long board_no,
+//								  @PathVariable("replyPage") Optional<Integer> replyPage,
+//								  Model model, Principal principal) {
+//		BoardFreeDto boardFreeDto = boardFreeService.getBoardDetail(board_no);
+//
+//		// 댓글 페이징 처리
+//		Pageable replyPageable = PageRequest.of(replyPage.isPresent() ? replyPage.get() : 0, 10);
+//
+//		Page<BoardFreeReply> boardFreeReplyPage = replyService.getReplyPage(replyPageable, boardFreeSearchDto);
+//
+//		// userId를 담을 변수
+//		String userId = "";
+//
+//		// 로그인을 하지 않을 시에 anonymousUser로 값을 반환한다.
+//		Object who = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//
+//		String unknown = who.toString();
+//
+//		// 사용자가 로그인을 하지 않았을 시에는 조회수가 오르지 않는다 또한 게시글의 작성자와 로그인한 사용자의 정보가 불일치 할 시 수정이 불가능하다.
+//		if(unknown == "anonymousUser"){
+//			userId = unknown;
+//
+//			model.addAttribute("userId", userId);
+//			model.addAttribute("boardFree", boardFreeDto);
+//
+//			// 댓글 출력
+//			model.addAttribute("replyLists", boardFreeReplyPage);
+//			model.addAttribute("boardFreeSearchDto", boardFreeSearchDto);
+//		}else{
+//			userId = principal.getName();
+//			// 조회수 증가
+//			if(!userId.equals(boardFreeDto.getBoard_writer())){
+//				model.addAttribute("readhitPlus", boardFreeService.updateBoardFreeReadHit(board_no));
+//			}
+//
+//			model.addAttribute("userId", userId);
+//			model.addAttribute("boardFree", boardFreeDto);
+//			// 댓글 출력
+//			model.addAttribute("boardFreeReplyPage", boardFreeReplyPage);
+//			model.addAttribute("boardFreeSearchDto", boardFreeSearchDto);
+//			// 댓글 작성
+//			model.addAttribute("replyWriteDto", new BoardFreeReplyWriteDto());
+//		}
+//
+//		return "thymeleaf/Board/BoardFree/board_free_detail";
+//	}
 
 	// 게시판 수정 폼
 	@GetMapping(value = "/CommunityMain/board_free_update")

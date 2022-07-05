@@ -16,11 +16,11 @@ import javax.persistence.EntityManager;
 import java.util.List;
 
 // 자유 게시판 글 목록 조회에 대한 interface를 구현하기 위한 클래스 입니다.
-public class BoardFreeRepositoryImpl implements BoardFreeRepositoryCustom{
+public class BoardFreeRepositoryCustomImpl implements BoardFreeRepositoryCustom{
 
 	private JPAQueryFactory queryFactory; // 질의어 대행
 
-	public BoardFreeRepositoryImpl(EntityManager em) { // BoardFreeRepositoryImpl 본인에 대한 객체화
+	public BoardFreeRepositoryCustomImpl(EntityManager em) { // BoardFreeRepositoryImpl 본인에 대한 객체화
 		this.queryFactory = new JPAQueryFactory(em);
 	}
 
