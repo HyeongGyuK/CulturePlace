@@ -1,6 +1,7 @@
 package com.culture.controller.Board.BoardFreeController;
 
 import com.culture.dto.BoardFreeDto.BoardFreeReplyWriteDto;
+import com.culture.entity.boardFree.BoardFreeReply;
 import com.culture.service.ReplyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,12 @@ public class ReplyController {
                              @Valid BoardFreeReplyWriteDto boardFreeReplyWriteDto,
                              BindingResult bindingResult,
                              Model model, Principal principal) throws Exception {
+
+        System.out.println(boardFreeReplyWriteDto.getReply_no());
+        System.out.println(boardFreeReplyWriteDto.getBoard_no());
+        System.out.println(boardFreeReplyWriteDto.getReply_content());
+
+//        replyService.savedBoardFreeReplyWrite(boardFreeReplyWriteDto, board_no);
 
         replyService.savedBoardFreeReplyWrite(boardFreeReplyWriteDto, board_no);
 
