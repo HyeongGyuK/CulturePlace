@@ -1,9 +1,11 @@
 package com.culture.controller.Board.BoardFreeController;
 
+import com.culture.dto.BoardFreeDto.BoardFreeReplyWriteDto;
 import com.culture.dto.BoardFreeDto.NoticeDto;
 import com.culture.dto.BoardFreeDto.NoticeWriteDto;
 import com.culture.service.NoticeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -69,19 +71,30 @@ public class NoticeController {
     public String noticeDetail(@PathVariable("notice_no") Long notice_no, Model model, Principal principal) {
         NoticeDto noticeDto = noticeService.getNoticeDetail(notice_no);
 
-        String userId = principal.getName();
+        // userId를 담을 변수
+        String userId = "";
 
-        // 조회수 증가
-        if(!userId.equals(noticeDto.getNotice_writer())){
-            model.addAttribute("reahitPlus", noticeService.updateNoticeReadHit(notice_no));
-        }
+        // 로그인을 하지 않을 시에 anonymousUser로 값을 반환한다.
+        Object who = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        // Principal = 로그인한 사용자의 정보
-        if(principal == null){
-            model.addAttribute("noticeDto", noticeDto);
-        }else{
+        String unknown = who.toString();
+
+        // 사용자가 로그인을 하지 않았을 시에는 조회수가 오르지 않는다 또한 게시글의 작성자와 로그인한 사용자의 정보가 불일치 할 시 수정이 불가능하다.
+        if(unknown == "anonymousUser"){
+            userId = unknown;
+
             model.addAttribute("userId", userId);
             model.addAttribute("noticeDto", noticeDto);
+        }else{
+            userId = principal.getName();
+            // 조회수 증가
+            if(!userId.equals(noticeDto.getNotice_writer())){
+                model.addAttribute("readhitPlus", noticeService.updateNoticeReadHit(notice_no));
+            }
+
+            model.addAttribute("userId", userId);
+            model.addAttribute("noticeDto", noticeDto);
+            model.addAttribute("replyWriteDto", new BoardFreeReplyWriteDto());
         }
 
         return "thymeleaf/Board/BoardFree/notice_detail";
