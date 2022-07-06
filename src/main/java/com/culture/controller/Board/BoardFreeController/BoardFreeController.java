@@ -1,7 +1,11 @@
 package com.culture.controller.Board.BoardFreeController;
 
-import com.culture.dto.BoardFreeDto.*;
+import com.culture.dto.BoardFreeDto.BoardFreeDto;
+import com.culture.dto.BoardFreeDto.BoardFreeReplyWriteDto;
+import com.culture.dto.BoardFreeDto.BoardFreeSearchDto;
+import com.culture.dto.BoardFreeDto.BoardFreeWriteDto;
 import com.culture.entity.boardFree.BoardFree;
+import com.culture.entity.boardFree.BoardFreeReply;
 import com.culture.entity.boardFree.Notice;
 import com.culture.service.BoardFreeService;
 import com.culture.service.NoticeService;
@@ -110,9 +114,7 @@ public class BoardFreeController {
 								  Model model, Principal principal) {
 		BoardFreeDto boardFreeDto = boardFreeService.getBoardDetail(board_no);
 
-		List<BoardFreeReplyDto> boardFreeReplyPage = replyService.getReplyPage(board_no);
-
-		System.out.println("Service에서 넘어온 정보" + boardFreeReplyPage);
+		List<BoardFreeReply> boardFreeReplyPage = replyService.getReplyPage(board_no);
 
 		// userId를 담을 변수
 		String userId = "";
@@ -133,6 +135,7 @@ public class BoardFreeController {
 			model.addAttribute("replyLists", boardFreeReplyPage);
 		}else{
 			userId = principal.getName();
+
 			// 조회수 증가
 			if(!userId.equals(boardFreeDto.getBoard_writer())){
 				model.addAttribute("readhitPlus", boardFreeService.updateBoardFreeReadHit(board_no));
@@ -140,6 +143,7 @@ public class BoardFreeController {
 
 			model.addAttribute("userId", userId);
 			model.addAttribute("boardFree", boardFreeDto);
+
 			// 댓글 출력
 			model.addAttribute("replyLists", boardFreeReplyPage);
 			// 댓글 작성
