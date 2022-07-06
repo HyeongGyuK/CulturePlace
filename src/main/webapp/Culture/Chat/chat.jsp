@@ -47,6 +47,7 @@
 			flex-direction: row;
             justify-content: center;
             font-size: 20px;
+            margin-top:10px;
 		}
 
 		#yourName{
@@ -54,6 +55,7 @@
             flex-direction: row;
             justify-content: center;
             font-size: 20px;
+            margin-top:10px;
 		}
 
 		#startBtn{
