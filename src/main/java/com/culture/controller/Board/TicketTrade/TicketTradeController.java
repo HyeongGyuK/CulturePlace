@@ -1,11 +1,9 @@
 package com.culture.controller.Board.TicketTrade;
 
-import com.culture.dto.BoardFreeDto.BoardFreeReplyDto;
 import com.culture.dto.TicketTradeDto.TicketTradeDto;
 import com.culture.dto.TicketTradeDto.TicketTradeSearchDto;
 import com.culture.dto.TicketTradeDto.TicketTradeWriteDto;
 import com.culture.entity.TicketTrade.TicketTrade;
-import com.culture.service.ReplyService;
 import com.culture.service.TicketTradeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -33,7 +31,8 @@ public class TicketTradeController {
 
     private final TicketTradeService ticketTradeService;
 
-    private final ReplyService replyService;
+//    private final TicketTradeReplyService ticketTradeReplyService;
+
 
     @GetMapping(value = "/TicketTradeMain/ticket_trade_write")
     public String ticketTradeForm(Model model) {
@@ -43,7 +42,7 @@ public class TicketTradeController {
 
     // 글 작성
     @PostMapping(value = "/TicketTradeMain/ticket_trade_write")
-    public String boardWrite(@Valid TicketTradeWriteDto ticketTradeWriteDto,
+    public String ticketTradeWrite(@Valid TicketTradeWriteDto ticketTradeWriteDto,
                              BindingResult bindingResult,
                              Model model) {
 
@@ -67,7 +66,7 @@ public class TicketTradeController {
             ticketTradeService.savedTicketTradeWrite(ticketTradeWriteDto);
         }catch (Exception e) {
             model.addAttribute("errorMessage", "게시물 등록중 오류가 발생하였습니다.");
-            return "thymeleaf/Board/BoardFree/board_free_write";
+            return "thymeleaf/Board/BoardFree/ticket_trade_write";
         }
 
         return "redirect:/TicketTradeMain"; // 거래 게시판 메인 페이지로 이동
@@ -95,12 +94,12 @@ public class TicketTradeController {
 
     // 게시글 상세보기
     @GetMapping(value = "/TicketTradeMain/ticket_trade_detail/{trade_no}")
-    public String boardFreeDetail(TicketTradeReplyDto ticketTradeReplyDto,
-                                  @PathVariable("board_no") Long trade_no,
+    public String ticketTradeDetail(TicketTradeReplyDto ticketTradeReplyDto,
+                                  @PathVariable("trade_no") Long trade_no,
                                   Model model, Principal principal) {
         TicketTradeDto ticketTradeDto = ticketTradeService.getTicketTradeDetail(trade_no);
 
-        List<BoardFreeReplyDto> ticketTradeReplyPage = replyService.getReplyPage(trade_no);
+//        List<TicketTradeReplyDto> ticketTradeReplyPage = ticketTradeReplyService.getTicketTradeReplyPage(trade_no);
 
         // userId를 담을 변수
         String userId = "";
@@ -118,7 +117,7 @@ public class TicketTradeController {
             model.addAttribute("ticketTradeDto", ticketTradeDto);
 
             // 댓글 출력
-            model.addAttribute("replyLists", ticketTradeReplyPage);
+//            model.addAttribute("replyLists", ticketTradeReplyPage);
         }else{
             userId = principal.getName();
 
@@ -131,7 +130,7 @@ public class TicketTradeController {
             model.addAttribute("ticketTradeDto", ticketTradeDto);
 
             // 댓글 출력
-            model.addAttribute("replyLists", ticketTradeReplyPage);
+//            model.addAttribute("replyLists", ticketTradeReplyPage);
             // 댓글 작성
             model.addAttribute("replyWriteDto", new TicketTradeWriteDto());
         }

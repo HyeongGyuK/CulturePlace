@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 public interface BoardFreeReplyRepository extends JpaRepository<BoardFreeReply, Long>,
@@ -20,6 +19,4 @@ public interface BoardFreeReplyRepository extends JpaRepository<BoardFreeReply, 
             " where bf.board_no = :board_no  and bfr.boardFree = :board_no" +
             " order by bfr.reply_no desc ")
     List<BoardFreeReplyDto> findByBoardFreeReplyDtoList(Long board_no);
-
-
 }
