@@ -170,23 +170,15 @@
                     </td>
                 </tr>
 
-                <div th:object="${replyLists}">
-                    <div th:if="${#lists.isEmpty(replyLists)}">
-                        <tr>
-                            <td colspan="3"><p>댓글이 없습니다.</p></td>
-                        </tr>
-                    </div>
-
-                    <div th:if="${not #lists.isEmpty(replyLits)}">
-                        <tr th:each="replyList, status: ${replyLists.getContent()}">
-                            <td width="10%" th:text="${replyList.reply_writer}"></td>
-                            <td width="70%"><p id="comment_p" th:text="${replyList.reply_content}"></p></td>
-                            <td width="15%" th:text="${replyList.reply_regdate}"></td>
-                            <th:if test="${replyList.reply_writer} == userId">
-                                <td width="5%" ><a href="#" class="deleteComment" style="display: block" onclick="deleteCommentFunction([[${replyList.reply_no}]]})">삭제</a></td>
-                            </th:if>
-                        </tr>
-                    </div>
+                <div>
+                    <tr th:each="replyList : ${replyLists}">
+                        <td width="10%" th:text="${replyList.reply_writer}"></td>
+                        <td width="70%"><p id="comment_p" th:text="${replyList.reply_content}"></p></td>
+                        <td width="15%" th:text="${replyList.reply_regdate}"></td>
+                        <th:if test="${replyList.reply_writer} == userId">
+                            <td width="5%" ><a href="#" class="deleteComment" style="display: block" onclick="deleteCommentFunction([[${replyList.reply_no}]]})">삭제</a></td>
+                        </th:if>
+                    </tr>
                 </div>
 
             </table>

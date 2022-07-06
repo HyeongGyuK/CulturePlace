@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.NonUniqueResultException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -45,6 +47,41 @@ public class ReplyService {
     }
 
     public List<BoardFreeReplyDto> getReplyPage(Long board_no){
-        return boardFreeReplyRepository.getBoardFreeReplyPage(board_no);
+
+        BoardFree boardFree = boardFreeRepository.getById(board_no);
+
+        BoardFreeReply boardFreeReply = null;
+        List<BoardFreeReplyDto> boardFreeReplyDtoList = new ArrayList<>();
+        try {
+            boardFreeReply = boardFreeReplyRepository.findByBoardFree(boardFree);
+
+            if(boardFreeReply == null){
+                return boardFreeReplyDtoList;
+            }else{
+//            BoardFree boardNo = boardFreeReply.getBoardFree();
+                boardFreeReplyDtoList = boardFreeReplyRepository.findByBoardFreeReplyDtoList(board_no);
+                return boardFreeReplyDtoList;
+            }
+
+        }catch ( Exception e){
+            boardFreeReplyDtoList = boardFreeReplyRepository.findByBoardFreeReplyDtoList(board_no);
+            return boardFreeReplyDtoList;
+        }
+
+//        List<BoardFreeReplyDto> boardFreeReplyDtoList = new ArrayList<>();
+
+//        if(boardFreeReply == null){
+//            return boardFreeReplyDtoList;
+//        }else{
+////            BoardFree boardNo = boardFreeReply.getBoardFree();
+//            boardFreeReplyDtoList = boardFreeReplyRepository.findByBoardFreeReplyDtoList(board_no);
+//            return boardFreeReplyDtoList;
+//        }
+
+
+
+
+
+//        return boardFreeReplyRepository.getBoardFreeReplyPage(board_no);
     }
 }
