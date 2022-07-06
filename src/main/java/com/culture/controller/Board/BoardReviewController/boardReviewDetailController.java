@@ -1,5 +1,6 @@
 package com.culture.controller.Board.BoardReviewController;
 
+import com.culture.constant.CategoryStatus;
 import com.culture.dto.BoardReviewDto;
 import com.culture.dto.BoardReviewFormDto;
 import com.culture.service.BoardReviewService;
@@ -36,7 +37,6 @@ public class boardReviewDetailController {
 
         return "thymeleaf/boardReview/boardReview_detail";
     }*/
-
 
     @GetMapping(value = "/review/{bno}")
     public String boardReviewDetail(@PathVariable("bno") Long bno, Model model, Principal principal) {

@@ -1,5 +1,6 @@
 package com.culture.repository;
 
+import com.culture.constant.CategoryStatus;
 import com.culture.dto.BoardReviewMainDto;
 //import com.culture.dto.MainBoardReviewDto;
 //import com.culture.dto.QMainBoardReviewDto;
@@ -23,6 +24,23 @@ public class BoardReviewRepositoryCustomImpl implements BoardReviewRepositoryCus
 
     public BoardReviewRepositoryCustomImpl(EntityManager em){ //생성자
         this.queryFactory = new JPAQueryFactory(em);
+    }
+
+
+    @Override
+    public Page<BoardReview> getAdminCategoryBoardReviewPage(Pageable pageable, CategoryStatus categoryStatus) {
+        QueryResults<BoardReview> results = this.queryFactory
+                .selectFrom(QBoardReview.boardReview) //from 테이블명
+                .where(QBoardReview.boardReview.categoryStatus.eq(categoryStatus))
+                .orderBy(QBoardReview.boardReview.bno.desc())
+                .offset(pageable.getOffset()) //시작하고자하고자하는 줄(글)(차감). no offset이면 첫줄부터 나옴
+                .limit(pageable.getPageSize()) // 제한하고자 하는 줄(글) 갯수
+                .fetchResults();
+
+        List<BoardReview> content = results.getResults();
+        long total = results.getTotal();
+
+        return new PageImpl<>(content,pageable,total);
     }
 
     @Override  // Page는 인터페이스. 이거를 구현하는 클래스가 PageImpl
@@ -68,6 +86,32 @@ public class BoardReviewRepositoryCustomImpl implements BoardReviewRepositoryCus
 
         List<BoardReviewMainDto> content = results.getResults();
         long total = results.getTotal();
+        return new PageImpl<>(content, pageable, total);
+    }
+
+    @Override
+    public Page<BoardReviewMainDto> getMainCategoryBoardReviewPage(Pageable pageable, CategoryStatus categoryStatus) {
+        QBoardReview boardReview = QBoardReview.boardReview;
+        QBoardReviewImg boardReviewImg = QBoardReviewImg.boardReviewImg;
+
+        QueryResults<BoardReviewMainDto> results = queryFactory
+                .select(
+                        new QBoardReviewMainDto(
+                                boardReview.bno,
+                                boardReviewImg.imgUrl,
+                                boardReview.b_title)
+                )
+                .from(boardReviewImg)
+                .where(boardReview.categoryStatus.eq(categoryStatus))
+                .join(boardReviewImg.boardReview, boardReview)
+                .orderBy(boardReview.bno.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetchResults();
+
+        List<BoardReviewMainDto> content = results.getResults();
+        long total = results.getTotal();
+
         return new PageImpl<>(content, pageable, total);
     }
 

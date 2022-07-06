@@ -1,5 +1,6 @@
 package com.culture.controller.Board.BoardReviewController;
 
+import com.culture.constant.CategoryStatus;
 import com.culture.dto.BoardFreeDto.BoardFreeDto;
 import com.culture.dto.BoardReviewDto;
 import com.culture.dto.BoardReviewMainDto;
@@ -28,6 +29,19 @@ public class boardReviewMainController {
       return "thymeleaf/boardReview/boardReview_main";
    }
 */
+
+	@GetMapping(value = {"/review/main/{category}", "/review/main/{category}/{page}"})
+	public String BoardReviewCategory(@PathVariable("category") CategoryStatus categoryStatus, @PathVariable("page") Optional<Integer> page, Model model){
+		Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 6);
+
+		Page<BoardReviewMainDto> boardReviewDto = boardReviewService.getMainCategoryReviewPage(pageable, categoryStatus);
+		Page<BoardReview> reviewLists = boardReviewService.getAdminCategoryBoardReviewPage(pageable, categoryStatus);
+
+		model.addAttribute("boardReviewDto", boardReviewDto) ;
+		model.addAttribute("reviewLists", reviewLists) ;
+		model.addAttribute("maxPage", 5) ;
+		return "thymeleaf/boardReview/boardReview_main";
+	}
 
 	//리뷰게시판 메인 및 페이징 구현
 	@GetMapping(value = {"/board/main", "/board/main/{page}"})

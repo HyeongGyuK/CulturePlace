@@ -1,5 +1,6 @@
 package com.culture.service;
 
+import com.culture.constant.CategoryStatus;
 import com.culture.dto.BoardReviewDto;
 import com.culture.dto.BoardReviewFormDto;
 import com.culture.dto.BoardReviewImgDto;
@@ -67,6 +68,10 @@ public class BoardReviewService {
         return boardReviewFormDto;
     }
 
+    public Page<BoardReview> getAdminCategoryBoardReviewPage(Pageable pageable, CategoryStatus categoryStatus){
+        return boardReviewRepository.getAdminCategoryBoardReviewPage(pageable, categoryStatus);
+    }
+
     @Transactional(readOnly = true)
     public Page<BoardReview> getAdminBoardReviewPage(Pageable pageable){
         return boardReviewRepository.getAdminBoardReviewPage(pageable);
@@ -75,6 +80,11 @@ public class BoardReviewService {
    @Transactional(readOnly = true)
     public Page<BoardReviewMainDto> getMainBoardReviewPage(Pageable pageable){
         return boardReviewRepository.getMainBoardReviewPage(pageable);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<BoardReviewMainDto> getMainCategoryReviewPage(Pageable pageable, CategoryStatus categoryStatus){
+        return boardReviewRepository.getMainCategoryBoardReviewPage(pageable, categoryStatus);
     }
 
     public BoardReviewDto getBoardReviewDetail(Long bno){
