@@ -125,7 +125,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
             </ul>
             <ul class="common_navbar_menu_chat_hover">
                 <li>
-                    <a href="/chat/go"><p class="common_navbar_menu_chat_hover_p">뮤지컬</p></a>
+                    <a href="/chat/musical"><p class="common_navbar_menu_chat_hover_p">뮤지컬</p></a>
                 </li>
                 <li>
                     <a href="/chat/go"><p class="common_navbar_menu_chat_hover_p">연극</p></a>
