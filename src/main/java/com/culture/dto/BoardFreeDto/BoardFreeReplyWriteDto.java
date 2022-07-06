@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Getter @Setter
 public class BoardFreeReplyWriteDto {
     private Long board_no;
-    private Long reply_no;
+    private int reply_no;
 
     @NotBlank(message = "댓글의 내용을 입력하여 주세요.")
     private String reply_content;
