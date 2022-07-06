@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 @Getter @Setter
 public class BoardFreeReplyDto {
-    private Long bNo;
+    private Long board_no;
     private int reply_no;
     private String reply_content;
     private String reply_writer;
