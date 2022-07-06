@@ -123,6 +123,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
                 <a href="#"><p class="common_navbar_menu_community_hover_p">거래게시판</p></a>
             </li>
             </ul>
+            <!--
             <ul class="common_navbar_menu_chat_hover">
                 <li>
                     <a href="/chat/musical"><p class="common_navbar_menu_chat_hover_p">뮤지컬</p></a>
@@ -143,6 +144,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
                     <a href="/chat/go"><p class="common_navbar_menu_chat_hover_p">국악</p></a>
                 </li>
             </ul>
+            -->
         </div>
     </div>
 

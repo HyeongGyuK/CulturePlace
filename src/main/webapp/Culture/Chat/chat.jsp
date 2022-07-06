@@ -13,20 +13,19 @@
 			padding:0;
 		}
 		.container{
-			width: 500px;
+			width: 1000px;
 			margin: 0 auto;
 			padding: 25px
 		}
 		.container h1{
 			text-align: left;
 			padding: 5px 5px 5px 15px;
-			color: #FFBB00;
-			border-left: 3px solid #FFBB00;
+			color: #000;
+			border-left: 3px solid #bbb;
 			margin-bottom: 20px;
 		}
 		.chating{
 			background-color: #000;
-			width: 500px;
 			height: 500px;
 			overflow: auto;
 		}
@@ -39,19 +38,35 @@
 			text-align: left;
 		}
 		input{
-			width: 330px;
-			height: 25px;
+			width: 780px;
+			height: 30px;
+			margin-left: 5px;
 		}
 		#yourMsg{
-		    width:500px;
 			display: none;
+			flex-direction: row;
+            justify-content: center;
+            font-size: 20px;
 		}
+
 		#yourName{
-		    width:500px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            font-size: 20px;
 		}
-		.first_th{
-		width:70px;
+
+		#startBtn{
+		    height:30px;
 		}
+
+		.chating .me{
+		    font-size:20px;
+		}
+
+		.others{
+            font-size:20px;
+        }
 	</style>
 </head>
 
@@ -80,9 +95,9 @@
 					}
 				}else if(d.type == "message"){
 					if(d.sessionId == $("#sessionId").val()){
-						$("#chating").append("<p class='me'>나 :" + d.msg + "</p>");
+						$("#chating").append("<p class='me'>나 : " + d.msg + "</p>");
 					}else{
-						$("#chating").append("<p class='others'>" + d.userName + " :" + d.msg + "</p>");
+						$("#chating").append("<p class='others'>" + d.userName + " : " + d.msg + "</p>");
 					}
 
 				}else{
@@ -107,6 +122,7 @@
 			wsOpen();
 			$("#yourName").hide();
 			$("#yourMsg").show();
+			$("#yourMsg").css("display","flex");
 		}
 	}
 
@@ -132,19 +148,17 @@
 		<div id="yourName">
 			<table class="inputTable">
 				<tr>
-				<br>
-					<th class="first_th" >사용자명&nbsp;&nbsp;&nbsp;</th>
-					<th><input type="text" name="userName" id="userName">&nbsp;&nbsp;&nbsp;</th>
+					<th>사용자명</th>
+					<th><input type="text" name="userName" id="userName"></th>
 					<th><button onclick="chatName()" id="startBtn">이름 등록</button></th>
 				</tr>
 			</table>
 		</div>
 		<div id="yourMsg">
 			<table class="inputTable">
-			    <br>
 				<tr>
-					<th class="first_th">메시지&nbsp;&nbsp;&nbsp;</th>
-					<th><input id="chatting" placeholder="보내실 메시지를 입력하세요.">&nbsp;&nbsp;&nbsp;</th>
+					<th>메시지</th>
+					<th><input id="chatting" placeholder="보내실 메시지를 입력하세요."></th>
 					<th><button onclick="send()" id="sendBtn">보내기</button></th>
 				</tr>
 			</table>
