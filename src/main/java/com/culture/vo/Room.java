@@ -1,4 +1,4 @@
-package com.culture.test.chatting.vo;
+package com.culture.vo;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,6 +8,6 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Room {
-	int roomNumber;
-	String roomName;
+    int roomNumber;
+    String roomName;
 }
