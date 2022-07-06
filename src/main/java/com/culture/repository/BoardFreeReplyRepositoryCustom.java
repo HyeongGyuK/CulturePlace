@@ -1,10 +1,8 @@
-//package com.culture.repository;
+package com.culture.repository;
+
+public interface BoardFreeReplyRepositoryCustom {
 //
-//import com.culture.dto.BoardFreeDto.BoardFreeSearchDto;
-//import com.culture.entity.boardFree.BoardFreeReply;
-//import org.springframework.data.domain.Page;
-//import org.springframework.data.domain.Pageable;
-//
-//public interface BoardFreeReplyRepositoryCustom {
-//    Page<BoardFreeReply> getBoardFreeReplyPage(Pageable pageable, BoardFreeSearchDto boardFreeSearchDto);
-//}
+//    //  order by bfr.reply_no asc
+//    @Query(value = "select * from BoardFreeReply where board_no = :board_no")
+//    List<BoardFreeReplyDto> getBoardFreeReplyPage(@Param("board_no") Long board_no);
+}
