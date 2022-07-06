@@ -1,11 +1,7 @@
 package com.culture.controller.Board.BoardFreeController;
 
-import com.culture.dto.BoardFreeDto.BoardFreeDto;
-import com.culture.dto.BoardFreeDto.BoardFreeReplyWriteDto;
-import com.culture.dto.BoardFreeDto.BoardFreeSearchDto;
-import com.culture.dto.BoardFreeDto.BoardFreeWriteDto;
+import com.culture.dto.BoardFreeDto.*;
 import com.culture.entity.boardFree.BoardFree;
-import com.culture.entity.boardFree.BoardFreeReply;
 import com.culture.entity.boardFree.Notice;
 import com.culture.service.BoardFreeService;
 import com.culture.service.NoticeService;
@@ -110,11 +106,14 @@ public class BoardFreeController {
 
 	// 게시판 상세 정보
 	@GetMapping(value = "/CommunityMain/board_free_detail/{board_no}")
-	public String boardFreeDetail(@PathVariable("board_no") Long board_no,
+	public String boardFreeDetail(BoardFreeReplyDto boardFreeReplyDto,
+								  @PathVariable("board_no") Long board_no,
 								  Model model, Principal principal) {
 		BoardFreeDto boardFreeDto = boardFreeService.getBoardDetail(board_no);
 
-		List<BoardFreeReply> boardFreeReplyPage = replyService.getReplyPage(board_no);
+		List<BoardFreeReplyDto> boardFreeReplyPage = replyService.getReplyPage(board_no);
+
+		System.out.println("뽑아온 자료 : " + boardFreeReplyPage);
 
 		// userId를 담을 변수
 		String userId = "";
@@ -143,6 +142,8 @@ public class BoardFreeController {
 
 			model.addAttribute("userId", userId);
 			model.addAttribute("boardFree", boardFreeDto);
+
+			System.out.println(boardFreeReplyPage + "================================");
 
 			// 댓글 출력
 			model.addAttribute("replyLists", boardFreeReplyPage);

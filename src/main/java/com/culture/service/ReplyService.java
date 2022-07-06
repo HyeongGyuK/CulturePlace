@@ -1,5 +1,6 @@
 package com.culture.service;
 
+import com.culture.dto.BoardFreeDto.BoardFreeReplyDto;
 import com.culture.dto.BoardFreeDto.BoardFreeReplyWriteDto;
 import com.culture.entity.boardFree.BoardFree;
 import com.culture.entity.boardFree.BoardFreeReply;
@@ -43,7 +44,7 @@ public class ReplyService {
         return boardFreeReply;
     }
 
-    public List<BoardFreeReply> getReplyPage(Long board_no){
+    public List<BoardFreeReplyDto> getReplyPage(Long board_no){
         return boardFreeReplyRepository.getBoardFreeReplyPage(board_no);
     }
 }
