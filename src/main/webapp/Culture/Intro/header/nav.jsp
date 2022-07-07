@@ -120,7 +120,7 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
                 <a href="/board/main"><p class="common_navbar_menu_community_hover_p">리뷰게시판</p></a>
             </li>
             <li>
-                <a href="#"><p class="common_navbar_menu_community_hover_p">거래게시판</p></a>
+                <a href="/TicketTradeMain"><p class="common_navbar_menu_community_hover_p">거래게시판</p></a>
             </li>
             </ul>
             <!--
