@@ -126,9 +126,10 @@ public class UserController {
    }
 
 
-	@GetMapping(value = "/detail")
-	public String detail(Model model) {
-		model.addAttribute("memberFormDto", new MemberFormDto());
+	@GetMapping(value = "/detail/{MId}")
+	public String detail(@RequestParam(value = "MId") String MId, Model model) {
+//	   	MemberFormDto memberFormDto = memberService.loadUserByUsername(MId);
+//		model.addAttribute("memberFormDto", memberFormDto);
 		return "thymeleaf/member/UsersDetail";
 	}
 
@@ -170,7 +171,6 @@ public class UserController {
 	   Member member = Member.createMember(memberFormDto, passwordEncoder);
 	   memberService.saveMember(member) ;
 
-	   System.out.println("aaaaaaaaaaaaaaaaaaaa");
 	   return "CulturePlace/main/main";
    }
    
