@@ -28,6 +28,11 @@
                     e.preventDefault();
                     page(0);
                 });
+
+                $('[value="판매중"]').css({'background-color':'LightBlue','cursor':'default'});
+                $('[value="거래완료"]').css({'background-color':'lightgray','color':'black','cursor':'default'});
+                $('[value="구매중"]').css({'background-color':'LightCoral','cursor':'default'});
+
 			});
 
 			function page(page){
@@ -97,8 +102,8 @@
                 border: 1px solid #6667AB;
             }
 
-            .tradeList :nth-child(2), .noticeList :nth-child(2){text-align: left;}
-            .tradeList a, .noticeList a{color:black;}
+            .tradeList :nth-child(3) {text-align: left;}
+            .tradeList a {color:black;}
 
         </style>
     </th:block>
@@ -130,11 +135,21 @@
                     <tbody th:object="${TicketTrades}">
                         <tr class="tradeList" th:each="TicketTrade, status: ${TicketTrades.getContent()}">
                             <td th:text="${TicketTrade.trade_no}"></td>
-                            <td th:text="${TicketTrade.tradeStatus}"></td>
                             <td>
-                                <a>상세 페이지</a>
-<!--                                        <a th:href="'/TicketTradeMain/ticket_trade_detail/' + ${TicketTrade.trade_no}"-->
-<!--                                           th:text="${TicketTrade.trade_title}"></a>-->
+<!--                                <input th:if="${TicketTrade.tradeStatus} == SELL" th:text="${TicketTrade.tradeStatus}" type="button"-->
+<!--                                       style="border: 1px solid black; border-radius: 5px; padding: 2px; vertical-align: middle; width: 60%;"></input>-->
+<!--                                <input th:if="${TicketTrade.tradeStatus == T(com.culture.constant.TradeStatus).SELL}" th:value="${TicketTrade.tradeStatus} == 판매중 ? 판매중 : 구매중 ? 구매중 : 거래완료" type="button"-->
+<!--                                       style="border: 1px solid black; border-radius: 5px; padding: 2px; vertical-align: middle; width: 60%;" />-->
+                                <input th:if="${TicketTrade.tradeStatus == T(com.culture.constant.TradeStatus).SELL}" th:value="판매중" type="button"
+                                       style="border: 1px solid black; border-radius: 5px; padding: 2px; vertical-align: middle; width: 60%;" />
+                                <input th:if="${TicketTrade.tradeStatus == T(com.culture.constant.TradeStatus).BUY}" th:value="구매중" type="button"
+                                       style="border: 1px solid black; border-radius: 5px; padding: 2px; vertical-align: middle; width: 60%;" />
+                                <input th:if="${TicketTrade.tradeStatus == T(com.culture.constant.TradeStatus).COMPLETE}" th:value="거래완료" type="button"
+                                       style="border: 1px solid black; border-radius: 5px; padding: 2px; vertical-align: middle; width: 60%;" />
+
+                            </td>
+                            <td>
+                                <a th:text="${TicketTrade.trade_title}"></a>
                             </td>
                             <td th:text="${TicketTrade.trade_writer}"></td>
                             <td th:text="${TicketTrade.trade_regdate}"></td>
@@ -145,8 +160,7 @@
                     <tfoot th:with="start=${(TicketTrades.number/maxPage)*maxPage + 1}, end=(${(TicketTrades.totalPages == 0) ? 1 : (start + (maxPage - 1) < TicketTrades.totalPages ? start + (maxPage - 1) : TicketTrades.totalPages)})">
                         <td colspan="10" align="center">
 
-                            <a href="/TicketTradeMain/ticket_trade_write" class="btn btn-primary pull-right"
-                               id="board_write"><b>글쓰기</b></a>
+                            <a href="/TicketTradeMain/ticket_trade_write" class="btn btn-primary pull-right" id="board_write"><b>글쓰기</b></a>
 
                             <div>
 
@@ -197,7 +211,6 @@
                                            placeholder="검색 키워드 입력">
                                 </div>
                                 <button id="searchBtn" class="btn btn-default" type="submit">검색</button>
-                                <button class="btn btn-default" type="button" onclick="searchAll();">전체 검색</button>
                                 &nbsp;&nbsp;&nbsp;&nbsp;
                                 <p class="form-control-static"></p>
                             </div>
