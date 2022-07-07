@@ -71,17 +71,12 @@
 			}
 		}
 
-		function deleteReplyFunction(reply_no){
+		function deleteCommentFunction(commentNum){
 			var text = "댓글을 삭제하시겠습니까?";
-			var uri = [[@{/CommunityMain/board_free_detail/replyDelete}]]
-            var html = "";
-			if(confirm(text) == true){
-			    html += '<form name="deleteReplyForm" action="'+uri+'" method="get">';
-                html += '<input type="hidden" name="reply_no" value="'+reply_no+'" />';
-                html += '</form>';
 
-                $("body").append(html);
-				document.deleteReplyForm.submit();
+			if(confirm(text) == true){
+
+				return true;
 			}else{
 				return false;
 			}
@@ -137,7 +132,7 @@
 <body>
 <div layout:fragment="content">
 
-    <input type="hidden" id="boardFree" th:value="${boardFree.board_no}">
+    <input type="hidden" id="ticketTradeDto" th:value="${ticketTradeDto.trade_no}">
     <input type="hidden" id="userId" th:value="${userId}">
 
     <div id="template">
@@ -151,20 +146,20 @@
                 <tr id="boardDateReadHit">
                     <td style="width: 60%"></td>
                     <td style="width: 10%; text-align: center;">작성일자</td>
-                    <td style="width: 10%; text-align: center;" th:text="${#temporals.format(boardFree.board_regdate)}"></td>
+                    <td style="width: 10%; text-align: center;" th:text="${ticketTradeDto.trade_regdate}"></td>
                     <td style="width: 10%; text-align: center;">조회수</td>
-                    <td style="width: 10%; text-align: center;" th:text="${boardFree.board_readhit}"></td>
+                    <td style="width: 10%; text-align: center;" th:text="${ticketTradeDto.trade_readhit}"></td>
                 </tr>
             </table>
             <ul id="boardDetailInfo">
-                <li><span>작성자&nbsp;:&nbsp;</span><span th:text="${boardFree.board_writer}">&nbsp;&nbsp;</span></li>
-                <li><span>제목&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;</span><span th:text="${boardFree.board_title}">&nbsp;&nbsp;</span></li>
+                <li><span>작성자&nbsp;:&nbsp;</span><span th:text="${ticketTradeDto.trade_writer}">&nbsp;&nbsp;</span></li>
+                <li><span>제목&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;</span><span th:text="${ticketTradeDto.trade_title}">&nbsp;&nbsp;</span></li>
             </ul>
 
             <table class="table table-striped" id="content_table">
                 <tr id="board_content">
 
-                    <td colspan="6"><p id="text" th:text="${boardFree.board_content}"></p></td>
+                    <td colspan="6"><p id="text" th:text="${ticketTradeDto.trade_content}"></p></td>
                 </tr>
             </table>
 
@@ -179,10 +174,10 @@
                     <tr th:each="replyList : ${replyLists}">
                         <td width="10%" th:text="${replyList.reply_writer}"></td>
                         <td width="70%"><p id="comment_p" th:text="${replyList.reply_content}"></p></td>
-                        <td width="15%" th:text="${#temporals.format(replyList.reply_regdate)}"></td>
-                        <td width="5%" th:if="${replyList.reply_writer} == ${userId}">
-                            <button class="deleteComment" style="display: block; width: 40px; border-radius: 5px;" th:onclick="deleteReplyFunction([[${replyList.reply_no}]])">삭제</button>
-                        </td>
+                        <td width="15%" th:text="${replyList.reply_regdate}"></td>
+                        <th:if test="${replyList.reply_writer} == userId">
+                            <td width="5%" ><a href="#" class="deleteComment" style="display: block" onclick="deleteCommentFunction([[${replyList.reply_no}]]})">삭제</a></td>
+                        </th:if>
                     </tr>
                 </div>
 
@@ -221,7 +216,7 @@
                         style="background-color:#FFFFFF; color: #6667AB; border: 1px solid #6667AB; box-sizing:border-box; margin-top: 10px;" th:onclick="updateFunction([[${boardFree.board_no}]])"><b>수정</b>
                 </button>
 
-                <a id="boardBackBtn" class="btn btn-primary" style="background-color:#FFFFFF; color: #6667AB; border: 1px solid #6667AB;">뒤로가기</a>&nbsp;&nbsp;
+                <a id="boardBackBtn" class="btn btn-primary" style="background-color:#FFFFFF; color: #6667AB; border: 1px solid #6667AB">뒤로가기</a>&nbsp;&nbsp;
             </td>
         </div>
     </div>

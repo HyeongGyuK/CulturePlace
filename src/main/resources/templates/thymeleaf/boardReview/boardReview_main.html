@@ -6,6 +6,8 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <title>Insert title here</title>
 
     <th:block layout:fragment="script">
@@ -22,6 +24,29 @@
             function page(page){
 	            location.href="/board/main/"
 	            + page;
+	        }
+
+	        function categoryPlay(){
+	            alert("연극 카테고리 선택");
+
+	            var token = $("meta[name='_csrf']").attr("content");
+	            var header = $("meta[name='_csrf_header']").attr("content");
+
+	            $.ajax({
+                    url: "/review/main?category=PLAY",
+                    type: "GET",
+                    dataType: "json",
+                    beforeSend: function(xhr){
+                        xhr.setRequestHeader(header, token);
+                    },
+                    cache: false,
+                    success: function(){
+                        alert("카테고리 통신 성공");
+                    },
+                    error: function(request, status, error){
+                        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                    }
+	            });
 	        }
     </script>
     </th:block>
@@ -72,12 +97,12 @@
     <div class="list-banner"></div>
     <div class="list-tab" id="tabbox">
         <ul class="ul01">
-            <a href=""><li><p><span>연극</span></p></li></a>
-            <a href=""><li><p><span>뮤지컬</span></p></li></a>
-            <a href=""><li><p><span>콘서트</span></p></li></a>
-            <a href=""><li><p><span>클래식/오페라</span></p></li></a>
-            <a href=""><li><p><span>국악</span></p></li></a>
-            <a href=""><li><p><span>무용</span></p></li></a>
+            <a href="#" onclick="categoryPlay();"><li><p><span>연극</span></p></li></a>
+            <a href="#" onclick="categoryMusical();"><li><p><span>뮤지컬</span></p></li></a>
+            <a href="#" onclick="categoryConcert();"><li><p><span>콘서트</span></p></li></a>
+            <a href="#" onclick="categoryClassic();"><li><p><span>클래식/오페라</span></p></li></a>
+            <a href="#" onclick="categoryGugak();"><li><p><span>국악</span></p></li></a>
+            <a href="#" onclick="categoryDance();"><li><p><span>무용</span></p></li></a>
         </ul>
     </div>
     <div class="list-data" id="photobox">

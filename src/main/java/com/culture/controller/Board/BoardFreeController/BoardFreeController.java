@@ -5,10 +5,12 @@ import com.culture.entity.boardFree.BoardFree;
 import com.culture.entity.boardFree.Notice;
 import com.culture.service.BoardFreeService;
 import com.culture.service.NoticeService;
+import com.culture.service.ReplyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,6 +34,8 @@ public class BoardFreeController {
 
 	private final BoardFreeService boardFreeService;
 	private final NoticeService noticeService;
+
+	private final ReplyService replyService;
 
 	// 글 작성 페이지로 이동
 	@GetMapping(value = "/CommunityMain/board_free_write")
@@ -102,29 +106,50 @@ public class BoardFreeController {
 
 	// 게시판 상세 정보
 	@GetMapping(value = "/CommunityMain/board_free_detail/{board_no}")
-	public String boardFreeDetail(@PathVariable("board_no") Long board_no,
+	public String boardFreeDetail(BoardFreeReplyDto boardFreeReplyDto,
+								  @PathVariable("board_no") Long board_no,
 								  Model model, Principal principal) {
-
 		BoardFreeDto boardFreeDto = boardFreeService.getBoardDetail(board_no);
 
-		String userId = principal.getName();
+		List<BoardFreeReplyDto> boardFreeReplyPage = replyService.getReplyPage(board_no);
 
-		// 조회수 증가
-		if(!userId.equals(boardFreeDto.getBoard_writer())){
-			model.addAttribute("reahitPlus", boardFreeService.updateBoardFreeReadHit(board_no));
-		}
+//		System.out.println("뽑아온 자료 : " + boardFreeReplyPage);
 
-		// Principal = 로그인한 사용자의 정보
-		if(principal == null){
-			model.addAttribute("boardFree", boardFreeDto);
-		}else{
+		// userId를 담을 변수
+		String userId = "";
+
+		// 로그인을 하지 않을 시에 anonymousUser로 값을 반환한다.
+		Object who = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		String unknown = who.toString();
+
+		// 사용자가 로그인을 하지 않았을 시에는 조회수가 오르지 않는다 또한 게시글의 작성자와 로그인한 사용자의 정보가 불일치 할 시 수정이 불가능하다.
+		if(unknown == "anonymousUser"){
+			userId = unknown;
+
 			model.addAttribute("userId", userId);
 			model.addAttribute("boardFree", boardFreeDto);
+
+			// 댓글 출력
+			model.addAttribute("replyLists", boardFreeReplyPage);
+		}else{
+			userId = principal.getName();
+
+			// 조회수 증가
+			if(!userId.equals(boardFreeDto.getBoard_writer())){
+				model.addAttribute("readhitPlus", boardFreeService.updateBoardFreeReadHit(board_no));
+			}
+
+			model.addAttribute("userId", userId);
+			model.addAttribute("boardFree", boardFreeDto);
+
+			System.out.println(boardFreeReplyPage + "================================");
+
+			// 댓글 출력
+			model.addAttribute("replyLists", boardFreeReplyPage);
+			// 댓글 작성
 			model.addAttribute("replyWriteDto", new BoardFreeReplyWriteDto());
 		}
-
-		// 댓글 작성을 위한 구문
-
 
 		return "thymeleaf/Board/BoardFree/board_free_detail";
 	}

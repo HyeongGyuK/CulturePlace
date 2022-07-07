@@ -19,7 +19,7 @@ public class BoardFreeReply extends BoardFreeReplyBaseEntity{
     @Id
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "board_free_reply_seq")
-    private int reply_no; // pk
+    private Long reply_no; // pk
 
     @Column(nullable = false)
     private String reply_content;
