@@ -83,4 +83,8 @@ public class ReplyService {
 
 //        return boardFreeReplyRepository.getBoardFreeReplyPage(board_no);
     }
+
+    public void boardFreeReplyDelete(Long reply_no) throws Exception{
+        boardFreeReplyRepository.deleteById(reply_no);
+    }
 }
