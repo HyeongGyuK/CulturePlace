@@ -113,6 +113,8 @@ public class BoardFreeController {
 
 		List<BoardFreeReplyDto> boardFreeReplyPage = replyService.getReplyPage(board_no);
 
+//		System.out.println("뽑아온 자료 : " + boardFreeReplyPage);
+
 		// userId를 담을 변수
 		String userId = "";
 

@@ -25,7 +25,6 @@ public class ReplyService {
     public BoardFreeReply savedBoardFreeReplyWrite(BoardFreeReplyWriteDto boardFreeReplyWriteDto, Long board_no) throws Exception{
         BoardFreeReply boardFreeReply = boardFreeReplyWriteDto.replyWrite();
         boardFreeReply.setReply_content(boardFreeReply.getReply_content());
-
 //        boardFreeReply.setBoard_no(board_no);
 //        boardFreeReply.setBoard_no(board_no);
         BoardFree boardFree = boardFreeRepository.findById(board_no).orElseThrow(EntityNotFoundException::new);
@@ -34,6 +33,7 @@ public class ReplyService {
         boardFreeReplyRepository.save(boardFreeReply);
 
 //        BoardFreeReply boardFreeReply = new BoardFreeReply();
+
 
 
 //        boardFreeReply.setReply_no(boardFreeReplyWriteDto.getReply_no());

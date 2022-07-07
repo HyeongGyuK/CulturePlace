@@ -14,7 +14,7 @@ public interface BoardFreeReplyRepository extends JpaRepository<BoardFreeReply, 
 
     BoardFreeReply findByBoardFree(BoardFree board_no);
 
-    @Query(" select new com.culture.dto.BoardFreeDto.BoardFreeReplyDto(bf.board_no, bfr.reply_no, bfr.reply_content, bfr.reply_writer, bfr.reply_regdate) " +
+    @Query(" select new com.culture.dto.BoardFreeDto.BoardFreeReplyDto(bf.board_no, bfr.reply_no, bfr.reply_content, bf.board_writer, bf.board_regdate) " +
             " from BoardFreeReply bfr, BoardFree bf" +
             " where bf.board_no = :board_no  and bfr.boardFree = :board_no" +
             " order by bfr.reply_no desc ")
