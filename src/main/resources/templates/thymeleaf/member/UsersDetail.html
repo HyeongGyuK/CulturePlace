@@ -123,8 +123,8 @@
         <div class="form-group">
             <label th:for="MId">아이디<span class="ico">*</span></label>
             <input type="text" th:field="*{MId}" id = "MId" name="MId"
-                   class="form-control col-11" placeholder="아이디 입력"
-                   autocomplete="username" oninput="checkId()" />
+                   class="form-control col-11" th:value="*{MId}"
+                   autocomplete="username" oninput="checkId()" readonly />
             <span class="id_ok">사용 가능한 아이디입니다.</span>
             <span class="id_already">다른 회원이 사용중인 아이디 입니다.</span>
             <p th:if="${#fields.hasErrors('MId')}" th:errors="*{MId}" class="fieldError">Incorrect data</p>
